@@ -6,9 +6,10 @@
       plain && 'is-plain',
       round && 'is-round',
       circle && 'is-circle',
-      disabled && 'is-disabled'
-      dwq
+      disabled && 'is-disabled',
+      text && 'is-text'
     ]"
+    @click="handleClick"
   >
     <slot></slot>
   </button>
@@ -37,10 +38,24 @@ export default {
       type: Boolean,
       default: false
     },
+    // text
+    text: {
+      type: Boolean,
+      default: false
+    },
     // disabled
     disabled: {
       type: Boolean,
       default: false
+    }
+  },
+  methods: {
+    // handle button click event
+    handleClick() {
+      if (this.$props.disabled) {
+        return;
+      }
+      this.$emit('click', event);
     }
   }
 };
@@ -161,6 +176,22 @@ export default {
   // circle
   &.is-circle {
     border-radius: 50%;
+  }
+
+  // text
+  &.is-text {
+    padding: 0.5rem 0;
+    border-color: transparent;
+    background-color: transparent;
+    color: #409eff;
+    &:hover {
+      border-color: transparent;
+      background-color: transparent;
+      color: #66b1ff;
+    }
+    &:focus {
+      box-shadow: none;
+    }
   }
 
   // disabled

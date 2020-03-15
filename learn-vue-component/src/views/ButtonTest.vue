@@ -33,11 +33,25 @@
     </section>
 
     <section>
+      <h3>text</h3>
+    </section>
+    <section>
+      <Button text>text</Button>
+    </section>
+
+    <section>
       <h3>disabled</h3>
     </section>
     <section>
       <Button disabled>A</Button>
       <Button type="primary" disabled>B</Button>
+    </section>
+
+    <section>
+      <h3>click</h3>
+    </section>
+    <section>
+      <Button @click="handleClick">A</Button>
     </section>
   </div>
 </template>
@@ -49,6 +63,11 @@ export default {
   name: 'App',
   components: {
     Button
+  },
+  methods: {
+    handleClick(event) {
+      console.log(event);
+    }
   }
 };
 </script>

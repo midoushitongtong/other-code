@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="section">
-      <h3>normal</h3>
+      <h3>Normal</h3>
     </section>
 
     <section class="section">
@@ -10,7 +10,7 @@
     </section>
 
     <section class="section">
-      <h3>plain</h3>
+      <h3>Plain</h3>
     </section>
 
     <section class="section">
@@ -19,7 +19,7 @@
     </section>
 
     <section class="section">
-      <h3>round</h3>
+      <h3>Round</h3>
     </section>
 
     <section class="section">
@@ -28,7 +28,7 @@
     </section>
 
     <section class="section">
-      <h3>circle</h3>
+      <h3>Circle</h3>
     </section>
 
     <section class="section">
@@ -37,16 +37,16 @@
     </section>
 
     <section class="section">
-      <h3>text</h3>
+      <h3>Text</h3>
     </section>
 
     <section class="section">
-      <Button text>text</Button>
-      <Button text>text</Button>
+      <Button text>Hello</Button>
+      <Button text>World</Button>
     </section>
 
     <section class="section">
-      <h3>disabled</h3>
+      <h3>Disabled</h3>
     </section>
 
     <section class="section">
@@ -55,7 +55,7 @@
     </section>
 
     <section class="section">
-      <h3>click</h3>
+      <h3>Event Handle</h3>
     </section>
 
     <section class="section">

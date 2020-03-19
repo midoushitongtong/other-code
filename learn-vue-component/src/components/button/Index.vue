@@ -2,7 +2,7 @@
   <button
     :class="[
       'a-button',
-      `a-button--${type}`,
+      `a-button-${type}`,
       plain && 'is-plain',
       round && 'is-round',
       circle && 'is-circle',
@@ -79,7 +79,7 @@ export default {
 
   // type - default
   @at-root {
-    $button-default-class-name: & + '--' + 'default';
+    $button-default-class-name: & + '-' + 'default';
     #{$button-default-class-name} {
       border-color: #c3c5ca;
       background-color: #fff;
@@ -128,7 +128,7 @@ export default {
 
   // type - primary
   @at-root {
-    $button-primary-class-name: & + '--' + 'primary';
+    $button-primary-class-name: & + '-' + 'primary';
     #{$button-primary-class-name} {
       border-color: #3e84ee;
       background-color: #3e84ee;
@@ -199,7 +199,7 @@ export default {
     &:focus {
       border-color: transparent;
       background-color: transparent;
-      color: #66b1ff;
+      color: #1578e2;
       box-shadow: none;
     }
   }

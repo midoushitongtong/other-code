@@ -1,28 +1,53 @@
 <template>
   <div>
     <section class="section">
-      <h3>case 1</h3>
+      <h3>Case 1</h3>
     </section>
 
     <section class="section">
       <ButtonGroup>
-        <Button type="primary">single</Button>
+        <Button>Single</Button>
       </ButtonGroup>
     </section>
 
     <section class="section">
-      <h3>case 2</h3>
+      <h3>Case 2</h3>
     </section>
 
     <section class="section">
       <ButtonGroup>
-        <Button type="primary">left</Button>
-        <Button type="primary">right</Button>
+        <Button>Left</Button>
+        <Button>Right</Button>
       </ButtonGroup>
     </section>
 
     <section class="section">
-      <h3>case 3</h3>
+      <h3>Case 3</h3>
+    </section>
+
+    <section class="section">
+      <ButtonGroup>
+        <Button>Left</Button>
+        <Button>Middle</Button>
+        <Button>Right</Button>
+      </ButtonGroup>
+    </section>
+
+    <section class="section">
+      <h3>Case 4</h3>
+    </section>
+
+    <section class="section">
+      <ButtonGroup>
+        <Button>Left</Button>
+        <Button>Middle</Button>
+        <Button>Middle</Button>
+        <Button>Right</Button>
+      </ButtonGroup>
+    </section>
+
+    <section class="section">
+      <h3>Case 5 Other Styles</h3>
     </section>
 
     <section class="section">
@@ -30,18 +55,6 @@
         <Button type="primary">left</Button>
         <Button type="primary">center</Button>
         <Button type="primary">right</Button>
-      </ButtonGroup>
-    </section>
-
-    <section class="section">
-      <h3>case 4</h3>
-    </section>
-
-    <section class="section">
-      <ButtonGroup>
-        <Button>left</Button>
-        <Button>center</Button>
-        <Button>right</Button>
       </ButtonGroup>
     </section>
   </div>

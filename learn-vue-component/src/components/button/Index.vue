@@ -1,17 +1,18 @@
 <template>
   <button
     :class="[
-      'button',
-      `button--${type}`,
+      'a-button',
+      `a-button--${type}`,
       plain && 'is-plain',
       round && 'is-round',
       circle && 'is-circle',
       disabled && 'is-disabled',
       text && 'is-text'
     ]"
+    :disabled="disabled"
     @click="handleClick"
   >
-    <slot></slot>
+    <slot />
   </button>
 </template>
 
@@ -62,28 +63,29 @@ export default {
 </script>
 
 <style lang="scss">
-.button {
-  padding: 0.75rem 1rem;
-  border-radius: 5px;
+.a-button {
+  padding: 0.45rem 0.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid transparent;
+  font-size: 0.9rem;
+  line-height: 1.5;
   outline: none;
   cursor: pointer;
-  border: 1px solid transparent;
   transition: 0.15s border-color ease, 0.15s background-color ease, 0.15s color ease,
     0.15s box-shadow ease;
-  cursor: pointer;
-
-  & + .button {
-    margin-left: 1rem;
+  &:focus {
+    z-index: 1;
   }
 
   // type - default
   @at-root {
-    $button-primary-class-name: & + '--' + 'default';
-    #{$button-primary-class-name} {
+    $button-default-class-name: & + '--' + 'default';
+    #{$button-default-class-name} {
       border-color: #c3c5ca;
       background-color: #fff;
       color: #333;
-      &:hover {
+      &:hover,
+      &:active {
         border-color: #c6e2ff;
         background-color: #ecf5ff;
         color: #409eff;
@@ -91,12 +93,14 @@ export default {
       &:focus {
         box-shadow: 0 0 0 0.2rem rgba(7, 99, 238, 0.333);
       }
+
       // plain
       &.is-plain {
         border-color: #c3c5ca;
         background-color: #fff;
         color: #333;
-        &:hover {
+        &:hover,
+        &:active {
           border-color: #c6e2ff;
           background-color: #fff;
           color: #409eff;
@@ -105,18 +109,18 @@ export default {
           box-shadow: 0 0 0 0.2rem rgba(7, 99, 238, 0.333);
         }
       }
+
       // disabled
       &.is-disabled {
         border-color: #ebeef5;
         background-color: #fff;
         color: #c0c4cc;
-        &:hover {
+        &:hover,
+        &:active,
+        &:focus {
           border-color: #ebeef5;
           background-color: #fff;
           color: #c0c4cc;
-        }
-        &:focus {
-          box-shadow: none;
         }
       }
     }
@@ -129,7 +133,8 @@ export default {
       border-color: #3e84ee;
       background-color: #3e84ee;
       color: #fff;
-      &:hover {
+      &:hover,
+      &:active {
         border-color: #1b6de9;
         background-color: #1b6de9;
         color: #fff;
@@ -137,12 +142,14 @@ export default {
       &:focus {
         box-shadow: 0 0 0 0.2rem rgba(7, 99, 238, 0.333);
       }
+
       // plain
       &.is-plain {
         border-color: #b3d8ff;
         background-color: #fff;
         color: #409eff;
-        &:hover {
+        &:hover,
+        &:active {
           border-color: #3e84ee;
           background-color: #3e84ee;
           color: #fff;
@@ -151,17 +158,18 @@ export default {
           box-shadow: 0 0 0 0.2rem rgba(7, 99, 238, 0.333);
         }
       }
+
       // disabled
       &.is-disabled {
         border-color: #a0cfff;
         background-color: #a0cfff;
         color: #fff;
-        &:hover {
+        &:hover,
+        &:active,
+        &:focus {
           border-color: #a0cfff;
           background-color: #a0cfff;
           color: #fff;
-        }
-        &:focus {
           box-shadow: none;
         }
       }
@@ -170,26 +178,28 @@ export default {
 
   // round
   &.is-round {
-    border-radius: 25px;
+    border-radius: 1.5rem;
   }
 
   // circle
   &.is-circle {
+    width: 2.5rem;
+    height: 2.5rem;
+    line-height: 1;
     border-radius: 50%;
   }
 
   // text
   &.is-text {
-    padding: 0.5rem 0;
     border-color: transparent;
     background-color: transparent;
     color: #409eff;
-    &:hover {
+    &:hover,
+    &:active,
+    &:focus {
       border-color: transparent;
       background-color: transparent;
       color: #66b1ff;
-    }
-    &:focus {
       box-shadow: none;
     }
   }

@@ -1,16 +1,18 @@
 <template>
-  <section id="app">
+  <main>
     <ButtonTest />
-  </section>
+    <ButtonGroup />
+  </main>
 </template>
 
 <script>
-import ButtonTest from './views/ButtonTest';
+import ButtonTest from './views/button/Index';
+import ButtonGroup from './views/button-group/Index';
 
 export default {
-  name: 'App',
   components: {
-    ButtonTest
+    ButtonTest,
+    ButtonGroup
   }
 };
 </script>
@@ -18,9 +20,16 @@ export default {
 <style lang="scss">
 body {
   margin: 0;
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    font-size: 0.75rem;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  main {
+    display: flex;
+    & > * {
+      padding-right: 1rem;
+      padding-left: 1rem;
+      border-right: 1px solid #ccc;
+    }
   }
 }
 </style>

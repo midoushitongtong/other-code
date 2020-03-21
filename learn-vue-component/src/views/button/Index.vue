@@ -61,6 +61,19 @@
     <section class="section">
       <Button @click="handleClick">Click</Button>
     </section>
+
+    <section class="section">
+      <h3>Icon</h3>
+    </section>
+
+    <section class="section">
+      <Button type="primary" icon="copy-document">Icon</Button>
+      <Button type="primary" circle icon="loading"></Button>
+      <Button type="primary">
+        <span>Icon</span>
+        <i class="a-icon-copy-document"
+      /></Button>
+    </section>
   </div>
 </template>
 

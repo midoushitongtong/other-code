@@ -1,4 +1,4 @@
-# custom-component-dev
+# learn-vue-component-dev
 
 ## Project setup
 

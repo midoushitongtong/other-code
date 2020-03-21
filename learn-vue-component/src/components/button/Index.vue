@@ -12,7 +12,10 @@
     :disabled="disabled"
     @click="handleClick"
   >
-    <slot />
+    <i v-if="icon" :class="`a-icon-${icon}`" />
+    <span v-if="$slots.default">
+      <slot />
+    </span>
   </button>
 </template>
 
@@ -48,6 +51,11 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    // icon
+    icon: {
+      type: String,
+      default: ''
     }
   },
   methods: {
@@ -207,6 +215,14 @@ export default {
   // disabled
   &.is-disabled {
     cursor: not-allowed;
+  }
+
+  // icon
+  [class*='a-icon'] + span {
+    margin-left: 0.25rem;
+  }
+  span > [class*='a-icon'] {
+    margin-left: 0.25rem;
   }
 }
 </style>

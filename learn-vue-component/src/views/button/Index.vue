@@ -1,9 +1,13 @@
 <template>
   <div>
     <section class="section">
+      <h1>Button</h1>
+    </section>
+    <hr />
+
+    <section class="section">
       <h3>Normal</h3>
     </section>
-
     <section class="section">
       <Button>Default</Button>
       <Button type="primary">Primary</Button>
@@ -12,7 +16,6 @@
     <section class="section">
       <h3>Plain</h3>
     </section>
-
     <section class="section">
       <Button plain>Default</Button>
       <Button type="primary" plain>Primary</Button>
@@ -21,7 +24,6 @@
     <section class="section">
       <h3>Round</h3>
     </section>
-
     <section class="section">
       <Button round>Default</Button>
       <Button type="primary" round>Primary</Button>
@@ -30,7 +32,6 @@
     <section class="section">
       <h3>Circle</h3>
     </section>
-
     <section class="section">
       <Button circle>A</Button>
       <Button type="primary" circle>B</Button>
@@ -39,40 +40,60 @@
     <section class="section">
       <h3>Text</h3>
     </section>
-
     <section class="section">
-      <Button text>Hello</Button>
-      <Button text>World</Button>
+      <Button text>Text Button A</Button>
+      <Button text>Text Button B</Button>
     </section>
 
     <section class="section">
       <h3>Disabled</h3>
     </section>
+    <section class="section">
+      <Button disabled>Default</Button>
+      <Button type="primary" disabled>Primary</Button>
+    </section>
 
     <section class="section">
-      <Button disabled>A</Button>
-      <Button type="primary" disabled>B</Button>
+      <h3>Loading</h3>
+    </section>
+    <section class="section">
+      <Button type="primary" :loading="loading">Primary</Button>
+      <Button type="primary" @click="handleToggleLoading">Toggle</Button>
+    </section>
+
+    <section class="section">
+      <h3>Size</h3>
+    </section>
+    <section class="section">
+      <Button type="primary" size="small">Small</Button>
+      <Button type="primary">Default</Button>
+      <Button type="primary" size="large">Large</Button>
+    </section>
+    <section class="section">
+      <Button type="primary" size="small" circle>
+        <i class="a-icon-copy-document" />
+      </Button>
+      <Button type="primary" circle>
+        <i class="a-icon-copy-document" />
+      </Button>
+      <Button type="primary" size="large" circle>
+        <i class="a-icon-copy-document" />
+      </Button>
     </section>
 
     <section class="section">
       <h3>Event Handle</h3>
     </section>
-
     <section class="section">
-      <Button @click="handleClick">Click</Button>
+      <Button type="primary" @click="handleClick">Click</Button>
     </section>
 
     <section class="section">
       <h3>Icon</h3>
     </section>
-
     <section class="section">
-      <Button type="primary" icon="copy-document">Icon</Button>
-      <Button type="primary" circle icon="loading"></Button>
-      <Button type="primary">
-        <span>Icon</span>
-        <i class="a-icon-copy-document"
-      /></Button>
+      <Button type="primary" icon="copy-document">Copy</Button>
+      <Button type="primary" circle icon="close"></Button>
     </section>
   </div>
 </template>
@@ -84,9 +105,17 @@ export default {
   components: {
     Button
   },
+  data() {
+    return {
+      loading: true
+    };
+  },
   methods: {
     handleClick(event) {
-      console.log(event);
+      alert(event);
+    },
+    handleToggleLoading() {
+      this.loading = !this.loading;
     }
   }
 };
@@ -95,7 +124,13 @@ export default {
 <style lang="scss" scoped>
 .section {
   display: flex;
+  align-items: center;
   justify-content: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  h3 {
+    margin: 0;
+  }
   button + button {
     margin-left: 10px;
   }

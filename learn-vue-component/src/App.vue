@@ -32,6 +32,7 @@ body {
       padding-left: 1rem;
       border-right: 1px solid #ccc;
     }
+    padding-bottom: 1.75rem;
   }
 }
 </style>

@@ -60,21 +60,22 @@
   </div>
 </template>
 
-<script>
-import Button from '../../components/button/Index';
-import ButtonGroup from '../../components/button-group/Index';
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator';
+import Button from '../../components/button/Button.vue';
+import ButtonGroup from '../../components/button-group/ButtonGroup.vue';
 
-export default {
+@Component({
   components: {
     Button,
-    ButtonGroup
+    ButtonGroup,
   },
-  methods: {
-    handleClick(event) {
-      console.log(event);
-    }
+})
+export default class ButtonGroupTest extends Vue {
+  private handleClick(event: MouseEvent) {
+    console.log(event);
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

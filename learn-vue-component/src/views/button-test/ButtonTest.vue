@@ -6,11 +6,21 @@
     <hr />
 
     <section class="section">
-      <h3>Normal</h3>
+      <h3>Type</h3>
     </section>
     <section class="section">
       <Button>Default</Button>
       <Button type="primary">Primary</Button>
+    </section>
+
+    <section class="section">
+      <h3>HTML Type</h3>
+    </section>
+    <section class="section">
+      <Button type="primary">button</Button>
+      <Button type="primary" htmlType="submit">submit</Button>
+
+      <Button type="primary" htmlType="reset">reset</Button>
     </section>
 
     <section class="section">
@@ -95,30 +105,36 @@
       <Button type="primary" icon="copy-document">Copy</Button>
       <Button type="primary" circle icon="close"></Button>
     </section>
+
+    <section class="section">
+      <h3>Autofocus</h3>
+    </section>
+    <section class="section">
+      <Button type="primary" autofocus>button</Button>
+    </section>
   </div>
 </template>
 
-<script>
-import Button from '../../components/button/Index';
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator';
+import Button from '../../components/button/Button.vue';
 
-export default {
+@Component({
   components: {
-    Button
+    Button,
   },
-  data() {
-    return {
-      loading: true
-    };
-  },
-  methods: {
-    handleClick(event) {
-      alert(event);
-    },
-    handleToggleLoading() {
-      this.loading = !this.loading;
-    }
+})
+export default class ButtonTest extends Vue {
+  private loading: boolean = true;
+
+  private handleClick(event: MouseEvent) {
+    alert(event);
   }
-};
+
+  private handleToggleLoading() {
+    this.loading = !this.loading;
+  }
+}
 </script>
 
 <style lang="scss" scoped>

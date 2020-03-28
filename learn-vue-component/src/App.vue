@@ -1,19 +1,19 @@
 <template>
   <main>
     <ButtonTest />
-    <ButtonGroup />
+    <ButtonGroupTest />
   </main>
 </template>
 
 <script>
-import ButtonTest from './views/button/Index';
-import ButtonGroup from './views/button-group/Index';
+import ButtonTest from './views/button-test/ButtonTest';
+import ButtonGroupTest from './views/button-group-test/ButtonGroupTest';
 
 export default {
   components: {
     ButtonTest,
-    ButtonGroup
-  }
+    ButtonGroupTest,
+  },
 };
 </script>
 
@@ -21,8 +21,7 @@ export default {
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji';
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   font-size: 1rem;
   line-height: 1.5;
   main {

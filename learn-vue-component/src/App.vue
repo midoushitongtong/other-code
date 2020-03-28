@@ -6,15 +6,17 @@
 </template>
 
 <script>
+import { Vue, Component } from 'vue-property-decorator';
 import ButtonTest from './views/button-test/ButtonTest';
 import ButtonGroupTest from './views/button-group-test/ButtonGroupTest';
 
-export default {
+@Component({
   components: {
     ButtonTest,
     ButtonGroupTest,
   },
-};
+})
+export default class App extends Vue {}
 </script>
 
 <style lang="scss">

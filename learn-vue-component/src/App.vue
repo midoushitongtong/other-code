@@ -5,10 +5,10 @@
   </main>
 </template>
 
-<script>
+<script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import ButtonTest from './views/button-test/ButtonTest';
-import ButtonGroupTest from './views/button-group-test/ButtonGroupTest';
+import ButtonTest from './views/button-test/ButtonTest.vue';
+import ButtonGroupTest from './views/button-group-test/ButtonGroupTest.vue';
 
 @Component({
   components: {

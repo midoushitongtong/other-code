@@ -1,0 +1,212 @@
+@import '../../assets//theme/color.scss';
+
+.a-button {
+  padding: 0.45rem 0.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid transparent;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  outline: none;
+  cursor: pointer;
+  transition: 0.15s border-color ease, 0.15s background-color ease, 0.15s color ease,
+    0.15s box-shadow ease;
+  &:focus {
+    z-index: 1;
+  }
+
+  // round
+  &.is-round {
+    border-radius: 1.5rem;
+  }
+
+  // circle
+  &.is-circle {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    [class*='a-icon-'] {
+      margin-left: 0;
+    }
+  }
+
+  // text
+  &.is-text {
+    border-color: transparent;
+    background-color: transparent;
+    color: $primary-color-dark;
+    &:hover,
+    &:active,
+    &:focus {
+      border-color: transparent;
+      background-color: transparent;
+      color: $primary-color-dark;
+      box-shadow: none;
+    }
+  }
+
+  // disabled
+  &.is-disabled {
+    cursor: not-allowed;
+  }
+
+  // loading
+  &.is-loading {
+    position: relative;
+    pointer-events: none;
+    &::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      right: -1px;
+      bottom: -1px;
+      left: -1px;
+      border-radius: inherit;
+      pointer-events: none;
+      background-color: $loading-backdrop-color;
+    }
+  }
+
+  // icon
+  [class*='a-icon'] {
+    font-size: 0.85rem;
+  }
+  [class*='a-icon'] + span {
+    margin-left: 0.25rem;
+  }
+
+  // type - default
+  $button-type-default-class-name: & + '-' + 'default';
+  @at-root {
+    #{$button-type-default-class-name} {
+      border-color: $default-border-color;
+      background-color: $default-color;
+      color: $default-text-color;
+      &:hover,
+      &:active {
+        border-color: $default-border-color-dark;
+        background-color: $default-color-dark;
+        color: $default-text-color-dark;
+      }
+      &:focus {
+        box-shadow: $default-focus-shadow;
+      }
+
+      // plain
+      &.is-plain {
+        border-color: $default-plan-border-color;
+        background-color: $default-plan-color;
+        color: $default-plan-text-color;
+        &:hover,
+        &:active {
+          border-color: $default-plan-border-color-dark;
+          background-color: $default-plan-color-dark;
+          color: $default-plan-text-color-dark;
+        }
+        &:focus {
+          box-shadow: $default-plan-focus-shadow;
+        }
+      }
+
+      // disabled
+      &.is-disabled {
+        border-color: $default-disabled-border-color;
+        background-color: $default-disabled-color;
+        color: $default-disabled-text-color;
+        &:hover,
+        &:active,
+        &:focus {
+          border-color: $default-disabled-border-color;
+          background-color: $default-disabled-color;
+          color: $default-disabled-text-color;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+
+  // type - primary
+  $button-type-primary-class-name: & + '-' + 'primary';
+  @at-root {
+    #{$button-type-primary-class-name} {
+      border-color: $primary-border-color;
+      background-color: $primary-color;
+      color: $primary-text-color;
+      &:hover,
+      &:active {
+        border-color: $primary-border-color-dark;
+        background-color: $primary-color-dark;
+        color: $primary-text-color-dark;
+      }
+      &:focus {
+        box-shadow: $primary-focus-shadow;
+      }
+
+      // plain
+      &.is-plain {
+        border-color: $primary-plan-border-color;
+        background-color: $primary-plan-color;
+        color: $primary-plan-text-color;
+        &:hover,
+        &:active {
+          border-color: $primary-plan-border-color-dark;
+          background-color: $primary-plan-color-dark;
+          color: $primary-plan-text-color-dark;
+        }
+        &:focus {
+          box-shadow: $primary-plan-focus-shadow;
+        }
+      }
+
+      // disabled
+      &.is-disabled {
+        border-color: $primary-disabled-border-color;
+        background-color: $primary-disabled-color;
+        color: $primary-disabled-text-color;
+        &:hover,
+        &:active,
+        &:focus {
+          border-color: $primary-disabled-border-color;
+          background-color: $primary-disabled-color;
+          color: $primary-disabled-text-color;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+
+  // size - small
+  $button-size-small-class-name: & + '-' + 'small';
+  @at-root {
+    #{$button-size-small-class-name} {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      border-radius: 0.2rem;
+      &.is-circle {
+        width: 2rem;
+        height: 2rem;
+      }
+      [class*='a-icon-'] {
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  // size - large
+  $button-size-large-class-name: & + '-' + 'large';
+  @at-root {
+    #{$button-size-large-class-name} {
+      padding: 0.55rem 0.85rem;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      border-radius: 0.3rem;
+      &.is-circle {
+        width: 3.25rem;
+        height: 3.25rem;
+      }
+      [class*='a-icon-'] {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

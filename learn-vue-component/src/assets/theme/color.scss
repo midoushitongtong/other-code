@@ -1,39 +1,56 @@
-// default
-$default-color: #fff;
-$default-color-dark: #ecf5ff;
-$default-border-color: #c3c5ca;
-$default-border-color-dark: #c6e2ff;
-$default-text-color: #333;
-$default-text-color-dark: #3e84ee;
-$default-focus-shadow: 0 0 0 0.2rem rgba(7, 99, 238, 0.333);
-$default-plan-color: #fff;
-$default-plan-color-dark: #fff;
-$default-plan-border-color: #ecf5ff;
-$default-plan-border-color-dark: #c6e2ff;
-$default-plan-text-color: #333;
-$default-plan-text-color-dark: #3e84ee;
-$default-plan-focus-shadow: 0 0 0 0.2rem rgba(7, 99, 238, 0.333);
-$default-disabled-color: #fff;
-$default-disabled-border-color: #ebeef5;
-$default-disabled-text-color: #c0c4cc;
-
 // primary
 $primary-color: #3e84ee;
-$primary-color-dark: #409eff;
+
+$primary-color-light-1: lighten($primary-color, 10%);
+$primary-color-light-2: lighten($primary-color, 20%);
+$primary-color-dark-1: darken($primary-color, 10%);
+
+$primary-border-color: $primary-color;
+$primary-border-color-hover: $primary-color-dark-1;
+$primary-background-color: $primary-color;
+$primary-background-color-hover: $primary-color-dark-1;
 $primary-text-color: #fff;
-$primary-text-color-dark: #fff;
-$primary-border-color: #3e84ee;
-$primary-border-color-dark: #409eff;
-$primary-focus-shadow: 0 0 0 0.2rem rgba(7, 99, 238, 0.333);
-$primary-plan-color: #ecf5ff;
-$primary-plan-color-dark: #3e84ee;
-$primary-plan-border-color: #b3d8ff;
-$primary-plan-border-color-dark: #3e84ee;
-$primary-plan-text-color: #3e84ee;
-$primary-plan-text-color-dark: #fff;
-$primary-plan-focus-shadow: 0 0 0 0.2rem rgba(7, 99, 238, 0.333);
-$primary-disabled-color: #a0cfff;
-$primary-disabled-border-color: #a0cfff;
+$primary-text-color-hover: #fff;
+$primary-focus-shadow: 0 0 0 0.2rem $primary-color-light-1;
+
+$primary-plan-border-color: $primary-color;
+$primary-plan-border-color-hover: $primary-color;
+$primary-plan-background-color: #fff;
+$primary-plan-background-color-hover: $primary-color;
+$primary-plan-text-color: $primary-color;
+$primary-plan-text-color-hover: #fff;
+$primary-plan-focus-shadow: 0 0 0 0.2rem $primary-color-light-1;
+
+$primary-disabled-border-color: $primary-color-light-2;
+$primary-disabled-background-color: $primary-color-light-2;
 $primary-disabled-text-color: #fff;
 
+// danger
+$danger-color: #dc3545;
+
+$danger-color-light-1: lighten($danger-color, 10%);
+$danger-color-light-2: lighten($danger-color, 20%);
+$danger-color-dark-1: darken($danger-color, 10%);
+
+$danger-border-color: $danger-color;
+$danger-border-color-hover: $danger-color-dark-1;
+$danger-background-color: $danger-color;
+$danger-background-color-hover: $danger-color-dark-1;
+$danger-text-color: #fff;
+$danger-text-color-hover: #fff;
+$danger-focus-shadow: 0 0 0 0.2rem $danger-color-light-1;
+
+$danger-plan-border-color: $danger-color;
+$danger-plan-border-color-hover: $danger-color;
+$danger-plan-background-color: #fff;
+$danger-plan-background-color-hover: $danger-color;
+$danger-plan-text-color: $danger-color;
+$danger-plan-text-color-hover: #fff;
+$danger-plan-focus-shadow: 0 0 0 0.2rem $danger-color-light-1;
+
+$danger-disabled-border-color: $danger-color-light-2;
+$danger-disabled-background-color: $danger-color-light-2;
+$danger-disabled-text-color: #fff;
+
+// other
 $loading-backdrop-color: rgba(255, 255, 255, 0.3);

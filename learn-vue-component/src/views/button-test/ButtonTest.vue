@@ -9,34 +9,24 @@
       <h3>Type</h3>
     </section>
     <section class="section">
-      <Button>Default</Button>
-      <Button type="primary">Primary</Button>
-    </section>
-
-    <section class="section">
-      <h3>HTML Type</h3>
-    </section>
-    <section class="section">
-      <Button type="primary">button</Button>
-      <Button type="primary" htmlType="submit">submit</Button>
-
-      <Button type="primary" htmlType="reset">reset</Button>
+      <Button>Primary</Button>
+      <Button type="danger">Danger</Button>
     </section>
 
     <section class="section">
       <h3>Plain</h3>
     </section>
     <section class="section">
-      <Button plain>Default</Button>
-      <Button type="primary" plain>Primary</Button>
+      <Button plain>Primary</Button>
+      <Button type="danger" plain>Danger</Button>
     </section>
 
     <section class="section">
       <h3>Round</h3>
     </section>
     <section class="section">
-      <Button round>Default</Button>
-      <Button type="primary" round>Primary</Button>
+      <Button round>Primary</Button>
+      <Button type="danger" round>Danger</Button>
     </section>
 
     <section class="section">
@@ -44,15 +34,15 @@
     </section>
     <section class="section">
       <Button circle>A</Button>
-      <Button type="primary" circle>B</Button>
+      <Button type="danger" circle>B</Button>
     </section>
 
     <section class="section">
       <h3>Text</h3>
     </section>
     <section class="section">
-      <Button text>Text Button A</Button>
-      <Button text>Text Button B</Button>
+      <Button text>Primary</Button>
+      <Button type="primary" text>Danger</Button>
     </section>
 
     <section class="section">
@@ -60,57 +50,66 @@
     </section>
     <section class="section">
       <Button disabled>Default</Button>
-      <Button type="primary" disabled>Primary</Button>
+      <Button type="danger" disabled>Danger</Button>
     </section>
 
     <section class="section">
       <h3>Loading</h3>
     </section>
     <section class="section">
-      <Button type="primary" :loading="loading">Primary</Button>
-      <Button type="primary" @click="handleToggleLoading">Toggle</Button>
+      <Button :loading="loading">Primary</Button>
+      <Button @click="handleToggleLoading">Toggle</Button>
+      <Button type="danger" :loading="loading">Danger</Button>
+      <Button type="danger" @click="handleToggleLoading">Toggle</Button>
     </section>
 
     <section class="section">
       <h3>Size</h3>
     </section>
     <section class="section">
-      <Button type="primary" size="small">Small</Button>
-      <Button type="primary">Default</Button>
-      <Button type="primary" size="large">Large</Button>
-    </section>
-    <section class="section">
-      <Button type="primary" size="small" circle>
-        <i class="a-icon-copy-document" />
-      </Button>
-      <Button type="primary" circle>
-        <i class="a-icon-copy-document" />
-      </Button>
-      <Button type="primary" size="large" circle>
-        <i class="a-icon-copy-document" />
-      </Button>
-    </section>
-
-    <section class="section">
-      <h3>Event Handle</h3>
-    </section>
-    <section class="section">
-      <Button type="primary" @click="handleClick">Click</Button>
+      <Button size="small">Small</Button>
+      <Button>Default</Button>
+      <Button size="large">Large</Button>
+      <Button type="danger" size="small">Small</Button>
+      <Button type="danger">Default</Button>
+      <Button type="danger" size="large">Large</Button>
     </section>
 
     <section class="section">
       <h3>Icon</h3>
     </section>
     <section class="section">
-      <Button type="primary" icon="copy-document">Copy</Button>
-      <Button type="primary" circle icon="close"></Button>
+      <Button icon="copy-document">Copy</Button>
+      <Button circle icon="close"></Button>
+      <Button type="danger" icon="copy-document">Copy</Button>
+      <Button type="danger" circle icon="close"></Button>
+    </section>
+
+    <section class="section">
+      <h3>Event Handle</h3>
+    </section>
+    <section class="section">
+      <Button @click="handleClick">Click</Button>
+      <Button type="danger" @click="handleClick">Click</Button>
+    </section>
+
+    <section class="section">
+      <h3>HTML Type</h3>
+    </section>
+    <section class="section">
+      <Button>Button</Button>
+      <Button htmlType="submit">Submit</Button>
+      <Button htmlType="reset">Reset</Button>
+      <Button type="danger">Button</Button>
+      <Button type="danger" htmlType="submit">Submit</Button>
+      <Button type="danger" htmlType="reset">Reset</Button>
     </section>
 
     <section class="section">
       <h3>Autofocus</h3>
     </section>
     <section class="section">
-      <Button type="primary" autofocus>button</Button>
+      <Button autofocus>Primary</Button>
     </section>
   </div>
 </template>
@@ -120,6 +119,7 @@ import { Vue, Component } from 'vue-property-decorator';
 import Button from '../../components/button/Button.vue';
 
 @Component({
+  name: 'ButtonTest',
   components: {
     Button,
   },

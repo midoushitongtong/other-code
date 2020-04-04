@@ -10,8 +10,12 @@
   cursor: pointer;
   transition: 0.15s border-color ease, 0.15s background-color ease, 0.15s color ease,
     0.15s box-shadow ease;
-  &:focus {
+  &:hover {
     z-index: 1;
+  }
+  &:focus,
+  &:active {
+    z-index: 2;
   }
 
   // round
@@ -33,13 +37,13 @@
   &.is-text {
     border-color: transparent;
     background-color: transparent;
-    color: $primary-color-dark;
+    color: $primary-background-color-hover;
     &:hover,
     &:active,
     &:focus {
       border-color: transparent;
       background-color: transparent;
-      color: $primary-color-dark;
+      color: $primary-background-color-hover;
       box-shadow: none;
     }
   }
@@ -74,68 +78,18 @@
     margin-left: 0.25rem;
   }
 
-  // type - default
-  $button-type-default-class-name: & + '-' + 'default';
-  @at-root {
-    #{$button-type-default-class-name} {
-      border-color: $default-border-color;
-      background-color: $default-color;
-      color: $default-text-color;
-      &:hover,
-      &:active {
-        border-color: $default-border-color-dark;
-        background-color: $default-color-dark;
-        color: $default-text-color-dark;
-      }
-      &:focus {
-        box-shadow: $default-focus-shadow;
-      }
-
-      // plain
-      &.is-plain {
-        border-color: $default-plan-border-color;
-        background-color: $default-plan-color;
-        color: $default-plan-text-color;
-        &:hover,
-        &:active {
-          border-color: $default-plan-border-color-dark;
-          background-color: $default-plan-color-dark;
-          color: $default-plan-text-color-dark;
-        }
-        &:focus {
-          box-shadow: $default-plan-focus-shadow;
-        }
-      }
-
-      // disabled
-      &.is-disabled {
-        border-color: $default-disabled-border-color;
-        background-color: $default-disabled-color;
-        color: $default-disabled-text-color;
-        &:hover,
-        &:active,
-        &:focus {
-          border-color: $default-disabled-border-color;
-          background-color: $default-disabled-color;
-          color: $default-disabled-text-color;
-          box-shadow: none;
-        }
-      }
-    }
-  }
-
   // type - primary
   $button-type-primary-class-name: & + '-' + 'primary';
   @at-root {
     #{$button-type-primary-class-name} {
       border-color: $primary-border-color;
-      background-color: $primary-color;
+      background-color: $primary-background-color;
       color: $primary-text-color;
       &:hover,
       &:active {
-        border-color: $primary-border-color-dark;
-        background-color: $primary-color-dark;
-        color: $primary-text-color-dark;
+        border-color: $primary-border-color-hover;
+        background-color: $primary-background-color-hover;
+        color: $primary-text-color-hover;
       }
       &:focus {
         box-shadow: $primary-focus-shadow;
@@ -144,13 +98,13 @@
       // plain
       &.is-plain {
         border-color: $primary-plan-border-color;
-        background-color: $primary-plan-color;
+        background-color: $primary-plan-background-color;
         color: $primary-plan-text-color;
         &:hover,
         &:active {
-          border-color: $primary-plan-border-color-dark;
-          background-color: $primary-plan-color-dark;
-          color: $primary-plan-text-color-dark;
+          border-color: $primary-plan-border-color-hover;
+          background-color: $primary-plan-background-color-hover;
+          color: $primary-plan-text-color-hover;
         }
         &:focus {
           box-shadow: $primary-plan-focus-shadow;
@@ -160,14 +114,64 @@
       // disabled
       &.is-disabled {
         border-color: $primary-disabled-border-color;
-        background-color: $primary-disabled-color;
+        background-color: $primary-disabled-background-color;
         color: $primary-disabled-text-color;
         &:hover,
         &:active,
         &:focus {
           border-color: $primary-disabled-border-color;
-          background-color: $primary-disabled-color;
+          background-color: $primary-disabled-background-color;
           color: $primary-disabled-text-color;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+
+  // type - danger
+  $button-type-danger-class-name: & + '-' + 'danger';
+  @at-root {
+    #{$button-type-danger-class-name} {
+      border-color: $danger-border-color;
+      background-color: $danger-background-color;
+      color: $danger-text-color;
+      &:hover,
+      &:active {
+        border-color: $danger-border-color-hover;
+        background-color: $danger-background-color-hover;
+        color: $danger-text-color-hover;
+      }
+      &:focus {
+        box-shadow: $danger-focus-shadow;
+      }
+
+      // plain
+      &.is-plain {
+        border-color: $danger-plan-border-color;
+        background-color: $danger-plan-background-color;
+        color: $danger-plan-text-color;
+        &:hover,
+        &:active {
+          border-color: $danger-plan-border-color-hover;
+          background-color: $danger-plan-background-color-hover;
+          color: $danger-plan-text-color-hover;
+        }
+        &:focus {
+          box-shadow: $danger-plan-focus-shadow;
+        }
+      }
+
+      // disabled
+      &.is-disabled {
+        border-color: $danger-disabled-border-color;
+        background-color: $danger-disabled-background-color;
+        color: $danger-disabled-text-color;
+        &:hover,
+        &:active,
+        &:focus {
+          border-color: $danger-disabled-border-color;
+          background-color: $danger-disabled-background-color;
+          color: $danger-disabled-text-color;
           box-shadow: none;
         }
       }

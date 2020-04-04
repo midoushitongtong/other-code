@@ -11,6 +11,7 @@ import ButtonTest from './views/button-test/ButtonTest.vue';
 import ButtonGroupTest from './views/button-group-test/ButtonGroupTest.vue';
 
 @Component({
+  name: 'App',
   components: {
     ButtonTest,
     ButtonGroupTest,

@@ -52,9 +52,9 @@
     </section>
     <section class="section">
       <ButtonGroup>
-        <Button type="primary">left</Button>
-        <Button type="primary">center</Button>
-        <Button type="primary">right</Button>
+        <Button type="danger">left</Button>
+        <Button type="danger">center</Button>
+        <Button type="danger">right</Button>
       </ButtonGroup>
     </section>
   </div>
@@ -66,6 +66,7 @@ import Button from '../../components/button/Button.vue';
 import ButtonGroup from '../../components/button-group/ButtonGroup.vue';
 
 @Component({
+  name: 'ButtonGroupTest',
   components: {
     Button,
     ButtonGroup,

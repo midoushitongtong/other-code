@@ -2,8 +2,8 @@
   <button
     :class="[
       'a-button',
-      type && buildButtonTypeClass(),
-      size && buildButtonSizeClass(),
+      type && `a-button-${this.type}`,
+      size && `a-button-${this.size}`,
       plain && 'is-plain',
       round && 'is-round',
       circle && 'is-circle',
@@ -11,9 +11,9 @@
       text && 'is-text',
       loading && 'is-loading',
     ]"
-    :disabled="disabled"
-    :type="buildHtmlType()"
+    :type="this.htmlType"
     :autofocus="autofocus"
+    :disabled="disabled || loading"
     @click="handleClick"
   >
     <i v-if="loading" class="a-icon-loading" />
@@ -27,15 +27,17 @@
 <script lang="ts">
 import { Vue, Component, Prop, Emit } from 'vue-property-decorator';
 
-@Component
+@Component({
+  name: 'Button',
+})
 export default class Button extends Vue {
   // type
   @Prop({
     type: String,
     required: false,
-    default: 'default',
+    default: 'primary',
     validator: (value) => {
-      return ['default', 'primary'].indexOf(value) !== -1;
+      return ['primary', 'danger'].indexOf(value) !== -1;
     },
   })
   private readonly type!: string;
@@ -120,6 +122,8 @@ export default class Button extends Vue {
 
   // autofocus
   @Prop({
+    type: Boolean,
+    required: false,
     default: false,
   })
   private readonly autofocus!: boolean;
@@ -130,29 +134,9 @@ export default class Button extends Vue {
     return e;
   }
 
-  // generate button type class
-  private buildButtonTypeClass = (): string => {
-    return `a-button-${this.type}`;
-  };
-
-  // generate button size class
-  private buildButtonSizeClass = (): string => {
-    return `a-button-${this.size}`;
-  };
-
-  // generate html type
-  private buildHtmlType = (): string => {
-    return this.htmlType;
-  };
-
   // handle button click event
   private handleClick = (e: MouseEvent): void => {
-    if (this.disabled) {
-      return;
-    }
-
     if (this.$listeners.click) {
-      // this.$listeners.click();
       this.click(e);
     }
   };

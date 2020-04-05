@@ -1,7 +1,8 @@
 <template>
   <main>
-    <ButtonTest />
-    <ButtonGroupTest />
+    <!-- <ButtonTest />
+    <ButtonGroupTest /> -->
+    <GridTest />
   </main>
 </template>
 
@@ -9,12 +10,14 @@
 import { Vue, Component } from 'vue-property-decorator';
 import ButtonTest from './views/button-test/ButtonTest.vue';
 import ButtonGroupTest from './views/button-group-test/ButtonGroupTest.vue';
+import GridTest from './views/grid-test/GridTest.vue';
 
 @Component({
   name: 'App',
   components: {
     ButtonTest,
     ButtonGroupTest,
+    GridTest,
   },
 })
 export default class App extends Vue {}
@@ -36,5 +39,9 @@ body {
     }
     padding-bottom: 1.75rem;
   }
+}
+
+* {
+  box-sizing: border-box;
 }
 </style>

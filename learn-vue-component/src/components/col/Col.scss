@@ -1,0 +1,10 @@
+.col {
+  width: 100%;
+}
+
+@for $i from 1 through 24 {
+  .col-#{$i} {
+    flex: 0 0 100% / 24 * $i;
+    max-width: 100% / 24 * $i;
+  }
+}

@@ -1,6 +1,6 @@
 @import '../../assets//theme/color.scss';
 
-.a-button {
+.button {
   padding: 0.45rem 0.75rem;
   border-radius: 0.25rem;
   border: 1px solid transparent;
@@ -28,7 +28,7 @@
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
-    [class*='a-icon-'] {
+    [class*='icon-'] {
       margin-left: 0;
     }
   }
@@ -71,10 +71,10 @@
   }
 
   // icon
-  [class*='a-icon'] {
+  [class*='icon'] {
     font-size: 0.85rem;
   }
-  [class*='a-icon'] + span {
+  [class*='icon'] + span {
     margin-left: 0.25rem;
   }
 
@@ -190,7 +190,7 @@
         width: 2rem;
         height: 2rem;
       }
-      [class*='a-icon-'] {
+      [class*='icon-'] {
         font-size: 0.75rem;
       }
     }
@@ -208,7 +208,7 @@
         width: 3.25rem;
         height: 3.25rem;
       }
-      [class*='a-icon-'] {
+      [class*='icon-'] {
         font-size: 1.2rem;
       }
     }

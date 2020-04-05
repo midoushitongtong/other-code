@@ -1,9 +1,9 @@
 <template>
   <button
     :class="[
-      'a-button',
-      type && `a-button-${this.type}`,
-      size && `a-button-${this.size}`,
+      'button',
+      type && `button-${this.type}`,
+      size && `button-${this.size}`,
       plain && 'is-plain',
       round && 'is-round',
       circle && 'is-circle',
@@ -16,8 +16,8 @@
     :disabled="disabled || loading"
     @click="handleClick"
   >
-    <i v-if="loading" class="a-icon-loading" />
-    <i v-if="!loading && icon" :class="`a-icon-${icon}`" />
+    <i v-if="loading" class="icon-loading" />
+    <i v-if="!loading && icon" :class="`icon-${icon}`" />
     <span v-if="$slots.default">
       <slot />
     </span>

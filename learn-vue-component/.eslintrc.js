@@ -19,5 +19,11 @@ module.exports = {
     'no-console': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'error',
     '@typescript-eslint/no-inferrable-types': 'off',
+    'vue/no-parsing-error': [
+      'error',
+      {
+        'x-invalid-end-tag': false,
+      },
+    ],
   },
 };

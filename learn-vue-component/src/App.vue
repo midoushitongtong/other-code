@@ -1,8 +1,12 @@
 <template>
   <main>
-    <!-- <ButtonTest />
-    <ButtonGroupTest /> -->
-    <GridTest />
+    <button @click="() => (testComponentName = 'ButtonTest')">ButtonTest</button>
+    <button @click="() => (testComponentName = 'ButtonGroupTest')">ButtonGroupTest</button>
+    <button @click="() => (testComponentName = 'GridTest')">GridTest</button>
+
+    <ButtonTest v-if="testComponentName === 'ButtonTest'" />
+    <ButtonGroupTest v-if="testComponentName === 'ButtonGroupTest'" />
+    <GridTest v-if="testComponentName === 'GridTest'" />
   </main>
 </template>
 
@@ -20,7 +24,9 @@ import GridTest from './views/grid-test/GridTest.vue';
     GridTest,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  public testComponentName: string = 'GridTest';
+}
 </script>
 
 <style lang="scss">
@@ -31,13 +37,9 @@ body {
   font-size: 1rem;
   line-height: 1.5;
   main {
-    display: flex;
-    & > * {
-      padding-right: 1rem;
-      padding-left: 1rem;
-      border-right: 1px solid #ccc;
+    button + button {
+      margin-left: 1rem;
     }
-    padding-bottom: 1.75rem;
   }
 }
 

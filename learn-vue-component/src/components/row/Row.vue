@@ -38,7 +38,7 @@ export default class Button extends Vue {
   })
   public readonly justify!: string;
 
-  private get gutterStyle() {
+  private get gutterStyle(): string | object {
     if (this.gutter != 0) {
       const value = -(this.gutter / 2) + 'px';
 

@@ -92,6 +92,124 @@
     </section>
 
     <section class="section">
+      <h3>Col Offset</h3>
+    </section>
+    <section class="row-section">
+      <Row :gutter="10">
+        <Col :span="8">
+          <div>A</div>
+        </Col>
+        <Col :span="8" :offset="8">
+          <div>A</div>
+        </Col>
+      </Row>
+      <Row :gutter="10">
+        <Col :span="8" :offset="8">
+          <div>A</div>
+        </Col>
+      </Row>
+      <Row :gutter="10">
+        <Col :span="6">
+          <div>A</div>
+        </Col>
+        <Col :span="6" :offset="6">
+          <div>A</div>
+        </Col>
+      </Row>
+      <Row :gutter="10">
+        <Col :span="6" :offset="6">
+          <div>A</div>
+        </Col>
+        <Col :span="6" :offset="6">
+          <div>A</div>
+        </Col>
+      </Row>
+      <Row :gutter="10">
+        <Col :span="12" :offset="6">
+          <div>A</div>
+        </Col>
+      </Row>
+    </section>
+
+    <section class="section">
+      <h3>Col Responsive</h3>
+    </section>
+    <section class="row-section">
+      <Row>
+        <Col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+          <div>
+            col-xs-24<br />
+            col-sm-12<br />
+            col-md-8<br />
+            col-lg-6<br />
+            col-xl-4
+          </div>
+        </Col>
+        <Col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+          <div>
+            col-xs-24<br />
+            col-sm-12<br />
+            col-md-8<br />
+            col-lg-6<br />
+            col-xl-4
+          </div>
+        </Col>
+        <Col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+          <div>
+            col-xs-24<br />
+            col-sm-12<br />
+            col-md-8<br />
+            col-lg-6<br />
+            col-xl-4
+          </div>
+        </Col>
+        <Col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+          <div>
+            col-xs-24<br />
+            col-sm-12<br />
+            col-md-8<br />
+            col-lg-6<br />
+            col-xl-4
+          </div>
+        </Col>
+        <Col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+          <div>
+            col-xs-24<br />
+            col-sm-12<br />
+            col-md-8<br />
+            col-lg-6<br />
+            col-xl-4
+          </div>
+        </Col>
+        <Col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+          <div>
+            col-xs-24<br />
+            col-sm-12<br />
+            col-md-8<br />
+            col-lg-6<br />
+            col-xl-4
+          </div>
+        </Col>
+      </Row>
+    </section>
+    <section class="row-section">
+      <Row>
+        <Col :md="{ span: 6, offset: 6 }">
+          <div>
+            col-md-6<br />
+            col-md-offset-6
+          </div>
+        </Col>
+        <Col :md="{ span: 6, offset: 6 }">
+          <div>
+            col-md-6<br />
+            col-md-offset-6
+          </div>
+        </Col>
+      </Row>
+    </section>
+
+    <section class="section">
       <h3>Row Gutter</h3>
     </section>
     <section class="row-section">
@@ -150,46 +268,6 @@
           <div>A</div>
         </Col>
         <Col :span="4">
-          <div>A</div>
-        </Col>
-      </Row>
-    </section>
-
-    <section class="section">
-      <h3>Row Offset</h3>
-    </section>
-    <section class="row-section">
-      <Row :gutter="10">
-        <Col :span="8">
-          <div>A</div>
-        </Col>
-        <Col :span="8" :offset="8">
-          <div>A</div>
-        </Col>
-      </Row>
-      <Row :gutter="10">
-        <Col :span="8" :offset="8">
-          <div>A</div>
-        </Col>
-      </Row>
-      <Row :gutter="10">
-        <Col :span="6">
-          <div>A</div>
-        </Col>
-        <Col :span="6" :offset="6">
-          <div>A</div>
-        </Col>
-      </Row>
-      <Row :gutter="10">
-        <Col :span="6" :offset="6">
-          <div>A</div>
-        </Col>
-        <Col :span="6" :offset="6">
-          <div>A</div>
-        </Col>
-      </Row>
-      <Row :gutter="10">
-        <Col :span="12" :offset="6">
           <div>A</div>
         </Col>
       </Row>
@@ -314,7 +392,7 @@ export default class GridTest extends Vue {}
 
 <style lang="scss" scoped>
 .section {
-  width: 500px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

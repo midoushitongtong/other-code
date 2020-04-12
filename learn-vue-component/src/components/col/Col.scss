@@ -2,6 +2,11 @@
   width: 100%;
 }
 
+[class*='col-push-'],
+[class*='col-pull-'] {
+  position: relative;
+}
+
 @for $i from 1 through 24 {
   // span
   .col-#{$i} {
@@ -12,6 +17,16 @@
   // offset
   .col-offset-#{$i} {
     margin-left: 100% / 24 * $i;
+  }
+
+  // push
+  .col-push-#{$i} {
+    left: 100% / 24 * $i;
+  }
+
+  // pull
+  .col-pull-#{$i} {
+    left: -100% / 24 * $i;
   }
 }
 

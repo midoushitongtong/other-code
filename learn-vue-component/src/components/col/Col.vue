@@ -1,7 +1,14 @@
 <template>
   <div
-    :class="['col', span && `col-${span}`, offset && `col-offset-${offset}`, responsiveClass]"
-    :style="gutterStyle"
+    :class="[
+      'col',
+      span && `col-${span}`,
+      offset && `col-offset-${offset}`,
+      push && `col-push-${push}`,
+      pull && `col-pull-${pull}`,
+      responsiveClass(),
+    ]"
+    :style="gutterStyle()"
   >
     <slot />
   </div>
@@ -14,7 +21,9 @@ import Row from '../row/Row.vue';
 @Component({
   name: 'Col',
 })
-export default class Button extends Vue {
+export default class Col extends Vue {
+  public readonly $parent!: Row;
+
   @Prop({
     type: Number,
     required: false,
@@ -26,6 +35,18 @@ export default class Button extends Vue {
     required: false,
   })
   private readonly offset!: number;
+
+  @Prop({
+    type: Number,
+    required: false,
+  })
+  private readonly push!: number;
+
+  @Prop({
+    type: Number,
+    required: false,
+  })
+  private readonly pull!: number;
 
   @Prop({
     type: [Number, Object],
@@ -57,9 +78,7 @@ export default class Button extends Vue {
   })
   private readonly xl!: number | { span: number; offset: number };
 
-  public readonly $parent!: Row;
-
-  private get gutterStyle(): string | object {
+  private gutterStyle = (): string | object => {
     if (this.$parent.gutter && this.$parent.gutter !== 0) {
       const value = this.$parent.gutter / 2 + 'px';
 
@@ -70,12 +89,12 @@ export default class Button extends Vue {
     }
 
     return '';
-  }
+  };
 
   /**
    * 生成响应式的 class 类名
    */
-  private generatorResponsiveClass(responsiveSize: 'xs' | 'sm' | 'md' | 'lg' | 'xl'): string[] {
+  private generatorResponsiveClass = (responsiveSize: 'xs' | 'sm' | 'md' | 'lg' | 'xl'): string[] => {
     const responsiveValue = this[responsiveSize];
     const responsiveClass: string[] = [];
 
@@ -89,9 +108,9 @@ export default class Button extends Vue {
     }
 
     return responsiveClass;
-  }
+  };
 
-  private get responsiveClass(): string {
+  private responsiveClass = (): string => {
     const responsiveClassList: string[] = [];
 
     this.xs && responsiveClassList.push(...this.generatorResponsiveClass('xs'));
@@ -101,7 +120,7 @@ export default class Button extends Vue {
     this.xl && responsiveClassList.push(...this.generatorResponsiveClass('xl'));
 
     return responsiveClassList.join(' ');
-  }
+  };
 }
 </script>
 

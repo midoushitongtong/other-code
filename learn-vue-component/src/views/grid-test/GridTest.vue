@@ -6,7 +6,7 @@
     <hr />
 
     <section class="section">
-      <h3>Col</h3>
+      <h3>Col Span</h3>
     </section>
     <section class="row-section">
       <Row>
@@ -95,7 +95,7 @@
       <h3>Col Offset</h3>
     </section>
     <section class="row-section">
-      <Row :gutter="10">
+      <Row>
         <Col :span="8">
           <div>A</div>
         </Col>
@@ -103,12 +103,12 @@
           <div>A</div>
         </Col>
       </Row>
-      <Row :gutter="10">
+      <Row>
         <Col :span="8" :offset="8">
           <div>A</div>
         </Col>
       </Row>
-      <Row :gutter="10">
+      <Row>
         <Col :span="6">
           <div>A</div>
         </Col>
@@ -116,7 +116,7 @@
           <div>A</div>
         </Col>
       </Row>
-      <Row :gutter="10">
+      <Row>
         <Col :span="6" :offset="6">
           <div>A</div>
         </Col>
@@ -124,7 +124,7 @@
           <div>A</div>
         </Col>
       </Row>
-      <Row :gutter="10">
+      <Row>
         <Col :span="12" :offset="6">
           <div>A</div>
         </Col>
@@ -205,6 +205,34 @@
             col-md-6<br />
             col-md-offset-6
           </div>
+        </Col>
+      </Row>
+    </section>
+
+    <section class="section">
+      <h3>Col Push</h3>
+    </section>
+    <section class="row-section">
+      <Row>
+        <Col :span="12" :push="1">
+          <div style="height: 50px;">A</div>
+        </Col>
+        <Col :span="12">
+          <div>A</div>
+        </Col>
+      </Row>
+    </section>
+
+    <section class="section">
+      <h3>Col Pull</h3>
+    </section>
+    <section class="row-section">
+      <Row>
+        <Col :span="12">
+          <div>A</div>
+        </Col>
+        <Col :span="12" :pull="1">
+          <div style="height: 50px;">A</div>
         </Col>
       </Row>
     </section>

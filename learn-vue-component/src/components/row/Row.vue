@@ -1,7 +1,7 @@
 <template>
   <div
     :class="['row', align && `row-align-${align}`, justify && `row-justify-${justify}`]"
-    :style="gutter && gutterStyle"
+    :style="gutter && gutterStyle()"
   >
     <slot />
   </div>
@@ -13,7 +13,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 @Component({
   name: 'Row',
 })
-export default class Button extends Vue {
+export default class Row extends Vue {
   @Prop({
     type: Number,
     required: false,
@@ -27,7 +27,7 @@ export default class Button extends Vue {
       return ['start', 'center', 'end'].indexOf(value) !== -1;
     },
   })
-  public readonly align!: string;
+  private readonly align!: string;
 
   @Prop({
     type: String,
@@ -36,9 +36,9 @@ export default class Button extends Vue {
       return ['flex-start', 'center', 'end', 'around', 'between'].indexOf(value) !== -1;
     },
   })
-  public readonly justify!: string;
+  private readonly justify!: string;
 
-  private get gutterStyle(): string | object {
+  private gutterStyle = (): string | object => {
     if (this.gutter != 0) {
       const value = -(this.gutter / 2) + 'px';
 
@@ -49,7 +49,7 @@ export default class Button extends Vue {
     }
 
     return '';
-  }
+  };
 }
 </script>
 

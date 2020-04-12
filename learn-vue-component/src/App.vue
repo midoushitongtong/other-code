@@ -25,7 +25,7 @@ import GridTest from './views/grid-test/GridTest.vue';
   },
 })
 export default class App extends Vue {
-  public testComponentName: string = 'GridTest';
+  private testComponentName: string = 'GridTest';
 }
 </script>
 

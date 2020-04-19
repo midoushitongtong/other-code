@@ -19,7 +19,7 @@
     <section class="section">
       <Layout>
         <LayoutHeader>Header</LayoutHeader>
-        <Layout hasSidebar>
+        <Layout>
           <LayoutSidebar>Sidebar</LayoutSidebar>
           <LayoutContent>Content</LayoutContent>
         </Layout>
@@ -28,7 +28,7 @@
     </section>
 
     <section class="section">
-      <Layout hasSidebar>
+      <Layout>
         <LayoutSidebar>Sidebar</LayoutSidebar>
         <Layout>
           <LayoutHeader>Header</LayoutHeader>
@@ -84,7 +84,6 @@ export default class LayoutTest extends Vue {}
       align-items: center;
       justify-content: center;
       background-color: #3ba0e9;
-      width: 250px;
     }
     .layout-content {
       display: flex;

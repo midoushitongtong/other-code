@@ -1,5 +1,5 @@
 <template>
-  <section :class="['layout', hasSidebar && 'has-sidebar']">
+  <section :class="['layout', hasSidebarClass() && 'has-sidebar']">
     <slot />
   </section>
 </template>
@@ -14,9 +14,33 @@ export default class Layout extends Vue {
   @Prop({
     type: Boolean,
     required: false,
-    default: false,
+    default: null,
   })
   private readonly hasSidebar!: boolean;
+
+  private hasSidebarClass = (): boolean => {
+    let hasSidebar: boolean = false;
+
+    if (this.hasSidebar !== null) {
+      // 通过 props 强制设置
+      hasSidebar = this.hasSidebar;
+    } else {
+      // 通过检测子组件设置
+      const childrenVNode = this.$slots.default;
+      if (childrenVNode) {
+        const hasLayoutSidebarChildren = childrenVNode.some((item) => {
+          if (item.componentOptions && item.componentOptions.tag === 'LayoutSidebar') {
+            return true;
+          }
+        });
+        if (hasLayoutSidebarChildren) {
+          hasSidebar = true;
+        }
+      }
+    }
+
+    return hasSidebar;
+  };
 }
 </script>
 

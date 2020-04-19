@@ -28,14 +28,9 @@ export default class Layout extends Vue {
       // 通过检测子组件设置
       const childrenVNode = this.$slots.default;
       if (childrenVNode) {
-        const hasLayoutSidebarChildren = childrenVNode.some((item) => {
-          if (item.componentOptions && item.componentOptions.tag === 'LayoutSidebar') {
-            return true;
-          }
-        });
-        if (hasLayoutSidebarChildren) {
-          hasSidebar = true;
-        }
+        hasSidebar = childrenVNode.some(
+          (item) => item.componentOptions && item.componentOptions.tag === 'LayoutSidebar'
+        );
       }
     }
 

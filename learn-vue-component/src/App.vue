@@ -3,10 +3,12 @@
     <button @click="() => (testComponentName = 'ButtonTest')">ButtonTest</button>
     <button @click="() => (testComponentName = 'ButtonGroupTest')">ButtonGroupTest</button>
     <button @click="() => (testComponentName = 'GridTest')">GridTest</button>
+    <button @click="() => (testComponentName = 'LayoutTest')">LayoutTest</button>
 
     <ButtonTest v-if="testComponentName === 'ButtonTest'" />
     <ButtonGroupTest v-if="testComponentName === 'ButtonGroupTest'" />
     <GridTest v-if="testComponentName === 'GridTest'" />
+    <LayoutTest v-if="testComponentName === 'LayoutTest'" />
   </main>
 </template>
 
@@ -15,6 +17,7 @@ import { Vue, Component } from 'vue-property-decorator';
 import ButtonTest from './views/button-test/ButtonTest.vue';
 import ButtonGroupTest from './views/button-group-test/ButtonGroupTest.vue';
 import GridTest from './views/grid-test/GridTest.vue';
+import LayoutTest from './views/layout-test/LayoutTest.vue';
 
 @Component({
   name: 'App',
@@ -22,10 +25,11 @@ import GridTest from './views/grid-test/GridTest.vue';
     ButtonTest,
     ButtonGroupTest,
     GridTest,
+    LayoutTest,
   },
 })
 export default class App extends Vue {
-  private testComponentName: string = 'GridTest';
+  private testComponentName: string = 'LayoutTest';
 }
 </script>
 

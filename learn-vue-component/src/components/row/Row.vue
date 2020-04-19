@@ -33,7 +33,7 @@ export default class Row extends Vue {
     type: String,
     required: false,
     validator: (value) => {
-      return ['flex-start', 'center', 'end', 'around', 'between'].indexOf(value) !== -1;
+      return ['start', 'center', 'end', 'around', 'between'].indexOf(value) !== -1;
     },
   })
   private readonly justify!: string;

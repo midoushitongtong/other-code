@@ -9,12 +9,13 @@
       <h3>radio</h3>
     </section>
     <section class="section">
-      <Radio value="AAA" checked>
+      <Radio v-model="test">
         AAA
       </Radio>
       <Radio value="BBB">
         BBB
       </Radio>
+      {{ test }}
     </section>
   </div>
 </template>
@@ -29,7 +30,12 @@ import Radio from '../../components/radio/Radio.vue';
     Radio,
   },
 })
-export default class RadioTest extends Vue {}
+export default class RadioTest extends Vue {
+  private test = 1;
+  private handleChange(): void {
+    console.log(123);
+  }
+}
 </script>
 
 <style lang="scss" scoped>

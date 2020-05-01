@@ -23,7 +23,7 @@ export default class Row extends Vue {
   @Prop({
     type: String,
     required: false,
-    validator: (value) => {
+    validator(value) {
       return ['start', 'center', 'end'].indexOf(value) !== -1;
     },
   })
@@ -32,13 +32,13 @@ export default class Row extends Vue {
   @Prop({
     type: String,
     required: false,
-    validator: (value) => {
+    validator(value) {
       return ['start', 'center', 'end', 'around', 'between'].indexOf(value) !== -1;
     },
   })
   private readonly justify!: string;
 
-  private gutterStyle = (): string | object => {
+  private gutterStyle(): string | object {
     if (this.gutter != 0) {
       const value = -(this.gutter / 2) + 'px';
 
@@ -49,7 +49,7 @@ export default class Row extends Vue {
     }
 
     return '';
-  };
+  }
 }
 </script>
 

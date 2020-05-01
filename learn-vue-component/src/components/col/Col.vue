@@ -78,7 +78,7 @@ export default class Col extends Vue {
   })
   private readonly xl!: number | { span: number; offset: number };
 
-  private gutterStyle = (): string | object => {
+  private gutterStyle(): string | object {
     if (this.$parent.gutter && this.$parent.gutter !== 0) {
       const value = this.$parent.gutter / 2 + 'px';
 
@@ -89,12 +89,12 @@ export default class Col extends Vue {
     }
 
     return '';
-  };
+  }
 
   /**
    * 生成响应式的 class 类名
    */
-  private generatorResponsiveClass = (responsiveSize: 'xs' | 'sm' | 'md' | 'lg' | 'xl'): string[] => {
+  private generatorResponsiveClass(responsiveSize: 'xs' | 'sm' | 'md' | 'lg' | 'xl'): string[] {
     const responsiveValue = this[responsiveSize];
     const responsiveClass: string[] = [];
 
@@ -108,9 +108,9 @@ export default class Col extends Vue {
     }
 
     return responsiveClass;
-  };
+  }
 
-  private responsiveClass = (): string => {
+  private responsiveClass(): string {
     const responsiveClassList: string[] = [];
 
     this.xs && responsiveClassList.push(...this.generatorResponsiveClass('xs'));
@@ -120,7 +120,7 @@ export default class Col extends Vue {
     this.xl && responsiveClassList.push(...this.generatorResponsiveClass('xl'));
 
     return responsiveClassList.join(' ');
-  };
+  }
 }
 </script>
 

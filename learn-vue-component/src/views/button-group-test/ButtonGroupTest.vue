@@ -73,9 +73,9 @@ import ButtonGroup from '../../components/button-group/ButtonGroup.vue';
   },
 })
 export default class ButtonGroupTest extends Vue {
-  private handleClick = (event: MouseEvent): void => {
+  private handleClick(event: MouseEvent): void {
     console.log(event);
-  };
+  }
 }
 </script>
 

@@ -36,7 +36,7 @@ export default class Button extends Vue {
     type: String,
     required: false,
     default: 'primary',
-    validator: (value) => {
+    validator(value) {
       return ['primary', 'danger'].indexOf(value) !== -1;
     },
   })
@@ -47,7 +47,7 @@ export default class Button extends Vue {
     type: String,
     required: false,
     default: 'button',
-    validator: (value) => {
+    validator(value) {
       return ['button', 'reset', 'submit'].indexOf(value) !== -1;
     },
   })
@@ -57,7 +57,7 @@ export default class Button extends Vue {
   @Prop({
     type: String,
     required: false,
-    validator: (value) => {
+    validator(value) {
       return ['small', 'large'].indexOf(value) !== -1;
     },
   })
@@ -133,11 +133,11 @@ export default class Button extends Vue {
   }
 
   // handle button click event
-  private handleClick = (e: MouseEvent): void => {
+  private handleClick(e: MouseEvent): void {
     if (this.$listeners.click) {
       this.click(e);
     }
-  };
+  }
 }
 </script>
 

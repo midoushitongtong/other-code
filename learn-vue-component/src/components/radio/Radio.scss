@@ -1,2 +1,50 @@
+@import '../../assets/theme/color.scss';
+
 .radio {
+  cursor: pointer;
+  &.checked {
+    .input {
+      .icon {
+        border-color: $primary-color;
+        &::after {
+          opacity: 1;
+          transform: translateX(-50%) translateY(-50%) scale(1);
+        }
+      }
+    }
+  }
+  .input {
+    display: inline-block;
+    vertical-align: middle;
+    .icon {
+      position: relative;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 1px solid #d9d9d9;
+      border-radius: 8px;
+      transition: border 0.3s ease;
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 8px;
+        height: 8px;
+        border-radius: 6px;
+        background-color: $primary-color;
+        transition: transform 0.3s ease;
+        transform: translateX(-50%) translateY(-50%) scale(0);
+        opacity: 0;
+      }
+    }
+    .html-input {
+      display: none;
+    }
+  }
+  .label {
+    display: inline-block;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 }

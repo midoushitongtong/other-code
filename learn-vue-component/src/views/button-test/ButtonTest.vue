@@ -127,13 +127,13 @@ import Button from '../../components/button/Button.vue';
 export default class ButtonTest extends Vue {
   private loading: boolean = true;
 
-  private handleClick = (event: MouseEvent): void => {
+  private handleClick(event: MouseEvent): void {
     alert(event);
-  };
+  }
 
-  private handleToggleLoading = (): void => {
+  private handleToggleLoading(): void {
     this.loading = !this.loading;
-  };
+  }
 }
 </script>
 

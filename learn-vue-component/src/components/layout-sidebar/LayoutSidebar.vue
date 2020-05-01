@@ -18,7 +18,7 @@ export default class LayoutSidebar extends Vue {
   })
   private readonly width!: number | string;
 
-  private widthStyle = (): object => {
+  private widthStyle(): object {
     const { width } = this;
 
     const widthStyle = typeof width === 'number' ? `${width}px` : width;
@@ -26,7 +26,7 @@ export default class LayoutSidebar extends Vue {
     return {
       width: widthStyle,
     };
-  };
+  }
 }
 </script>
 

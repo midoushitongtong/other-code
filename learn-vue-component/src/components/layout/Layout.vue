@@ -18,7 +18,7 @@ export default class Layout extends Vue {
   })
   private readonly hasSidebar!: boolean;
 
-  private hasSidebarClass = (): boolean => {
+  private hasSidebarClass(): boolean {
     let hasSidebar: boolean = false;
 
     if (this.hasSidebar !== null) {
@@ -35,7 +35,7 @@ export default class Layout extends Vue {
     }
 
     return hasSidebar;
-  };
+  }
 }
 </script>
 

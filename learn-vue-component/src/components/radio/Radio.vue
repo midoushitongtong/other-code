@@ -1,7 +1,14 @@
 <template>
-  <label :class="['radio', checked && 'checked', selfChecked && 'checked']">
+  <label :class="['radio', checked && 'checked', selfChecked && 'checked', disabled && 'disabled']">
     <span class="input">
-      <input type="radio" :value="value" :checked="checked" @change="handleChange" class="html-input" />
+      <input
+        type="radio"
+        :value="value"
+        :checked="checked"
+        :disabled="disabled"
+        @change="handleChange"
+        class="html-input"
+      />
       <span class="icon" />
     </span>
     <span class="label">
@@ -23,6 +30,13 @@ export default class Radio extends Vue {
     default: null,
   })
   private readonly checked!: boolean;
+
+  @Prop({
+    type: Boolean,
+    required: false,
+    default: false,
+  })
+  private readonly disabled!: boolean;
 
   @Model('change', {
     required: false,

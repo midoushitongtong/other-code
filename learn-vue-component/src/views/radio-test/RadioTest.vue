@@ -6,16 +6,30 @@
     <hr />
 
     <section class="section">
-      <h3>radio</h3>
+      <h3>Basic</h3>
     </section>
     <section class="section">
-      <Radio v-model="test">
-        AAA
+      <Radio value="A">
+        A
       </Radio>
-      <Radio value="BBB">
-        BBB
+      <Radio value="B">
+        B
       </Radio>
-      {{ test }}
+    </section>
+
+    <section class="section">
+      <h3>Disabled</h3>
+    </section>
+    <section class="section">
+      <Radio value="A" :disabled="disabled">
+        A
+      </Radio>
+      <Radio value="B" checked :disabled="disabled">
+        B
+      </Radio>
+    </section>
+    <section class="section">
+      <Button @click="toggleDisabled">Toggle</Button>
     </section>
   </div>
 </template>
@@ -23,17 +37,26 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import Radio from '../../components/radio/Radio.vue';
+import Button from '../../components/button/Button.vue';
 
 @Component({
   name: 'RadioTest',
   components: {
     Radio,
+    Button,
   },
 })
 export default class RadioTest extends Vue {
-  private test = 1;
-  private handleChange(): void {
-    console.log(123);
+  private checked: boolean = false;
+
+  private disabled: boolean = false;
+
+  private toggleChecked(): void {
+    this.checked = !this.checked;
+  }
+
+  private toggleDisabled(): void {
+    this.disabled = !this.disabled;
   }
 }
 </script>

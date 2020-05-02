@@ -111,17 +111,77 @@
     <section class="section">
       <Button autofocus>Primary</Button>
     </section>
+
+    <section class="section">
+      <h1>Button Group</h1>
+    </section>
+    <hr />
+
+    <section class="section">
+      <h3>Case 1</h3>
+    </section>
+    <section class="section">
+      <ButtonGroup>
+        <Button>Single</Button>
+      </ButtonGroup>
+    </section>
+
+    <section class="section">
+      <h3>Case 2</h3>
+    </section>
+    <section class="section">
+      <ButtonGroup>
+        <Button>Left</Button>
+        <Button>Right</Button>
+      </ButtonGroup>
+    </section>
+
+    <section class="section">
+      <h3>Case 3</h3>
+    </section>
+    <section class="section">
+      <ButtonGroup>
+        <Button>Left</Button>
+        <Button>Middle</Button>
+        <Button>Right</Button>
+      </ButtonGroup>
+    </section>
+
+    <section class="section">
+      <h3>Case 4</h3>
+    </section>
+    <section class="section">
+      <ButtonGroup>
+        <Button>Left</Button>
+        <Button>Middle</Button>
+        <Button>Middle</Button>
+        <Button>Right</Button>
+      </ButtonGroup>
+    </section>
+
+    <section class="section">
+      <h3>Case 5 Other Styles</h3>
+    </section>
+    <section class="section">
+      <ButtonGroup>
+        <Button type="danger">left</Button>
+        <Button type="danger">center</Button>
+        <Button type="danger">right</Button>
+      </ButtonGroup>
+    </section>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import Button from '../../components/button/Button.vue';
+import ButtonGroup from '../../components/button-group/ButtonGroup.vue';
 
 @Component({
   name: 'ButtonTest',
   components: {
     Button,
+    ButtonGroup,
   },
 })
 export default class ButtonTest extends Vue {

@@ -22,8 +22,6 @@ import Row from '../row/Row.vue';
   name: 'Col',
 })
 export default class Col extends Vue {
-  public readonly $parent!: Row;
-
   @Prop({
     type: Number,
     required: false,
@@ -78,18 +76,7 @@ export default class Col extends Vue {
   })
   private readonly xl!: number | { span: number; offset: number };
 
-  private gutterStyle(): string | object {
-    if (this.$parent.gutter && this.$parent.gutter !== 0) {
-      const value = this.$parent.gutter / 2 + 'px';
-
-      return {
-        paddingLeft: value,
-        paddingRight: value,
-      };
-    }
-
-    return '';
-  }
+  public readonly $parent!: Row;
 
   /**
    * 生成响应式的 class 类名
@@ -120,6 +107,19 @@ export default class Col extends Vue {
     this.xl && responsiveClassList.push(...this.generatorResponsiveClass('xl'));
 
     return responsiveClassList.join(' ');
+  }
+
+  private gutterStyle(): string | object {
+    if (this.$parent.gutter && this.$parent.gutter !== 0) {
+      const value = this.$parent.gutter / 2 + 'px';
+
+      return {
+        paddingLeft: value,
+        paddingRight: value,
+      };
+    }
+
+    return '';
   }
 }
 </script>

@@ -1,10 +1,10 @@
 <template>
-  <label :class="['radio', checked && 'checked', selfChecked && 'checked', disabled && 'disabled']">
+  <label :class="['radio', selfChecked && 'checked', disabled && 'disabled']">
     <span class="input">
       <input
         type="radio"
         :value="value"
-        :checked="checked"
+        :checked="selfChecked"
         :disabled="disabled"
         @change="handleChange"
         class="html-input"
@@ -18,7 +18,8 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Model, Emit } from 'vue-property-decorator';
+import { Vue, Component, Prop, Model, Emit, Watch } from 'vue-property-decorator';
+import RadioGroup from '../radio-group/RadioGroup.vue';
 
 @Component({
   name: 'Radio',
@@ -38,31 +39,47 @@ export default class Radio extends Vue {
   })
   private readonly disabled!: boolean;
 
+  @Watch('$parent.selfValue')
+  private onValueChange(value: boolean) {
+    // RadioGroup 的数据发生改变, 重新计算是否选中
+    this.selfChecked = value === this.value;
+  }
+
   @Model('change', {
     required: false,
     default: null,
   })
   private readonly value!: unknown;
 
-  // v-model 的 change
   @Emit()
   private change(value: unknown) {
     return value;
   }
 
-  /**
-   * 内部维护一个 checked, 用于强行设置选中状态
-   */
-  private selfChecked: boolean = false;
+  public readonly $parent!: RadioGroup;
 
-  private handleChange() {
+  private readonly hasRadioGroup =
+    this.$parent.$vnode.componentOptions && this.$parent.$vnode.componentOptions.tag === 'RadioGroup';
+
+  // 内部维护一个 checked, 用于设置选中状态
+  private selfChecked: boolean = this.hasRadioGroup
+    ? this.$parent.selfValue === this.value
+    : this.checked;
+
+  private handleChange(): void {
+    // emit
     if (this.$listeners.change) {
       this.change(this.value);
     }
 
-    if (this.checked === null) {
-      // 强行设置选中状态
-      this.selfChecked = true;
+    if (this.hasRadioGroup) {
+      // 通知 RadioGroup
+      this.$parent.onRadioChange(this.value);
+    } else {
+      // 如果没有 RadioGroup 包裹, 也没有 checked prop 传入, 强行设置 selfChecked
+      if (this.checked === null) {
+        this.selfChecked = true;
+      }
     }
   }
 }

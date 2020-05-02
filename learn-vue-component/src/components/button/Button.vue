@@ -134,6 +134,7 @@ export default class Button extends Vue {
 
   // handle button click event
   private handleClick(e: MouseEvent): void {
+    // emit
     if (this.$listeners.click) {
       this.click(e);
     }

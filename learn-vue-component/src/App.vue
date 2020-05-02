@@ -1,7 +1,6 @@
 <template>
   <main>
     <button @click="() => (testComponentName = 'ButtonTest')">ButtonTest</button>
-    <button @click="() => (testComponentName = 'ButtonGroupTest')">ButtonGroupTest</button>
     <button @click="() => (testComponentName = 'GridTest')">GridTest</button>
     <button @click="() => (testComponentName = 'LayoutTest')">LayoutTest</button>
     <button @click="() => (testComponentName = 'RadioTest')">RadioTest</button>
@@ -17,7 +16,6 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import ButtonTest from './views/button-test/ButtonTest.vue';
-import ButtonGroupTest from './views/button-group-test/ButtonGroupTest.vue';
 import GridTest from './views/grid-test/GridTest.vue';
 import LayoutTest from './views/layout-test/LayoutTest.vue';
 import RadioTest from './views/radio-test/RadioTest.vue';
@@ -26,7 +24,6 @@ import RadioTest from './views/radio-test/RadioTest.vue';
   name: 'App',
   components: {
     ButtonTest,
-    ButtonGroupTest,
     GridTest,
     LayoutTest,
     RadioTest,

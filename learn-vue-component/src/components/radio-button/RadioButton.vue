@@ -1,20 +1,21 @@
 <template>
-  <label :class="['radio', selfChecked && 'checked', disabled && 'disabled']">
-    <span class="input">
-      <input
-        type="radio"
-        :value="value"
-        :checked="selfChecked"
-        :disabled="disabled"
-        @change="handleChange"
-        class="html-input"
-      />
-      <span class="icon" />
-    </span>
-    <span class="label">
-      <slot />
-    </span>
-  </label>
+  <button :class="['radio-button', selfChecked && 'checked', disabled && 'disabled']">
+    <label>
+      <span class="input">
+        <input
+          type="radio"
+          :value="value"
+          :checked="selfChecked"
+          :disabled="disabled"
+          @change="handleChange"
+          class="html-input"
+        />
+      </span>
+      <span class="label">
+        <slot />
+      </span>
+    </label>
+  </button>
 </template>
 
 <script lang="ts">
@@ -86,5 +87,5 @@ export default class Radio extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import './Radio.scss';
+@import './RadioButton.scss';
 </style>

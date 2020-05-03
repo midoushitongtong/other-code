@@ -2,6 +2,11 @@
 
 .radio {
   cursor: pointer;
+
+  & + .radio {
+    margin-left: 8px;
+  }
+
   &.checked {
     .input {
       .icon {

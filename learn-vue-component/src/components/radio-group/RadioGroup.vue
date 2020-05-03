@@ -27,7 +27,7 @@ export default class RadioGroup extends Vue {
   }
 
   // 内部维护一个 value, 用于更新子组件 radio 的选中状态
-  public selfValue: unknown = this.value || '1';
+  public selfValue: unknown = this.value || null;
 
   public onRadioChange(value: unknown): void {
     // emit

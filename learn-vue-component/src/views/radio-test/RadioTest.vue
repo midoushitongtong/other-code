@@ -41,7 +41,7 @@
       <h3>Basic</h3>
     </section>
     <section class="section">
-      <RadioGroup :value="value" @change="handleChangeValue">
+      <RadioGroup v-model="value" @change="handleChangeValue">
         <Radio value="A">
           A
         </Radio>
@@ -57,12 +57,43 @@
       <Button @click="forceChangeValue('A')">Select A</Button>
       <Button @click="forceChangeValue('B')">Select B</Button>
     </section>
+
+    <section class="section">
+      <h1>Radio Button</h1>
+    </section>
+    <hr />
+
+    <section class="section">
+      <h3>Basic</h3>
+    </section>
+    <section class="section">
+      <RadioGroup v-model="value2" @change="handleChangeValue2">
+        <RadioButton value="A">
+          A
+        </RadioButton>
+        <RadioButton value="B">
+          B
+        </RadioButton>
+        <RadioButton value="C">
+          C
+        </RadioButton>
+      </RadioGroup>
+    </section>
+    <section class="section">
+      <div>{{ value2 }}</div>
+    </section>
+    <section class="section">
+      <Button @click="forceChangeValue2('A')">Select A</Button>
+      <Button @click="forceChangeValue2('B')">Select B</Button>
+      <Button @click="forceChangeValue2('C')">Select C</Button>
+    </section>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import Radio from '../../components/radio/Radio.vue';
+import RadioButton from '../../components/radio-button/RadioButton.vue';
 import RadioGroup from '../../components/radio-group/RadioGroup.vue';
 import Button from '../../components/button/Button.vue';
 
@@ -70,6 +101,7 @@ import Button from '../../components/button/Button.vue';
   name: 'RadioTest',
   components: {
     Radio,
+    RadioButton,
     RadioGroup,
     Button,
   },
@@ -79,16 +111,26 @@ export default class RadioTest extends Vue {
 
   private value: string = '';
 
+  private value2: string = '';
+
   private toggleDisabled(): void {
     this.disabled = !this.disabled;
   }
 
   private handleChangeValue(value: string): void {
-    this.value = value;
+    console.log(value);
   }
 
   private forceChangeValue(value: string): void {
     this.value = value;
+  }
+
+  private handleChangeValue2(value2: string): void {
+    console.log(value2);
+  }
+
+  private forceChangeValue2(value2: string): void {
+    this.value2 = value2;
   }
 }
 </script>

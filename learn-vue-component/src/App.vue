@@ -45,6 +45,7 @@ body {
     button + button {
       margin-left: 1rem;
     }
+    padding-bottom: 5rem;
   }
 }
 

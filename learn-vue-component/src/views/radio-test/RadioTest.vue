@@ -61,7 +61,6 @@
         <RadioButton value="A">A</RadioButton>
         <RadioButton value="B">B</RadioButton>
         <RadioButton value="C">C</RadioButton>
-        <RadioButton value="D">D</RadioButton>
       </RadioGroup>
     </section>
     <section class="section">
@@ -69,11 +68,35 @@
         <RadioButton value="A">A</RadioButton>
         <RadioButton value="B">B</RadioButton>
         <RadioButton value="C">C</RadioButton>
-        <RadioButton value="D">D</RadioButton>
       </RadioGroup>
     </section>
     <section class="section">
       <Button @click="toggleDisabled3">Toggle Disabled</Button>
+    </section>
+
+    <section class="section">
+      <h3>Size</h3>
+    </section>
+    <section class="section">
+      <RadioGroup size="small" v-model="value3" @change="handleChangeValue3">
+        <RadioButton value="A">A</RadioButton>
+        <RadioButton value="B">B</RadioButton>
+        <RadioButton value="C">C</RadioButton>
+      </RadioGroup>
+    </section>
+    <section class="section">
+      <RadioGroup v-model="value3" @change="handleChangeValue3">
+        <RadioButton value="A">A</RadioButton>
+        <RadioButton value="B">B</RadioButton>
+        <RadioButton value="C">C</RadioButton>
+      </RadioGroup>
+    </section>
+    <section class="section">
+      <RadioGroup size="large" v-model="value3" @change="handleChangeValue3">
+        <RadioButton value="A">A</RadioButton>
+        <RadioButton value="B">B</RadioButton>
+        <RadioButton value="C">C</RadioButton>
+      </RadioGroup>
     </section>
   </div>
 </template>
@@ -105,6 +128,8 @@ export default class RadioTest extends Vue {
 
   private value2: string = '';
 
+  private value3: string = '';
+
   private toggleDisabled(): void {
     this.disabled = !this.disabled;
   }
@@ -123,6 +148,10 @@ export default class RadioTest extends Vue {
 
   private handleChangeValue2(value2: string): void {
     console.log(value2);
+  }
+
+  private handleChangeValue3(value3: string): void {
+    console.log(value3);
   }
 }
 </script>

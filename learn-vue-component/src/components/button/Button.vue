@@ -2,8 +2,8 @@
   <button
     :class="[
       'button',
-      type && `button-${this.type}`,
-      size && `button-${this.size}`,
+      type && `button-${type}`,
+      size && size !== 'default' && `button-${size}`,
       plain && 'is-plain',
       round && 'is-round',
       circle && 'is-circle',
@@ -11,7 +11,7 @@
       text && 'is-text',
       loading && 'is-loading',
     ]"
-    :type="this.htmlType"
+    :type="htmlType"
     :autofocus="autofocus"
     :disabled="disabled || loading"
     @click="handleClick"
@@ -57,8 +57,9 @@ export default class Button extends Vue {
   @Prop({
     type: String,
     required: false,
+    default: 'default',
     validator(value) {
-      return ['small', 'large'].indexOf(value) !== -1;
+      return ['small', 'default', 'large'].indexOf(value) !== -1;
     },
   })
   private readonly size!: string;

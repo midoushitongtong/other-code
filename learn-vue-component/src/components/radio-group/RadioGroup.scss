@@ -1,4 +1,26 @@
 @import '../../assets/theme/color.scss';
 .radio-group {
   display: flex;
+
+  &.radio-group-small {
+    ::v-deep .radio-button {
+      label {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+      }
+    }
+  }
+
+  &.radio-group-large {
+    ::v-deep .radio-button {
+      label {
+        padding: 0.55rem 0.85rem;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        border-radius: 0.3rem;
+      }
+    }
+  }
 }

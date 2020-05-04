@@ -1,11 +1,11 @@
 <template>
-  <div class="radio-group">
+  <div :class="['radio-group', size && size !== 'default', `radio-group-${size}`]">
     <slot />
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Model, Emit, Watch, Prop, Provide } from 'vue-property-decorator';
+import { Vue, Component, Model, Emit, Watch, Prop } from 'vue-property-decorator';
 
 @Component({
   name: 'RadioGroup',
@@ -17,6 +17,16 @@ export default class RadioGroup extends Vue {
     default: false,
   })
   public readonly disabled!: boolean;
+
+  @Prop({
+    type: String,
+    required: false,
+    default: 'default',
+    validator(value) {
+      return ['small', 'default', 'large'].indexOf(value) !== -1;
+    },
+  })
+  private readonly size!: string;
 
   @Model('change', {
     required: false,

@@ -5,19 +5,22 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Model, Emit, Watch } from 'vue-property-decorator';
+import { Vue, Component, Model, Emit, Watch, Prop, Provide } from 'vue-property-decorator';
 
 @Component({
   name: 'RadioGroup',
 })
 export default class RadioGroup extends Vue {
-  @Watch('value')
-  private onValueChange(value: unknown) {
-    this.selfValue = value;
-  }
+  @Prop({
+    type: Boolean,
+    required: false,
+    default: false,
+  })
+  public readonly disabled!: boolean;
 
   @Model('change', {
     required: false,
+    default: null,
   })
   public readonly value!: unknown;
 
@@ -26,8 +29,13 @@ export default class RadioGroup extends Vue {
     return value;
   }
 
+  @Watch('value')
+  private onValueChange(value: unknown) {
+    this.innerValue = value;
+  }
+
   // 内部维护一个 value, 用于更新子组件 radio 的选中状态
-  public selfValue: unknown = this.value || null;
+  public innerValue: unknown = this.value;
 
   public onRadioChange(value: unknown): void {
     // emit
@@ -35,9 +43,9 @@ export default class RadioGroup extends Vue {
       this.change(value);
     }
 
-    // 如果没有 value prop 传入, 强行设置 selfValue
-    if (Object.prototype.hasOwnProperty.call(this.$props, 'value')) {
-      this.selfValue = value;
+    // 如果没有 value prop 传入, 强行设置 innerValue
+    if (this.value === null) {
+      this.innerValue = value;
     }
   }
 }

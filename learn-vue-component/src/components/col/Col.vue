@@ -6,9 +6,9 @@
       offset && `col-offset-${offset}`,
       push && `col-push-${push}`,
       pull && `col-pull-${pull}`,
-      responsiveClass(),
+      responsiveClass,
     ]"
-    :style="gutterStyle()"
+    :style="gutterStyle"
   >
     <slot />
   </div>
@@ -97,7 +97,7 @@ export default class Col extends Vue {
     return responsiveClass;
   }
 
-  private responsiveClass(): string {
+  private get responsiveClass(): string {
     const responsiveClassList: string[] = [];
 
     this.xs && responsiveClassList.push(...this.generatorResponsiveClass('xs'));
@@ -109,7 +109,7 @@ export default class Col extends Vue {
     return responsiveClassList.join(' ');
   }
 
-  private gutterStyle(): string | object {
+  private get gutterStyle(): string | object {
     if (this.$parent.gutter && this.$parent.gutter !== 0) {
       const value = this.$parent.gutter / 2 + 'px';
 

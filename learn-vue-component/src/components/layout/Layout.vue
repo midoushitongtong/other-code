@@ -1,5 +1,5 @@
 <template>
-  <section :class="['layout', hasSidebarClass() && 'has-sidebar']">
+  <section :class="['layout', hasSidebarClass && 'has-sidebar']">
     <slot />
   </section>
 </template>
@@ -18,7 +18,7 @@ export default class Layout extends Vue {
   })
   private readonly hasSidebar!: boolean;
 
-  private hasSidebarClass(): boolean {
+  private get hasSidebarClass(): boolean {
     let hasSidebar: boolean = false;
 
     if (this.hasSidebar !== null) {

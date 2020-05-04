@@ -9,27 +9,19 @@
       <h3>Basic</h3>
     </section>
     <section class="section">
-      <Radio value="A">
-        A
-      </Radio>
-      <Radio value="B">
-        B
-      </Radio>
+      <Radio value="A">A</Radio>
+      <Radio value="B">B</Radio>
     </section>
 
     <section class="section">
       <h3>Disabled</h3>
     </section>
     <section class="section">
-      <Radio value="A" :disabled="disabled">
-        A
-      </Radio>
-      <Radio value="B" checked :disabled="disabled">
-        B
-      </Radio>
+      <Radio value="A" :disabled="disabled">A</Radio>
+      <Radio value="B" checked :disabled="disabled">B</Radio>
     </section>
     <section class="section">
-      <Button @click="toggleDisabled">Toggle</Button>
+      <Button @click="toggleDisabled">Toggle Disabled</Button>
     </section>
 
     <section class="section">
@@ -42,20 +34,18 @@
     </section>
     <section class="section">
       <RadioGroup v-model="value" @change="handleChangeValue">
-        <Radio value="A">
-          A
-        </Radio>
-        <Radio value="B">
-          B
-        </Radio>
+        <Radio value="A">A</Radio>
+        <Radio value="B">B</Radio>
       </RadioGroup>
     </section>
     <section class="section">
-      <div>{{ value }}</div>
+      <RadioGroup :disabled="disabled2" v-model="value" @change="handleChangeValue">
+        <Radio value="A">A</Radio>
+        <Radio value="B">B</Radio>
+      </RadioGroup>
     </section>
     <section class="section">
-      <Button @click="forceChangeValue('A')">Select A</Button>
-      <Button @click="forceChangeValue('B')">Select B</Button>
+      <Button @click="toggleDisabled2">Toggle Disabled</Button>
     </section>
 
     <section class="section">
@@ -68,24 +58,22 @@
     </section>
     <section class="section">
       <RadioGroup v-model="value2" @change="handleChangeValue2">
-        <RadioButton value="A">
-          A
-        </RadioButton>
-        <RadioButton value="B">
-          B
-        </RadioButton>
-        <RadioButton value="C">
-          C
-        </RadioButton>
+        <RadioButton value="A">A</RadioButton>
+        <RadioButton value="B">B</RadioButton>
+        <RadioButton value="C">C</RadioButton>
+        <RadioButton value="D">D</RadioButton>
       </RadioGroup>
     </section>
     <section class="section">
-      <div>{{ value2 }}</div>
+      <RadioGroup :disabled="disabled3" v-model="value2" @change="handleChangeValue2">
+        <RadioButton value="A">A</RadioButton>
+        <RadioButton value="B">B</RadioButton>
+        <RadioButton value="C">C</RadioButton>
+        <RadioButton value="D">D</RadioButton>
+      </RadioGroup>
     </section>
     <section class="section">
-      <Button @click="forceChangeValue2('A')">Select A</Button>
-      <Button @click="forceChangeValue2('B')">Select B</Button>
-      <Button @click="forceChangeValue2('C')">Select C</Button>
+      <Button @click="toggleDisabled3">Toggle Disabled</Button>
     </section>
   </div>
 </template>
@@ -107,7 +95,11 @@ import Button from '../../components/button/Button.vue';
   },
 })
 export default class RadioTest extends Vue {
-  private disabled: boolean = false;
+  private disabled: boolean = true;
+
+  private disabled2: boolean = true;
+
+  private disabled3: boolean = true;
 
   private value: string = '';
 
@@ -117,20 +109,20 @@ export default class RadioTest extends Vue {
     this.disabled = !this.disabled;
   }
 
+  private toggleDisabled2(): void {
+    this.disabled2 = !this.disabled2;
+  }
+
+  private toggleDisabled3(): void {
+    this.disabled3 = !this.disabled3;
+  }
+
   private handleChangeValue(value: string): void {
     console.log(value);
   }
 
-  private forceChangeValue(value: string): void {
-    this.value = value;
-  }
-
   private handleChangeValue2(value2: string): void {
     console.log(value2);
-  }
-
-  private forceChangeValue2(value2: string): void {
-    this.value2 = value2;
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div
     :class="['row', align && `row-align-${align}`, justify && `row-justify-${justify}`]"
-    :style="gutter && gutterStyle()"
+    :style="gutter && gutterStyle"
   >
     <slot />
   </div>
@@ -38,7 +38,7 @@ export default class Row extends Vue {
   })
   private readonly justify!: string;
 
-  private gutterStyle(): string | object {
+  private get gutterStyle(): string | object {
     if (this.gutter != 0) {
       const value = -(this.gutter / 2) + 'px';
 

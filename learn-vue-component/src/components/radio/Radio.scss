@@ -19,7 +19,8 @@
     }
   }
 
-  &.disabled {
+  &.disabled,
+  &.checked.disabled {
     cursor: not-allowed;
     .input {
       .icon {

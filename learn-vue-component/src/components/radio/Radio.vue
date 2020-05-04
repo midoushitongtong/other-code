@@ -1,11 +1,11 @@
 <template>
-  <label :class="['radio', selfChecked && 'checked', disabled && 'disabled']">
+  <label :class="['radio', selfChecked && 'checked', selfDisabled && 'disabled']">
     <span class="input">
       <input
         type="radio"
         :value="value"
         :checked="selfChecked"
-        :disabled="disabled"
+        :disabled="selfDisabled"
         @change="handleChange"
         class="html-input"
       />
@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Model, Emit, Watch } from 'vue-property-decorator';
+import { Vue, Component, Prop, Model, Emit } from 'vue-property-decorator';
 import RadioGroup from '../radio-group/RadioGroup.vue';
 
 @Component({
@@ -35,15 +35,9 @@ export default class Radio extends Vue {
   @Prop({
     type: Boolean,
     required: false,
-    default: false,
+    default: null,
   })
   private readonly disabled!: boolean;
-
-  @Watch('$parent.selfValue')
-  private onValueChange(value: unknown) {
-    // RadioGroup 的数据发生改变, 重新计算是否选中
-    this.selfChecked = value === this.value;
-  }
 
   @Model('change', {
     required: false,
@@ -58,13 +52,24 @@ export default class Radio extends Vue {
 
   public readonly $parent!: RadioGroup;
 
-  private readonly hasRadioGroup =
-    this.$parent.$vnode.componentOptions && this.$parent.$vnode.componentOptions.tag === 'RadioGroup';
-
   // 内部维护一个 checked, 用于设置选中状态
-  private selfChecked: boolean = this.hasRadioGroup
-    ? this.$parent.selfValue === this.value
-    : this.checked;
+  private innerChecked: boolean = this.checked;
+
+  private get hasRadioGroup(): boolean {
+    return (
+      !!this.$parent.$vnode.componentOptions && this.$parent.$vnode.componentOptions.tag === 'RadioGroup'
+    );
+  }
+
+  // 获取 checked 状态
+  private get selfChecked(): boolean {
+    return this.hasRadioGroup ? this.$parent.innerValue === this.value : this.innerChecked;
+  }
+
+  // 获取 disabled 状态
+  private get selfDisabled(): boolean {
+    return this.hasRadioGroup ? this.$parent.disabled : this.disabled;
+  }
 
   private handleChange(): void {
     // emit
@@ -78,7 +83,7 @@ export default class Radio extends Vue {
     } else {
       // 如果没有 RadioGroup 包裹, 也没有 checked prop 传入, 强行设置 selfChecked
       if (this.checked === null) {
-        this.selfChecked = true;
+        this.innerChecked = true;
       }
     }
   }

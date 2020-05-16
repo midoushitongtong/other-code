@@ -1,0 +1,5 @@
+@import './mixins.scss';
+
+@include prefix(button) {
+  color: #06f;
+}

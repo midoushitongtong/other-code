@@ -1,0 +1,7 @@
+@mixin prefix($lastName) {
+  $fullName: 'z' + '-' + $lastName;
+
+  .#{$fullName} {
+    @content;
+  }
+}

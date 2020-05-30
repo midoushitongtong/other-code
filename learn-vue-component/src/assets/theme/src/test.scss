@@ -1,11 +1,31 @@
 @import './common/mixins.scss';
 
-@include prefix(button) {
-  color: #06f;
-  &-primary {
-    color: #06f;
+// block
+@include block(menu) {
+  color: rgba(0, 0, 0, 0.1);
+
+  // element
+  @include element(item1) {
+    color: rgba(0, 0, 0, 0.2);
+
+    // modifier
+    @include modifier([info, warn]) {
+      color: rgba(0, 0, 0, 0.21);
+    }
   }
-  &-primary-plain {
-    color: #06f;
+
+  // element
+  @include element(item2) {
+    color: rgba(0, 0, 0, 0.3);
+
+    // modifier
+    @include modifier([info, warn]) {
+      color: rgba(0, 0, 0, 0.31);
+    }
+  }
+
+  // modifier
+  @include modifier([info, warn]) {
+    color: rgba(0, 0, 0, 0.4);
   }
 }

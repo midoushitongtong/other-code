@@ -1,9 +1,40 @@
 @import './config.scss';
 
-@mixin prefix($lastName) {
-  $fullName: $namespace + '-' + $lastName;
+// block
+@mixin block($block) {
+  $currentSelector: $namespace + '-' + $block;
 
-  .#{$fullName} {
+  .#{$currentSelector} {
     @content;
+  }
+}
+
+// element
+@mixin element($element) {
+  $currentSelector: '';
+
+  @each $unit in $element {
+    $currentSelector: #{$currentSelector + & + $element-separator + $unit + ','};
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
+// modifier
+@mixin modifier($modifier) {
+  $currentSelector: '';
+
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector + & + $modifier-separator + $unit + ','};
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
   }
 }

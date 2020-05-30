@@ -1,5 +1,11 @@
-@import './mixins.scss';
+@import './common/mixins.scss';
 
 @include prefix(button) {
   color: #06f;
+  &-primary {
+    color: #06f;
+  }
+  &-primary-plain {
+    color: #06f;
+  }
 }

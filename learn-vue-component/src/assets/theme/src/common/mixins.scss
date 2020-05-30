@@ -1,5 +1,7 @@
+@import './config.scss';
+
 @mixin prefix($lastName) {
-  $fullName: 'z' + '-' + $lastName;
+  $fullName: $namespace + '-' + $lastName;
 
   .#{$fullName} {
     @content;

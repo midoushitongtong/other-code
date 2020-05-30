@@ -14,5 +14,7 @@ function buildScssTask(cb) {
   return src('src/**/*.scss').pipe(gulpSass()).pipe(dest('../../../dist/css/'));
 }
 
+console.log(module);
+
 module.exports.watchBuildScssTask = watchBuildScssTask;
 module.exports.buildScssTask = buildScssTask;

@@ -1,5 +1,6 @@
 @import './common/mixins.scss';
 
+/*
 // block
 @include block(menu) {
   color: rgba(0, 0, 0, 0.1);
@@ -14,18 +15,16 @@
     }
   }
 
-  // element
-  @include element(item2) {
-    color: rgba(0, 0, 0, 0.3);
-
-    // modifier
-    @include modifier([info, warn]) {
-      color: rgba(0, 0, 0, 0.31);
-    }
-  }
-
   // modifier
   @include modifier([info, warn]) {
     color: rgba(0, 0, 0, 0.4);
+  }
+}
+*/
+
+// responsive
+@include responsive('xs') {
+  .header {
+    color: blue;
   }
 }

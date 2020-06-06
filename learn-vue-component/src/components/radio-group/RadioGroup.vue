@@ -1,5 +1,5 @@
 <template>
-  <div :class="['radio-group', size && size !== 'default', `radio-group-${size}`]">
+  <div :class="['radio-group', size && size !== 'default' && `radio-group-${size}`]">
     <slot />
   </div>
 </template>

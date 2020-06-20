@@ -83,8 +83,8 @@ export default class CheckboxTest extends Vue {
     this.disabled2 = !this.disabled2;
   }
 
-  private handleChangeCheckedStatus(qq): void {
-    console.log(qq);
+  private handleChangeCheckedStatus(checked: boolean): void {
+    console.log(checked);
   }
 
   private handleChangeValue(value: string): void {

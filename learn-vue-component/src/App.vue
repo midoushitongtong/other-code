@@ -5,6 +5,7 @@
     <button @click="() => (testComponentName = 'LayoutTest')">LayoutTest</button>
     <button @click="() => (testComponentName = 'RadioTest')">RadioTest</button>
     <button @click="() => (testComponentName = 'CheckboxTest')">CheckboxTest</button>
+    <button @click="() => (testComponentName = 'InputTest')">InputTest</button>
 
     <ButtonTest v-if="testComponentName === 'ButtonTest'" />
     <ButtonGroupTest v-if="testComponentName === 'ButtonGroupTest'" />
@@ -12,6 +13,7 @@
     <LayoutTest v-if="testComponentName === 'LayoutTest'" />
     <RadioTest v-if="testComponentName === 'RadioTest'" />
     <CheckboxTest v-if="testComponentName === 'CheckboxTest'" />
+    <InputTest v-if="testComponentName === 'InputTest'" />
   </main>
 </template>
 
@@ -22,6 +24,7 @@ import GridTest from './views/grid-test/GridTest.vue';
 import LayoutTest from './views/layout-test/LayoutTest.vue';
 import RadioTest from './views/radio-test/RadioTest.vue';
 import CheckboxTest from './views/checkbox-test/CheckboxTest.vue';
+import InputTest from './views/input-test/InputTest.vue';
 
 @Component({
   name: 'App',
@@ -31,10 +34,11 @@ import CheckboxTest from './views/checkbox-test/CheckboxTest.vue';
     LayoutTest,
     RadioTest,
     CheckboxTest,
+    InputTest,
   },
 })
 export default class App extends Vue {
-  private testComponentName: string = 'CheckboxTest';
+  private testComponentName: string = 'InputTest';
 }
 </script>
 

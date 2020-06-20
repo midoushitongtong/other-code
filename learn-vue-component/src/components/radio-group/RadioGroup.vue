@@ -35,12 +35,12 @@ export default class RadioGroup extends Vue {
   public readonly value!: unknown;
 
   @Emit()
-  private change(value: unknown) {
+  private change(value: unknown): unknown {
     return value;
   }
 
   @Watch('value')
-  private onValueChange(value: unknown) {
+  private onValueChange(value: unknown): void {
     this.innerValue = value;
   }
 

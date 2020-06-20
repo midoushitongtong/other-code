@@ -46,7 +46,7 @@ export default class Radio extends Vue {
   private readonly value!: unknown;
 
   @Emit()
-  private change(isChekcked: boolean) {
+  private change(isChekcked: boolean): boolean {
     return isChekcked;
   }
 

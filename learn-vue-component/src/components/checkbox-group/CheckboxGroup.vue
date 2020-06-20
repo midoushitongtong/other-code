@@ -25,12 +25,12 @@ export default class CheckboxGroup extends Vue {
   public readonly value!: Array<unknown>;
 
   @Emit()
-  private change(value: unknown) {
+  private change(value: unknown): unknown {
     return value;
   }
 
   @Watch('value')
-  private onValueChange(value: Array<unknown>) {
+  private onValueChange(value: Array<unknown>): void {
     this.innerValue = value;
   }
 

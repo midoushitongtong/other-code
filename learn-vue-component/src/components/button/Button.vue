@@ -129,7 +129,7 @@ export default class Button extends Vue {
 
   // event emit
   @Emit()
-  private click(e: MouseEvent) {
+  private click(e: MouseEvent): MouseEvent {
     return e;
   }
 

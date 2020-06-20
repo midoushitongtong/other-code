@@ -47,7 +47,7 @@ export default class Radio extends Vue {
   private readonly value!: unknown;
 
   @Emit()
-  private change(value: unknown) {
+  private change(value: unknown): unknown {
     return value;
   }
 

@@ -29,10 +29,45 @@
       <h3>Allow Clear</h3>
     </section>
     <section class="section">
-      <Input allowClear placeholder="input here" :value="value3" @change="handleChangeValue3" />
+      <Input
+        suffixIcon="search"
+        allowClear
+        placeholder="input here"
+        :value="value3"
+        @change="handleChangeValue3"
+      />
     </section>
     <section class="section">
       {{ value3 }}
+    </section>
+
+    <section class="section">
+      <h3>Icon</h3>
+    </section>
+    <section class="section">
+      <Input prefixIcon="search" />
+    </section>
+    <section class="section">
+      <Input>
+        <i slot="prefixIcon" class="icon-search" />
+      </Input>
+    </section>
+    <section class="section">
+      <Input suffixIcon="date" />
+    </section>
+    <section class="section">
+      <Input>
+        <i slot="suffixIcon" class="icon-date" />
+      </Input>
+    </section>
+    <section class="section">
+      <Input prefixIcon="search" suffixIcon="date" />
+    </section>
+    <section class="section">
+      <Input>
+        <i slot="prefixIcon" class="icon-search" />
+        <i slot="suffixIcon" class="icon-date" />
+      </Input>
     </section>
   </div>
 </template>
@@ -84,8 +119,8 @@ export default class InputTest extends Vue {
     margin: 0;
   }
 
-  .input {
-    max-width: 300px;
+  ::v-deep input {
+    width: 300px;
   }
 }
 </style>

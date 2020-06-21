@@ -1,13 +1,40 @@
 <template>
   <div class="input-container">
+    <!-- prefix icon -->
+    <span v-if="prefixIcon" class="prefix-icon">
+      <i :class="`icon-${prefixIcon}`" />
+    </span>
+
+    <!-- prefix icon slot -->
+    <span v-if="!prefixIcon && $slots.prefixIcon" class="prefix-icon">
+      <slot name="prefixIcon" />
+    </span>
+
     <input
-      :class="['input', disabled && 'disabled']"
+      :class="[
+        'input',
+        disabled && 'disabled',
+        hasShowAllowClearButton && 'has-allow-clear',
+        (prefixIcon || $slots.prefixIcon) && 'has-prefix-icon',
+        !hasShowAllowClearButton && (suffixIcon || $slots.suffixIcon) && 'has-suffix-icon',
+      ]"
       :value="selfValue"
       :disabled="disabled"
       :placeholder="placeholder"
       :readonly="disabled"
       @input="handleChangeVale"
     />
+
+    <!-- suffix icon -->
+    <span v-if="!hasShowAllowClearButton && suffixIcon" class="suffix-icon">
+      <i :class="`icon-${suffixIcon}`" />
+    </span>
+
+    <!-- suffix icon slot -->
+    <span v-if="!hasShowAllowClearButton && !suffixIcon && $slots.suffixIcon" class="suffix-icon">
+      <slot name="suffixIcon" />
+    </span>
+
     <!-- allow clear button -->
     <div v-if="hasShowAllowClearButton" class="allow-clear-button" @click="handleClearValue">
       <i class="icon-close" />
@@ -50,6 +77,20 @@ export default class Input extends Vue {
   })
   private readonly value!: string;
 
+  @Prop({
+    required: false,
+    type: String,
+    default: null,
+  })
+  private readonly prefixIcon!: string;
+
+  @Prop({
+    required: false,
+    type: String,
+    default: null,
+  })
+  private readonly suffixIcon!: string;
+
   @Watch('value')
   private onValueChange(value: string): void {
     this.selfValue = value;
@@ -76,7 +117,7 @@ export default class Input extends Vue {
    * 处理 input 事件
    */
   private handleChangeVale(event: Event): void {
-    const target = <HTMLInputElement>event.target;
+    const target = event.target as HTMLInputElement;
 
     this.selfValue = target.value;
 

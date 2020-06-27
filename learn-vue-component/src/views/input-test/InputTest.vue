@@ -69,6 +69,23 @@
         <i slot="suffixIcon" class="icon-date" />
       </Input>
     </section>
+
+    <section class="section">
+      <h3>Textarea</h3>
+    </section>
+    <section class="section">
+      <Input
+        autoSize
+        placeholder="213"
+        type="textarea"
+        :rows="5"
+        :value="value4"
+        @change="handleChangeValue4"
+      />
+    </section>
+    <section class="section">
+      <Input type="textarea" disabled :rows="5" :value="value4" />
+    </section>
   </div>
 </template>
 
@@ -89,6 +106,8 @@ export default class InputTest extends Vue {
 
   private value3: string = 'nnn';
 
+  private value4: string = 'nnn';
+
   private handleChangeValue(value: string): void {
     this.value = value;
   }
@@ -99,6 +118,10 @@ export default class InputTest extends Vue {
 
   private handleChangeValue3(value3: string): void {
     this.value3 = value3;
+  }
+
+  private handleChangeValue4(value4: string): void {
+    this.value4 = value4;
   }
 }
 </script>
@@ -114,12 +137,14 @@ export default class InputTest extends Vue {
   padding-bottom: 0.5rem;
   padding-left: 1rem;
   word-break: break-word;
+  white-space: pre-line;
 
   h3 {
     margin: 0;
   }
 
-  ::v-deep input {
+  ::v-deep input,
+  ::v-deep textarea {
     width: 300px;
   }
 }

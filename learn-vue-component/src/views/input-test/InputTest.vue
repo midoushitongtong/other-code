@@ -9,11 +9,9 @@
       <h3>Basic</h3>
     </section>
     <section class="section">
-      <Input placeholder="input here" :value="value" @change="handleChangeValue" />
+      <Input placeholder="input here" :value="value" @change="handleValueChange" />
     </section>
-    <section class="section">
-      {{ value }}
-    </section>
+    <section class="section">{{ value }}</section>
 
     <section class="section">
       <h3>Disabled</h3>
@@ -22,7 +20,7 @@
       <Input disabled placeholder="readonly here" :value="value2" />
     </section>
     <section class="section">
-      <Input placeholder="input here" :value="value2" @change="handleChangeValue2" />
+      <Input placeholder="input here" :value="value2" @change="handleValue2Change" />
     </section>
 
     <section class="section">
@@ -34,12 +32,10 @@
         allowClear
         placeholder="input here"
         :value="value3"
-        @change="handleChangeValue3"
+        @change="handleValueChange3"
       />
     </section>
-    <section class="section">
-      {{ value3 }}
-    </section>
+    <section class="section">{{ value3 }}</section>
 
     <section class="section">
       <h3>Icon</h3>
@@ -71,6 +67,26 @@
     </section>
 
     <section class="section">
+      <h3>Compact</h3>
+    </section>
+    <section class="section">
+      <Input>
+        <template slot="prefixContent">http://</template>
+      </Input>
+    </section>
+    <section class="section">
+      <Input>
+        <template slot="suffixContent">.com</template>
+      </Input>
+    </section>
+    <section class="section">
+      <Input>
+        <template slot="prefixContent">http://</template>
+        <template slot="suffixContent">.com</template>
+      </Input>
+    </section>
+
+    <section class="section">
       <h3>Textarea</h3>
     </section>
     <section class="section">
@@ -80,7 +96,7 @@
         type="textarea"
         :rows="5"
         :value="value4"
-        @change="handleChangeValue4"
+        @change="handleValueChange4"
       />
     </section>
     <section class="section">
@@ -94,7 +110,7 @@ import { Vue, Component } from 'vue-property-decorator';
 import Input from '../../components/input/Input.vue';
 
 @Component({
-  name: 'CheckboxTest',
+  name: 'InputTest',
   components: {
     Input,
   },
@@ -108,19 +124,19 @@ export default class InputTest extends Vue {
 
   private value4: string = 'nnn';
 
-  private handleChangeValue(value: string): void {
+  private handleValueChange(value: string): void {
     this.value = value;
   }
 
-  private handleChangeValue2(value2: string): void {
+  private handleValue2Change(value2: string): void {
     this.value2 = value2;
   }
 
-  private handleChangeValue3(value3: string): void {
+  private handleValueChange3(value3: string): void {
     this.value3 = value3;
   }
 
-  private handleChangeValue4(value4: string): void {
+  private handleValueChange4(value4: string): void {
     this.value4 = value4;
   }
 }
@@ -143,8 +159,8 @@ export default class InputTest extends Vue {
     margin: 0;
   }
 
-  ::v-deep input,
-  ::v-deep textarea {
+  ::v-deep .input-container,
+  ::v-deep .input-textarea-container {
     width: 300px;
   }
 }

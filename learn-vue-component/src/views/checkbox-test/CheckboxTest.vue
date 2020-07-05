@@ -9,16 +9,16 @@
       <h3>Basic</h3>
     </section>
     <section class="section">
-      <Checkbox value="A" @change="handleChangeCheckedStatus">A</Checkbox>
-      <Checkbox value="B" @change="handleChangeCheckedStatus">B</Checkbox>
+      <Checkbox value="A" @change="handleCheckedStatusChange">A</Checkbox>
+      <Checkbox value="B" @change="handleCheckedStatusChange">B</Checkbox>
     </section>
 
     <section class="section">
       <h3>Disabled</h3>
     </section>
     <section class="section">
-      <Checkbox value="A" :disabled="disabled" @change="handleChangeCheckedStatus">A</Checkbox>
-      <Checkbox value="B" :disabled="disabled" @change="handleChangeCheckedStatus">B</Checkbox>
+      <Checkbox value="A" :disabled="disabled" @change="handleCheckedStatusChange">A</Checkbox>
+      <Checkbox value="B" :disabled="disabled" @change="handleCheckedStatusChange">B</Checkbox>
     </section>
     <section class="section">
       <Button @click="toggleDisabled">Toggle Disabled</Button>
@@ -33,17 +33,17 @@
       <h3>Basic</h3>
     </section>
     <section class="section">
-      <CheckboxGroup v-model="value" @change="handleChangeValue">
-        <Checkbox value="A" @change="handleChangeCheckedStatus">A</Checkbox>
-        <Checkbox value="B" @change="handleChangeCheckedStatus">B</Checkbox>
-        <Checkbox value="C" @change="handleChangeCheckedStatus">C</Checkbox>
+      <CheckboxGroup v-model="value" @change="handleValueChange">
+        <Checkbox value="A" @change="handleCheckedStatusChange">A</Checkbox>
+        <Checkbox value="B" @change="handleCheckedStatusChange">B</Checkbox>
+        <Checkbox value="C" @change="handleCheckedStatusChange">C</Checkbox>
       </CheckboxGroup>
     </section>
     <section class="section">
-      <CheckboxGroup :disabled="disabled2" v-model="value" @change="handleChangeValue">
-        <Checkbox value="A" @change="handleChangeCheckedStatus">A</Checkbox>
-        <Checkbox value="B" @change="handleChangeCheckedStatus">B</Checkbox>
-        <Checkbox value="C" @change="handleChangeCheckedStatus">C</Checkbox>
+      <CheckboxGroup :disabled="disabled2" v-model="value" @change="handleValueChange">
+        <Checkbox value="A" @change="handleCheckedStatusChange">A</Checkbox>
+        <Checkbox value="B" @change="handleCheckedStatusChange">B</Checkbox>
+        <Checkbox value="C" @change="handleCheckedStatusChange">C</Checkbox>
       </CheckboxGroup>
     </section>
     <section class="section">
@@ -83,11 +83,11 @@ export default class CheckboxTest extends Vue {
     this.disabled2 = !this.disabled2;
   }
 
-  private handleChangeCheckedStatus(checked: boolean): void {
+  private handleCheckedStatusChange(checked: boolean): void {
     console.log(checked);
   }
 
-  private handleChangeValue(value: string): void {
+  private handleValueChange(value: string): void {
     console.log(value);
   }
 }

@@ -1,5 +1,16 @@
 <template>
-  <div class="input-container" v-if="type === 'text'">
+  <div
+    :class="[
+      'input-container',
+      !prefixIcon && !$slots.prefixIcon && $slots.prefixContent && 'input-prefix-content-container',
+      !hasShowAllowClearButton &&
+        !suffixIcon &&
+        !$slots.suffixIcon &&
+        $slots.suffixContent &&
+        'input-suffix-content-container',
+    ]"
+    v-if="type === 'text'"
+  >
     <!-- prefix icon -->
     <span v-if="prefixIcon" class="prefix-icon">
       <i :class="`icon-${prefixIcon}`" />
@@ -9,6 +20,11 @@
     <span v-if="!prefixIcon && $slots.prefixIcon" class="prefix-icon">
       <slot name="prefixIcon" />
     </span>
+
+    <!-- prefix content slot -->
+    <div v-if="!prefixIcon && !$slots.prefixIcon && $slots.prefixContent" class="prefix-content">
+      <slot name="prefixContent" />
+    </div>
 
     <input
       :class="[
@@ -23,6 +39,7 @@
       :placeholder="placeholder"
       :readonly="disabled"
       @input="handleInputValeChange"
+      @blur="handleBlur"
     />
 
     <!-- suffix icon -->
@@ -34,6 +51,14 @@
     <span v-if="!hasShowAllowClearButton && !suffixIcon && $slots.suffixIcon" class="suffix-icon">
       <slot name="suffixIcon" />
     </span>
+
+    <!-- suffix content slot -->
+    <div
+      v-if="!hasShowAllowClearButton && !suffixIcon && !$slots.suffixIcon && $slots.suffixContent"
+      class="suffix-content"
+    >
+      <slot name="suffixContent" />
+    </div>
 
     <!-- allow clear button -->
     <div v-if="hasShowAllowClearButton" class="allow-clear-button" @click="handleClearValue">
@@ -129,6 +154,9 @@ export default class Input extends Vue {
   })
   private readonly autoSize!: boolean;
 
+  /**
+   * 外部 value 发生变化, 更新内部 value
+   */
   @Watch('value')
   private onValueChange(value: string): void {
     this.selfValue = value;
@@ -137,6 +165,11 @@ export default class Input extends Vue {
   @Emit()
   private change(value: string): string {
     return value;
+  }
+
+  @Emit()
+  private blur(event: Event): Event {
+    return event;
   }
 
   /**
@@ -154,9 +187,6 @@ export default class Input extends Vue {
    */
   private selfValue: string = this.value;
 
-  /**
-   * 外部 value 发生变化, 更新内部 value
-   */
   private get hasShowAllowClearButton(): boolean {
     return this.allowClear && this.selfValue.length > 0;
   }
@@ -173,6 +203,13 @@ export default class Input extends Vue {
       // this.$emit('change', event.target.value);
       this.change(target.value);
     }
+  }
+
+  /**
+   * 处理 blur
+   */
+  private handleBlur(event: Event): void {
+    this.blur(event);
   }
 
   /**

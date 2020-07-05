@@ -33,13 +33,13 @@
       <h3>Basic</h3>
     </section>
     <section class="section">
-      <RadioGroup v-model="value" @change="handleChangeValue">
+      <RadioGroup v-model="value" @change="handleValueChange">
         <Radio value="A">A</Radio>
         <Radio value="B">B</Radio>
       </RadioGroup>
     </section>
     <section class="section">
-      <RadioGroup :disabled="disabled2" v-model="value" @change="handleChangeValue">
+      <RadioGroup :disabled="disabled2" v-model="value" @change="handleValueChange">
         <Radio value="A">A</Radio>
         <Radio value="B">B</Radio>
       </RadioGroup>
@@ -57,14 +57,14 @@
       <h3>Basic</h3>
     </section>
     <section class="section">
-      <RadioGroup v-model="value2" @change="handleChangeValue2">
+      <RadioGroup v-model="value2" @change="handleValueChange2">
         <RadioButton value="A">A</RadioButton>
         <RadioButton value="B">B</RadioButton>
         <RadioButton value="C">C</RadioButton>
       </RadioGroup>
     </section>
     <section class="section">
-      <RadioGroup :disabled="disabled3" v-model="value2" @change="handleChangeValue2">
+      <RadioGroup :disabled="disabled3" v-model="value2" @change="handleValueChange2">
         <RadioButton value="A">A</RadioButton>
         <RadioButton value="B">B</RadioButton>
         <RadioButton value="C">C</RadioButton>
@@ -78,21 +78,21 @@
       <h3>Size</h3>
     </section>
     <section class="section">
-      <RadioGroup size="small" v-model="value3" @change="handleChangeValue3">
+      <RadioGroup size="small" v-model="value3" @change="handleValueChange3">
         <RadioButton value="A">A</RadioButton>
         <RadioButton value="B">B</RadioButton>
         <RadioButton value="C">C</RadioButton>
       </RadioGroup>
     </section>
     <section class="section">
-      <RadioGroup v-model="value3" @change="handleChangeValue3">
+      <RadioGroup v-model="value3" @change="handleValueChange3">
         <RadioButton value="A">A</RadioButton>
         <RadioButton value="B">B</RadioButton>
         <RadioButton value="C">C</RadioButton>
       </RadioGroup>
     </section>
     <section class="section">
-      <RadioGroup size="large" v-model="value3" @change="handleChangeValue3">
+      <RadioGroup size="large" v-model="value3" @change="handleValueChange3">
         <RadioButton value="A">A</RadioButton>
         <RadioButton value="B">B</RadioButton>
         <RadioButton value="C">C</RadioButton>
@@ -142,15 +142,15 @@ export default class RadioTest extends Vue {
     this.disabled3 = !this.disabled3;
   }
 
-  private handleChangeValue(value: string): void {
+  private handleValueChange(value: string): void {
     console.log(value);
   }
 
-  private handleChangeValue2(value2: string): void {
+  private handleValueChange2(value2: string): void {
     console.log(value2);
   }
 
-  private handleChangeValue3(value3: string): void {
+  private handleValueChange3(value3: string): void {
     console.log(value3);
   }
 }

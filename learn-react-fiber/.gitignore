@@ -22,5 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# vs extensions
-/.history
+# visual code history extends
+.history/**/*

@@ -1,8 +1,7 @@
 module.exports = {
-  extends: ['react-app', 'shared-config'],
+  extends: 'react-app',
   rules: {
-    'additional-rule': 'warn',
-    '@typescript-eslint/explicit-member-accessibility': 'error',
-    'flowtype/no-types-missing-file-annotation': 'off',
+    quotes: ['error', 'single'],
+    semi: ['error', 'always'],
   },
 };

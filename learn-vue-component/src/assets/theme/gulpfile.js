@@ -10,7 +10,7 @@ function watchBuildScssTask() {
   });
 }
 
-function buildScssTask(cb) {
+function buildScssTask() {
   return src('src/**/*.scss').pipe(gulpSass()).pipe(dest('../../../dist/css/'));
 }
 

@@ -13,9 +13,43 @@
     </section>
     <section class="section">{{ value }}</section>
     <section class="section">
-      <InputNumber placeholder="input here" v-model="value2" />
+      <h3>Disabled</h3>
+    </section>
+    <section class="section">
+      <InputNumber disabled :value="value" />
+    </section>
+
+    <section class="section">
+      <h3>Min Max</h3>
+    </section>
+    <section class="section">
+      <InputNumber :min="1" :max="5" placeholder="input here" v-model="value2" />
     </section>
     <section class="section">{{ value2 }}</section>
+
+    <section class="section">
+      <h3>Step</h3>
+    </section>
+    <section class="section">
+      <InputNumber :step="0.5" placeholder="input here" v-model="value3" />
+    </section>
+    <section class="section">{{ value3 }}</section>
+
+    <section class="section">
+      <h3>Precision</h3>
+    </section>
+    <section class="section">
+      <InputNumber :step="0.5" :precision="2" placeholder="input here" v-model="value4" />
+    </section>
+    <section class="section">{{ value4 }}</section>
+
+    <section class="section">
+      <h3>Layout</h3>
+    </section>
+    <section class="section">
+      <InputNumber controlPosition="right" placeholder="input here" v-model="value5" />
+    </section>
+    <section class="section">{{ value5 }}</section>
   </div>
 </template>
 
@@ -33,6 +67,12 @@ export default class InputTest extends Vue {
   private value: number = 1;
 
   private value2: number = 1;
+
+  private value3: number = 1;
+
+  private value4: number = 1;
+
+  private value5: number = 1;
 
   private handleValueChange(value: number): void {
     this.value = value;

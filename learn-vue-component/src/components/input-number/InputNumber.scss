@@ -1,6 +1,60 @@
 @import '../../assets/theme/src/common/color.scss';
 
 .input-number-container {
+  position: relative;
+  &.control-right {
+    .input-container {
+      padding-right: 39px;
+      .input {
+        border-radius: 0.25rem;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      .prefix-content,
+      .suffix-content {
+        display: flex;
+        position: absolute;
+        right: 0;
+        width: 39px;
+        height: 1.125rem;
+        border: 1px solid #ccc;
+        border-radius: 0;
+        .button {
+          width: 100%;
+          height: 100%;
+          line-height: 100%;
+          padding: 0;
+          border-radius: 0;
+          &:focus,
+          &:active {
+            box-shadow: none;
+          }
+          i {
+            font-size: 0.75rem;
+          }
+        }
+      }
+      .prefix-content {
+        top: 0;
+        border-bottom-width: 0.5px;
+        border-left-width: 0;
+        border-top-right-radius: 4px;
+        .button {
+          border-top-right-radius: 3px;
+        }
+      }
+      .suffix-content {
+        bottom: 0;
+        border-top-width: 0.5px;
+        border-left-width: 0;
+        border-bottom-right-radius: 4px;
+        .button {
+          border-bottom-right-radius: 3px;
+        }
+      }
+    }
+  }
+
   .input-container {
     .prefix-content {
       padding: 0;

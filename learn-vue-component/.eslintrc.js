@@ -25,5 +25,6 @@ module.exports = {
         'x-invalid-end-tag': false,
       },
     ],
+    '@typescript-eslint/no-var-requires': 'off',
   },
 };

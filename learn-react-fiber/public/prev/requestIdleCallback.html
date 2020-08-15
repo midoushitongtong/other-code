@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function sleep(delay) {
+        for (var start = Date.now(); Date.now() - start <= delay; ) {}
+      }
+
+      const works = [
+        () => {
+          console.log('第一个任务 start');
+          sleep(20);
+          console.log('第一个任务 end');
+        },
+        () => {
+          console.log('第二个任务 start');
+          sleep(20);
+          console.log('第二个任务 end');
+        },
+        () => {
+          console.log('第三个任务 start');
+          sleep(20);
+          console.log('第三个任务 end');
+        },
+      ];
+
+      function performWork() {
+        works.shift()();
+      }
+
+      function workLoop(deadLine) {
+        console.log(`剩余时间: ${deadLine.timeRemaining()} ms`);
+        // 此帧剩余的空闲时间 > 0或已经超时
+        while ((deadLine.timeRemaining() > 1 || deadLine.didTimeout) && works.length > 0) {
+          performWork();
+        }
+
+        if (works.length > 0) {
+          window.requestIdleCallback(workLoop, {
+            timeout: 1000,
+          });
+        }
+      }
+
+      // 此帧内如果有空闲的时间就执行该回调, 超过 1000 毫秒都没有执行就强制执行
+      window.requestIdleCallback(workLoop, {
+        timeout: 1000,
+      });
+    </script>
+  </body>
+</html>

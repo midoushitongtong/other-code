@@ -17,19 +17,24 @@ function setProp(dom, key, value) {
   return dom;
 }
 
-export function setProps(elem, oldProps, newProps) {
+export function setProps(dom, oldProps, newProps) {
   for (let key in oldProps) {
     if (key !== 'children') {
       if (newProps.hasOwnProperty(key)) {
-        setProp(elem, key, newProps[key]);
+        // 新老都有, 更新
+        setProp(dom, key, newProps[key]);
       } else {
-        elem.removeAttribute(key);
+        // 老的有新的没有, 删除
+        dom.removeAttribute(key);
       }
     }
   }
   for (let key in newProps) {
     if (key !== 'children') {
-      setProp(elem, key, newProps[key]);
+      if (!oldProps.hasOwnProperty(key)) {
+        // 老的没有新的有, 添加
+        setProp(dom, key, newProps[key]);
+      }
     }
   }
 }

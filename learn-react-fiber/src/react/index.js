@@ -1,4 +1,6 @@
-import { ELEMENT_TEXT } from './constants';
+import { ELEMENT_TEXT } from '../constants';
+import { UpdateQueue, Update } from '../update-queue';
+import { scheduleRoot, useReducer, useState } from '../scheduler';
 
 /**
  * 创建 react 元素
@@ -33,8 +35,29 @@ function createElement(type, config, ...children) {
   };
 }
 
+class Component {
+  constructor(props) {
+    this.props = props;
+    this.updateQueue = new UpdateQueue();
+  }
+
+  setState(payload) {
+    let update = new Update(payload);
+
+    this.internalFiber.updateQueue.enqueueUpdate(update);
+
+    scheduleRoot();
+  }
+}
+
+// 表明这是一个 class 组件
+Component.prototype.isReactComponent = {};
+
 const React = {
   createElement,
+  Component,
+  useReducer,
+  useState,
 };
 
 export default React;

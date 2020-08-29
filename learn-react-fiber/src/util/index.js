@@ -1,4 +1,4 @@
-import { ELEMENT_TEXT } from './constants';
+import { ELEMENT_TEXT } from '../constants';
 
 function setProp(dom, key, value) {
   if (/^on/.test(key)) {

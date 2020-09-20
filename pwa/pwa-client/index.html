@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <title>Document</title>
+    <script src="./js/index.js"></script>
+  </head>
+  <body>
+    <section class="container">
+      <div class="movie-list"></div>
+    </section>
+
+    <script>
+      if (Notification.permission === 'default') {
+        Notification.requestPermission();
+      }
+
+      if (!navigator.onLine) {
+        new Notification('提示', {
+          body: '你当前没有网络, 以为你显示缓存中的内容',
+        });
+      }
+
+      window.addEventListener('online', () => {
+        new Notification('提示', {
+          body: '你已经连上网络了, 请刷新访问最新的数据',
+        });
+      });
+    </script>
+  </body>
+</html>

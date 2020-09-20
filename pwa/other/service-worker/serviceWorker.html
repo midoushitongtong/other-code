@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <script>
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (registration of registrations) {
+          registration.unregister();
+        }
+      });
+
+      window.addEventListener('load', () => {
+        // 在网页加载完成的时候, 注册 service worker
+        // 因为 service worker 是可选功能, 就算加载失败了对现有的功能也没有影响
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker
+            .register('serviceWorker.js')
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+      });
+    </script>
+  </body>
+</html>

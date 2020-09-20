@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log('start');
+
+      // 1. 创建 web worker
+      const worker = new Worker('webWorker.js');
+
+      worker.addEventListener('message', (e) => {
+        console.log('收到 web worker 线程的通知, 获取计算结果');
+
+        console.log(e.data);
+      });
+
+      worker.postMessage({
+        action: 'calculator',
+      });
+
+      console.log('end');
+    </script>
+  </body>
+</html>

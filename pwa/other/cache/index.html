@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="manifest.json" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    pwa hello world
+    <script>
+      window.addEventListener('load', () => {
+        if ('serviceWorker' in navigator) {
+          try {
+            const registration = navigator.serviceWorker.register('./sw.js');
+            console.log('service workder 注册成功');
+          } catch (error) {
+            console.log('service worker 注册失败');
+            console.log(error);
+          }
+        }
+      });
+
+      if (Notification.permission === 'default') {
+        Notification.requestPermission();
+      }
+
+      if (!navigator.onLine) {
+        new Notification('提示', {
+          body: '你当前没有网络, 以为你显示缓存中的内容',
+        });
+      }
+
+      window.addEventListener('online', () => {
+        new Notification('提示', {
+          body: '你已经连上网络了, 请刷新访问最新的数据',
+        });
+      });
+    </script>
+  </body>
+</html>

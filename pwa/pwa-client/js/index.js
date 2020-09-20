@@ -20,7 +20,7 @@ async function renderMovies() {
 }
 
 function registerSW() {
-  if ('serviceWorker') {
+  if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js');
   }
 }

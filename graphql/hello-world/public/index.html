@@ -1,0 +1,76 @@
+<script>
+  // 插入数据
+  fetch('/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: `mutation {
+        createUser(input: {
+          name: "小陈"
+        }) {
+          id
+          name
+        }
+      }`,
+    }),
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      console.log(JSON.stringify(response.data, null, 2));
+    });
+
+  // 修改数据
+  fetch('/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: `mutation {
+        updateUser(input: {
+          id: "1",
+          name: "小王"
+        }) {
+          id
+          name
+        }
+      }`,
+    }),
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      console.log(JSON.stringify(response.data, null, 2));
+    });
+
+  // 获取数据
+  fetch('/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: `{
+        hello
+        users {
+          id,
+          name
+        }
+        article(id: "111") {
+          id
+          content
+          category(id: "1")
+          author {
+            id,
+            name
+          }
+        }
+      }`,
+    }),
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      console.log(JSON.stringify(response.data, null, 2));
+    });
+</script>

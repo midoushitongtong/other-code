@@ -52,6 +52,7 @@ const Phone: React.FunctionComponent<Props> = ({ phone, isSelected }: Props) => 
               width: r * 2,
               height: r * 2,
               borderRadius: r,
+              backgroundColor: '#fff',
               transform: [
                 {
                   translateY,

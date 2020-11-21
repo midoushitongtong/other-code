@@ -22,6 +22,18 @@
     },
     "experiments": {
       "turboModules": true
+    },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "yyccyy",
+            "project": "yyccyy",
+            "authToken": "937a80415de741c48c5119259d480110e045deffc5024630ad170b5843a50489"
+          }
+        }
+      ]
     }
   }
 }

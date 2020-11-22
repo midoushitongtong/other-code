@@ -2,7 +2,7 @@ import MaskedView from '@react-native-community/masked-view';
 import * as React from 'react';
 import { Animated, Easing, Image, StyleSheet } from 'react-native';
 
-import { PhoneModel, SIZE } from './phones';
+import { PhoneModel, SIZE } from './phoneData';
 
 type Props = {
   phone: PhoneModel;

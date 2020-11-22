@@ -7,7 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { StackNavigatorParamList } from '../../navigation/stack-navigator/types';
 import Phone from './Phone';
-import { phones, SIZE } from './phones';
+import { phones, SIZE } from './phoneData';
 
 type Props = {
   navigation: StackNavigationProp<StackNavigatorParamList, 'MaskView'>;

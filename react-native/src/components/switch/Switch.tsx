@@ -122,7 +122,7 @@ class Switch extends React.PureComponent<Props> {
   /**
    * 强制切换状态
    */
-  private toggle(toggleType: 'left' | 'right') {
+  private toggle = (toggleType: 'left' | 'right'): void => {
     if (toggleType === 'left') {
       // 强制切换到最左侧
       this.actionType = 'left';
@@ -137,7 +137,7 @@ class Switch extends React.PureComponent<Props> {
       // 设置完状态后, 执行复原操作
       this.recovery();
     }
-  }
+  };
 
   private handleTouchabePress = (): void => {
     requestAnimationFrame(() => {
@@ -145,16 +145,16 @@ class Switch extends React.PureComponent<Props> {
     });
   };
 
-  public componentDidUpdate = (prevProps: Props): void => {
+  componentDidUpdate(prevProps: Props) {
     const currentProps = this.props;
 
     if (prevProps.value !== currentProps.value) {
       // 外部 value 改变了, 更新按钮状态
       this.toggle(currentProps.value ? 'right' : 'left');
     }
-  };
+  }
 
-  public render = (): JSX.Element => {
+  render() {
     return (
       <TouchableOpacity
         activeOpacity={0.65}
@@ -195,7 +195,7 @@ class Switch extends React.PureComponent<Props> {
         </Animated.View>
       </TouchableOpacity>
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({

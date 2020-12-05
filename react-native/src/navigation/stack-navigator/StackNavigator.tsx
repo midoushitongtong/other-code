@@ -8,9 +8,9 @@ import { StackNavigatorParamList } from './types';
 
 const Stack = createStackNavigator<StackNavigatorParamList>();
 
-const StackNavigator = () => {
+const StackNavigator: React.FunctionComponent = () => {
   return (
-    <Stack.Navigator headerMode="none" initialRouteName="Accordion">
+    <Stack.Navigator headerMode="none" initialRouteName="SwitchTest">
       <Stack.Screen name="MaskView" component={MaskView} />
       <Stack.Screen name="SwitchTest" component={SwitchTest} />
       <Stack.Screen name="Accordion" component={Accordion} />

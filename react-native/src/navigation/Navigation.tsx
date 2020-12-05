@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import StackNavigator from './stack-navigator/StackNavigator';
 
-const Navigation = () => {
+const Navigation: React.FunctionComponent = () => {
   return (
     <NavigationContainer>
       <StackNavigator />

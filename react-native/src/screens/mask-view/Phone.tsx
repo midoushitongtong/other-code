@@ -11,7 +11,7 @@ type Props = {
 
 const r = SIZE / 2;
 
-const Phone: React.FunctionComponent<Props> = ({ phone, isSelected }: Props) => {
+const Phone: React.FC<Props> = ({ phone, isSelected }: Props) => {
   const [ready, setReady] = React.useState(false);
   const progress = React.useRef(new Animated.Value(0)).current;
 

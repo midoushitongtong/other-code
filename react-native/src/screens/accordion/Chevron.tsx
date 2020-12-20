@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 import { mix } from 'react-native-redash';
 import Svg, { Path } from 'react-native-svg';
@@ -8,11 +8,11 @@ type Props = {
   transition: Animated.SharedValue<number>;
 };
 
-const Chevron: React.FunctionComponent<Props> = ({ transition }: Props) => {
+const Chevron: React.FC<Props> = ({ transition }: Props) => {
   const style = useAnimatedStyle(() => ({
     transform: [
       {
-        rotateZ: mix(transition.value, -Math.PI, 0),
+        rotateZ: `${mix(transition.value, 0, -Math.PI)}rad`,
       },
     ],
   }));

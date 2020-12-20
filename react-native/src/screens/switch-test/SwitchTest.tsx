@@ -6,14 +6,14 @@ import { BorderlessButton } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Switch from '../../components/switch/Switch';
-import { StackNavigatorParamList } from '../../navigation/stack-navigator/types';
+import { StackNavigatorParamList } from '../../navigation/stack/types';
 
 type Props = {
   navigation: StackNavigationProp<StackNavigatorParamList, 'SwitchTest'>;
   route: RouteProp<StackNavigatorParamList, 'SwitchTest'>;
 };
 
-const SwitchTest: React.FunctionComponent<Props> = () => {
+const SwitchTest: React.FC<Props> = () => {
   const [active, setActive] = React.useState(false);
 
   return (

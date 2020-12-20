@@ -2,9 +2,8 @@ import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { StackNavigatorParamList } from '../../navigation/stack-navigator/types';
+import { StackNavigatorParamList } from '../../navigation/stack/types';
 import List from './List';
 import { ListModel } from './listData';
 
@@ -28,23 +27,17 @@ const list3: ListModel = {
   items: [{ name: 'Accordion item 1' }, { name: 'Accordion item 2' }, { name: 'Accordion item 3' }],
 };
 
-const Accordion: React.FunctionComponent<Props> = () => {
+const Accordion: React.FC<Props> = () => {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <List list={list} />
-        <List list={list2} />
-        <List list={list3} />
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <List list={list} />
+      <List list={list2} />
+      <List list={list3} />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#eee',
-  },
   container: {
     flex: 1,
     backgroundColor: '#eee',

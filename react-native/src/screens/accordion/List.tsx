@@ -44,6 +44,7 @@ const List: React.FunctionComponent<Props> = ({ list }: Props) => {
           if (height.value === 0) {
             runOnUI(() => {
               'worklet';
+
               height.value = measure(itemsRef).height;
             })();
           }
@@ -59,7 +60,13 @@ const List: React.FunctionComponent<Props> = ({ list }: Props) => {
       </TouchableOpacity>
       {/* list item container */}
       <Animated.View style={[styles.items, itemsStyle]}>
-        <View ref={itemsRef}>
+        <View
+          ref={itemsRef}
+          onLayout={({
+            nativeEvent: {
+              layout: { height: h },
+            },
+          }) => console.log({ h })}>
           {list.items.map((item, index) => (
             <ListItem key={index} name={item.name} isLast={index === list.items.length - 1} />
           ))}

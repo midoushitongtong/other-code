@@ -8,7 +8,7 @@ type Props = {
   isLast?: boolean;
 };
 
-const ListItem: React.FunctionComponent<Props> = ({ name, isLast }: Props) => {
+const ListItem: React.FC<Props> = ({ name, isLast }: Props) => {
   return (
     <View
       style={[

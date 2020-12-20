@@ -16,7 +16,7 @@ type Props = {
 // 最大的移动距离
 const maxTranslateX = 22;
 
-const Switch: React.FunctionComponent<Props> = (props: Props) => {
+const Switch: React.FC<Props> = (props: Props) => {
   const { value, onValueChange } = props;
 
   /**

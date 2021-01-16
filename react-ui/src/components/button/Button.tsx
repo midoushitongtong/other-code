@@ -29,7 +29,7 @@ type NativeButtonProps = Omit<React.ButtonHTMLAttributes<HTMLElement>, 'type' | 
 // 移除 "onClick" 属性, 防止和 OwnProps 冲突
 type NativeAnchorProps = Omit<React.AnchorHTMLAttributes<HTMLElement>, 'onClick'>;
 
-type Props = OwnProps & Partial<NativeButtonProps & NativeAnchorProps>;
+export type Props = OwnProps & Partial<NativeButtonProps & NativeAnchorProps>;
 
 const Button: React.FC<Props> = (props) => {
   const { type, size, disabled, href, className, children, ...resetProps } = props;
@@ -43,14 +43,18 @@ const Button: React.FC<Props> = (props) => {
 
   if (type === ButtonType.Link && href) {
     return (
-      <a href={href} className={buttonClass} {...resetProps}>
+      <a
+        {...resetProps}
+        href={href}
+        className={buttonClass}
+        onClick={!disabled ? resetProps.onClick : () => {}}>
         {children}
       </a>
     );
   }
 
   return (
-    <button className={buttonClass} disabled={disabled} {...resetProps}>
+    <button {...resetProps} className={buttonClass} disabled={disabled}>
       {children}
     </button>
   );

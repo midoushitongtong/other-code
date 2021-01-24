@@ -1,17 +1,9 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
-export enum ButtonType {
-  Primary = 'primary',
-  Default = 'default',
-  Danger = 'danger',
-  Link = 'link',
-}
+type ButtonType = 'default' | 'primary' | 'danger' | 'link';
 
-export enum ButtonSise {
-  Large = 'lg',
-  Small = 'sm',
-}
+type ButtonSise = 'lg' | 'sm';
 
 type OwnProps = {
   className?: string;
@@ -19,7 +11,6 @@ type OwnProps = {
   size?: ButtonSise;
   disabled?: boolean;
   href?: string;
-  children?: ReactNode;
   onClick?: React.MouseEventHandler<HTMLElement>;
 };
 
@@ -29,24 +20,24 @@ type NativeButtonProps = Omit<React.ButtonHTMLAttributes<HTMLElement>, 'type' | 
 // 移除 "onClick" 属性, 防止和 OwnProps 冲突
 type NativeAnchorProps = Omit<React.AnchorHTMLAttributes<HTMLElement>, 'onClick'>;
 
-export type Props = OwnProps & Partial<NativeButtonProps & NativeAnchorProps>;
+export type ButtonProps = OwnProps & Partial<NativeButtonProps & NativeAnchorProps>;
 
-const Button: React.FC<Props> = (props) => {
-  const { type, size, disabled, href, className, children, ...resetProps } = props;
+const Button: React.FC<ButtonProps> = (props) => {
+  const { children, className, type, size, disabled, href, ...resetProps } = props;
 
-  const buttonClass = classNames('btn', className, {
+  const classes = classNames('btn', className, {
     [`btn-${type}`]: type,
     [`btn-${size}`]: size,
     // 超链接类型的按钮, 需要将 disabed 添加到 class 中
-    disabled: type === ButtonType.Link && disabled,
+    disabled: type === 'link' && disabled,
   });
 
-  if (type === ButtonType.Link && href) {
+  if (type === 'link' && href) {
     return (
       <a
         {...resetProps}
         href={href}
-        className={buttonClass}
+        className={classes}
         onClick={!disabled ? resetProps.onClick : () => {}}>
         {children}
       </a>
@@ -54,7 +45,7 @@ const Button: React.FC<Props> = (props) => {
   }
 
   return (
-    <button {...resetProps} className={buttonClass} disabled={disabled}>
+    <button {...resetProps} className={classes} disabled={disabled}>
       {children}
     </button>
   );
@@ -62,7 +53,7 @@ const Button: React.FC<Props> = (props) => {
 
 Button.defaultProps = {
   disabled: false,
-  type: ButtonType.Default,
+  type: 'default',
 };
 
 export default Button;

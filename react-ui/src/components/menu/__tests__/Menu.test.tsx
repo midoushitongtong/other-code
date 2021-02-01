@@ -2,6 +2,24 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import Menu, { MenuProps } from '../Menu';
 import MenuItem from '../MenuItem';
+import MenuSubMenuItem from '../MenuSubMenuItem';
+
+// 创建子菜单所需的样式(测试的时候是不包含任何 css 样式的, 如果某些样式, 需要手动添加)
+const createSubMenuStyleElement = () => {
+  const cssFile = `
+    /* 子菜单默认隐藏 */
+    .menu-submenu {
+      display: none;
+    }
+    /* 有 is-open 就显示 */
+    .menu-submenu.is-open {
+      display: block;
+    }
+  `;
+  const styleElement = document.createElement('style');
+  styleElement.innerHTML = cssFile;
+  return styleElement;
+};
 
 describe('test Menu and MenuItem Component', () => {
   beforeEach(() => {
@@ -12,17 +30,15 @@ describe('test Menu and MenuItem Component', () => {
   // 默认菜单
   it('should render correct Menu and MenuItem based on default props', () => {
     const props: MenuProps = {
-      defaultIndex: 0,
+      defaultIndex: '0',
       className: 'test',
     };
 
     const result = render(
       <Menu {...props}>
-        <MenuItem index={0}>one</MenuItem>
-        <MenuItem index={1}>two</MenuItem>
-        <MenuItem index={2} disabled>
-          three
-        </MenuItem>
+        <MenuItem>one</MenuItem>
+        <MenuItem>two</MenuItem>
+        <MenuItem disabled>three</MenuItem>
       </Menu>
     );
 
@@ -46,17 +62,15 @@ describe('test Menu and MenuItem Component', () => {
     const onSelect = jest.fn();
 
     const props: MenuProps = {
-      defaultIndex: 0,
+      defaultIndex: '0',
       onSelect,
     };
 
     const result = render(
       <Menu {...props}>
-        <MenuItem index={0}>one</MenuItem>
-        <MenuItem index={1}>two</MenuItem>
-        <MenuItem index={2} disabled>
-          three
-        </MenuItem>
+        <MenuItem>one</MenuItem>
+        <MenuItem>two</MenuItem>
+        <MenuItem disabled>three</MenuItem>
       </Menu>
     );
 
@@ -71,6 +85,8 @@ describe('test Menu and MenuItem Component', () => {
     expect(oneElement).not.toHaveClass('is-active');
     // 点击后, onSelect 方法应该被调用过一次
     expect(onSelect.mock.calls.length).toBe(1);
+    // 点击后, onSelect 的 arguments 应该是 '1' (第 2 个菜单的 index)
+    expect(onSelect).toHaveBeenCalledWith('1');
 
     fireEvent.click(threeElement);
     // 点击后,第 3 个菜单项点击了不会添加激活 class (因为添加了 disabled props)
@@ -87,16 +103,97 @@ describe('test Menu and MenuItem Component', () => {
 
     const result = render(
       <Menu {...props}>
-        <MenuItem index={0}>one</MenuItem>
-        <MenuItem index={1}>two</MenuItem>
-        <MenuItem index={2} disabled>
-          three
-        </MenuItem>
+        <MenuItem>one</MenuItem>
+        <MenuItem>two</MenuItem>
+        <MenuItem disabled>three</MenuItem>
       </Menu>
     );
 
     const menuElement = result.getByTestId('menu');
 
     expect(menuElement).toHaveClass('menu-vertical');
+  });
+
+  // 测试子菜单
+  it('shoud render sub menu', () => {
+    const onSelect = jest.fn();
+    const props: MenuProps = {
+      onSelect,
+    };
+
+    const result = render(
+      <Menu {...props}>
+        <MenuItem>one</MenuItem>
+        <MenuSubMenuItem title="two">
+          <MenuItem>dropdown1</MenuItem>
+          <MenuItem>dropdown2</MenuItem>
+          <MenuItem>dropdown3</MenuItem>
+        </MenuSubMenuItem>
+        <MenuItem>three</MenuItem>
+      </Menu>
+    );
+
+    // 添加 submenu 所需样式
+    result.container.append(createSubMenuStyleElement());
+
+    const twoElement = result.getByText('two');
+    const dropdown1Element = result.getByText('dropdown1');
+
+    // 默认子菜单应该是隐藏的
+    expect(dropdown1Element).not.toBeVisible();
+
+    fireEvent.mouseEnter(twoElement);
+    // 鼠标经过后, 子菜单应该是显示的
+    expect(dropdown1Element).toBeVisible();
+
+    fireEvent.click(dropdown1Element);
+    // 子菜单点击后, onSelect 的 arguments 应该是 '1-0' (子菜单的 index)
+    expect(onSelect).toHaveBeenCalledWith('1-0');
+
+    fireEvent.mouseLeave(twoElement);
+    // 鼠标离开后, 子菜单应该隐藏
+    expect(dropdown1Element).not.toBeVisible();
+  });
+
+  // 测试子菜单(垂直布局)
+  it('shoud render sub menu with vertical mode', () => {
+    const onSelect = jest.fn();
+    const props: MenuProps = {
+      mode: 'vertical',
+      onSelect,
+    };
+
+    const result = render(
+      <Menu {...props}>
+        <MenuItem>one</MenuItem>
+        <MenuSubMenuItem title="two">
+          <MenuItem>dropdown1</MenuItem>
+          <MenuItem>dropdown2</MenuItem>
+          <MenuItem>dropdown3</MenuItem>
+        </MenuSubMenuItem>
+        <MenuItem>three</MenuItem>
+      </Menu>
+    );
+
+    // 添加 submenu 所需样式
+    result.container.append(createSubMenuStyleElement());
+
+    const twoElement = result.getByText('two');
+    const dropdown1Element = result.getByText('dropdown1');
+
+    // 默认子菜单应该是隐藏的
+    expect(dropdown1Element).not.toBeVisible();
+
+    fireEvent.mouseEnter(twoElement);
+    // 鼠标经过后, 子菜单应该是隐藏的(只有 horizontal 类型的菜单鼠标经过才显示)
+    expect(dropdown1Element).not.toBeVisible();
+
+    fireEvent.click(twoElement);
+    // 鼠标点击后, 子菜单应该是显示的
+    expect(dropdown1Element).toBeVisible();
+
+    fireEvent.click(twoElement);
+    // 再次点击的菜单, 应该隐藏子菜单
+    expect(dropdown1Element).not.toBeVisible();
   });
 });

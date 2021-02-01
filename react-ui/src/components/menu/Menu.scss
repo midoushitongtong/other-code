@@ -31,14 +31,62 @@
       }
     }
   }
+
+  .menu-submenu-item {
+    .menu-submenu {
+      display: none;
+      padding-left: 0;
+      list-style: none;
+      white-space: nowrap;
+
+      &.is-open {
+        display: block;
+      }
+
+      .menu-submenu-content {
+        border: $menu-border-width solid $menu-border-color;
+        background-color: $white;
+        box-shadow: $submenu-box-shadow;
+
+        .menu-item {
+          color: $body-color;
+          &:not(.is-disabled) {
+            &:hover,
+            &.is-active {
+              color: $menu-item-active-color;
+              border-bottom-color: transparent;
+              border-left-color: transparent;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
+// 水平
+.menu-horizontal {
+  .menu-submenu-item {
+    position: relative;
+
+    .menu-submenu {
+      z-index: 100;
+      position: absolute;
+      top: calc(100%);
+      left: 0;
+      padding-top: 6px;
+    }
+  }
+}
+
+// 垂直
 .menu-vertical {
   flex-direction: column;
 
   .menu-item {
     border-bottom-width: 0;
     border-left: $menu-item-active-border-width solid transparent;
+
     &:not(.is-disabled) {
       &:hover,
       &.is-active {
@@ -46,5 +94,9 @@
         border-left-color: $menu-item-active-color;
       }
     }
+  }
+
+  .menu-submenu {
+    padding-top: $menu-item-padding-y;
   }
 }

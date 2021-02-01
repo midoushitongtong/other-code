@@ -5,7 +5,7 @@ import { MenuContext } from './Menu';
 export type MenuItemProps = {
   className?: string;
   style?: React.CSSProperties;
-  index: number;
+  index?: string;
   disabled?: boolean;
 };
 
@@ -19,8 +19,9 @@ const MenuItem: React.FC<MenuItemProps> = (props) => {
     'is-disabled': disabled,
   });
 
+  // 菜单点击, 更新高亮
   const handleClick = () => {
-    if (menu.onSelect && !disabled) {
+    if (menu.onSelect && !disabled && index !== undefined) {
       menu.onSelect(index);
     }
   };

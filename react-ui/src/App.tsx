@@ -1,10 +1,10 @@
 import React from 'react';
-import PreviewMenu from './preview/Menu';
+import PreviewTransition from './preview/Transition';
 
 const App: React.FC = () => {
   return (
     <>
-      <PreviewMenu />
+      <PreviewTransition />
     </>
   );
 };

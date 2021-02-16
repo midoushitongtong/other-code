@@ -30,18 +30,30 @@
         border-bottom-color: $menu-item-active-color;
       }
     }
+
+    &.is-open {
+      .arrow-icon {
+        transform: rotate(-180deg);
+      }
+    }
   }
 
   .menu-submenu-item {
+    .menu-submenu-title {
+      display: flex;
+      align-items: center;
+
+      .arrow-icon {
+        font-size: 15px;
+        margin-left: 5px;
+        transition: transform 0.2s ease-in-out;
+      }
+    }
+
     .menu-submenu {
-      display: none;
       padding-left: 0;
       list-style: none;
       white-space: nowrap;
-
-      &.is-open {
-        display: block;
-      }
 
       .menu-submenu-content {
         border: $menu-border-width solid $menu-border-color;

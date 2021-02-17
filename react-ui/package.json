@@ -9,7 +9,9 @@
     "eject": "react-scripts eject",
     "prettier": "prettier --write \"**/*.{ts,tsx}\"",
     "lint": "eslint \"**/*.{ts,tsx}\"",
-    "typescript": "tsc --noEmit"
+    "typescript": "tsc --noEmit",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
@@ -21,6 +23,12 @@
     "react-transition-group": "^4.4.1"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.1.18",
+    "@storybook/addon-essentials": "^6.1.18",
+    "@storybook/addon-links": "^6.1.18",
+    "@storybook/node-logger": "^6.1.18",
+    "@storybook/preset-create-react-app": "^3.1.6",
+    "@storybook/react": "^6.1.18",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",

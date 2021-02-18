@@ -1,12 +1,7 @@
 import React from 'react';
-import PreviewTransition from './preview/Transition';
 
 const App: React.FC = () => {
-  return (
-    <>
-      <PreviewTransition />
-    </>
-  );
+  return <div>hello world</div>;
 };
 
 export default App;

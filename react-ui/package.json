@@ -7,8 +7,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier": "prettier --write \"**/*.{ts,tsx}\"",
-    "lint": "eslint \"**/*.{ts,tsx}\"",
+    "prettier": "prettier --write \"**/*.{ts,tsx,.js,.jsx}\"",
+    "lint": "eslint \"**/*.{ts,tsx,.js,.jsx}\"",
     "typescript": "tsc --noEmit",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"

@@ -23,7 +23,7 @@ type NativeAnchorProps = Omit<React.AnchorHTMLAttributes<HTMLElement>, 'onClick'
 export type ButtonProps = OwnProps & Partial<NativeButtonProps & NativeAnchorProps>;
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { children, className, type, size, disabled, href, ...resetProps } = props;
+  const { children, className, type, size, disabled, href, ...restProps } = props;
 
   const classes = classNames('btn', className, {
     [`btn-${type}`]: type,
@@ -35,17 +35,17 @@ const Button: React.FC<ButtonProps> = (props) => {
   if (type === 'link' && href) {
     return (
       <a
-        {...resetProps}
+        {...restProps}
         href={href}
         className={classes}
-        onClick={!disabled ? resetProps.onClick : () => {}}>
+        onClick={!disabled ? restProps.onClick : () => {}}>
         {children}
       </a>
     );
   }
 
   return (
-    <button {...resetProps} className={classes} disabled={disabled}>
+    <button {...restProps} className={classes} disabled={disabled}>
       {children}
     </button>
   );

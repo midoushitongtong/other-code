@@ -17,7 +17,7 @@ export default {
   component: Button,
   parameters: {
     controls: {
-      disabled: true,
+      disable: true,
     },
     docs: {
       page: () => (

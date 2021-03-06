@@ -18,7 +18,7 @@ export default {
   component: Transition,
   parameters: {
     controls: {
-      disabled: true,
+      disable: true,
     },
     docs: {
       page: () => (

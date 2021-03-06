@@ -18,7 +18,7 @@ export default {
   component: Icon,
   parameters: {
     controls: {
-      disabled: true,
+      disable: true,
     },
     docs: {
       page: () => (

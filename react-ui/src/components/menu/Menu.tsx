@@ -37,10 +37,13 @@ const Menu: React.FC<MenuProps> = (props) => {
   });
 
   // 处理菜单项点击
-  const handleSelect = (index: string) => {
-    setIndex(index);
-    onSelect && onSelect(index);
-  };
+  const handleSelect = React.useCallback(
+    (index: string) => {
+      setIndex(index);
+      onSelect && onSelect(index);
+    },
+    [onSelect]
+  );
 
   // 每个菜单独立的上下文
   const transferContext: MenuContextType = {
@@ -51,7 +54,7 @@ const Menu: React.FC<MenuProps> = (props) => {
   };
 
   // 渲染菜单
-  const renderChildren = () => {
+  const renderChildren = React.useCallback(() => {
     return React.Children.map(children, (child, index) => {
       const childElement = child as React.FunctionComponentElement<MenuItemProps>;
 
@@ -69,7 +72,7 @@ const Menu: React.FC<MenuProps> = (props) => {
         );
       }
     });
-  };
+  }, [children]);
 
   return (
     <MenuContext.Provider value={transferContext}>

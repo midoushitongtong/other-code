@@ -19,7 +19,7 @@ export default {
   component: Input,
   parameters: {
     controls: {
-      disabled: true,
+      disable: true,
     },
     docs: {
       page: () => (

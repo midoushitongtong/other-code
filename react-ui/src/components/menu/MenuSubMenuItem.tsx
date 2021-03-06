@@ -31,19 +31,22 @@ const MenuSubMenuItem: React.FC<MenuSubMenuItemProps> = (props) => {
   });
 
   // 显示 / 隐藏子菜单
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setOpen(!open);
-  };
+  const handleClick = React.useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      setOpen(!open);
+    },
+    [open]
+  );
 
   // 显示 / 隐藏子菜单
-  const handleMouse = (e: React.MouseEvent, isOpen: boolean) => {
+  const handleMouse = React.useCallback((e: React.MouseEvent, isOpen: boolean) => {
     e.preventDefault();
     setOpen(isOpen);
-  };
+  }, []);
 
   // 渲染子菜单
-  const renderSubMenu = () => {
+  const renderSubMenu = React.useCallback(() => {
     const menuSubMenuItemChildren = React.Children.map(children, (child, index2) => {
       const childElement = child as React.FunctionComponentElement<MenuItemProps>;
 
@@ -71,7 +74,7 @@ const MenuSubMenuItem: React.FC<MenuSubMenuItemProps> = (props) => {
         </ul>
       </Transition>
     );
-  };
+  }, [children, index, open]);
 
   return (
     <li

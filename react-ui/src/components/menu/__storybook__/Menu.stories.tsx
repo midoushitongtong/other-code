@@ -19,7 +19,7 @@ export default {
   component: Menu,
   parameters: {
     controls: {
-      disabled: true,
+      disable: true,
     },
     docs: {
       page: () => (

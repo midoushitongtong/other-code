@@ -20,11 +20,11 @@ const MenuItem: React.FC<MenuItemProps> = (props) => {
   });
 
   // 菜单点击, 更新高亮
-  const handleClick = () => {
+  const handleClick = React.useCallback(() => {
     if (menu.onSelect && !disabled && index !== undefined) {
       menu.onSelect(index);
     }
-  };
+  }, [menu, disabled, index]);
 
   return (
     <li className={classes} style={style} onClick={handleClick}>

@@ -7,9 +7,9 @@ type OwnProps = {
   className?: string;
   disabled?: boolean;
   size?: InputSize;
-  icon?: React.ReactElement;
-  prepend?: string | React.ReactElement;
-  append?: string | React.ReactElement;
+  icon?: React.ReactElement | null;
+  prepend?: string | React.ReactElement | null;
+  append?: string | React.ReactElement | null;
   // 明确 change 事件的回调参数
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };

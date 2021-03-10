@@ -17,6 +17,7 @@ const MenuSubMenuItem: React.FC<MenuSubMenuItemProps> = (props) => {
 
   const menu = React.useContext(MenuContext);
 
+  // 是否显示子菜单
   const [open, setOpen] = React.useState(
     // 如果是垂直布局的菜单, 判断是否需要默认展开子菜单
     menu.mode === 'vertical' && menu.defaultOpenSubMenus && index

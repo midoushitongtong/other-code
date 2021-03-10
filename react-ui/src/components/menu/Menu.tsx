@@ -29,6 +29,7 @@ export const MenuContext = React.createContext<MenuContextType>({
 const Menu: React.FC<MenuProps> = (props) => {
   const { children, className, style, mode, defaultIndex, defaultOpenSubMenus, onSelect } = props;
 
+  // 高亮 index
   const [index, setIndex] = React.useState(defaultIndex);
 
   const classes = classNames('menu', className, {

@@ -38,6 +38,7 @@ export default {
 type ProductSelectItem = DataSourceItem & {
   amount: number;
 };
+
 const products: ProductSelectItem[] = [
   { value: '1', text: 'product1', amount: 1 },
   { value: '2', text: 'product2', amount: 1 },
@@ -63,17 +64,12 @@ export const Default: Story<AutoCompleteProps> = (args) => {
     console.log(value, item);
   }, []);
 
-  const renderSelectOption = React.useCallback((_text: string, item: ProductSelectItem) => {
-    return <p>{item.text}</p>;
-  }, []);
-
   return (
     <AutoComplete
       {...args}
       placeholder="input"
-      fetchSugestions={handleFetch}
+      fetchSuggestions={handleFetch}
       onSelect={handleSelect}
-      renderSelectOption={renderSelectOption}
     />
   );
 };

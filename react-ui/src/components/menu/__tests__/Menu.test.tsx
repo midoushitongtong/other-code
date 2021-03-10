@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import Menu, { MenuProps } from '../Menu';
 import MenuItem from '../MenuItem';
 import MenuSubMenuItem from '../MenuSubMenuItem';
@@ -115,7 +115,7 @@ describe('test Menu and MenuItem Component', () => {
   });
 
   // 测试子菜单
-  it('shoud render sub menu', () => {
+  it('shoud render sub menu', async () => {
     const onSelect = jest.fn();
     const props: MenuProps = {
       onSelect,
@@ -137,26 +137,39 @@ describe('test Menu and MenuItem Component', () => {
     result.container.append(createSubMenuStyleElement());
 
     const twoElement = result.getByText('two');
-    const dropdown1Element = result.getByText('dropdown1');
 
     // 默认子菜单应该是隐藏的
-    expect(dropdown1Element).not.toBeVisible();
+    expect(result.queryByText('dropdown1')).toBeNull();
 
     fireEvent.mouseEnter(twoElement);
-    // 鼠标经过后, 子菜单应该是显示的
-    expect(dropdown1Element).toBeVisible();
+    await waitFor(
+      () => {
+        // 鼠标经过后, 子菜单应该是显示的
+        expect(result.queryByText('dropdown1')).toBeInTheDocument();
+      },
+      {
+        timeout: 350,
+      }
+    );
 
-    fireEvent.click(dropdown1Element);
-    // 子菜单点击后, onSelect 的 arguments 应该是 '1-0' (子菜单的 index)
+    fireEvent.click(result.getByText('dropdown1'));
+    // 子菜单点击后, onSelect 的 arguments 应该是 '1-0'(子菜单的 index)
     expect(onSelect).toHaveBeenCalledWith('1-0');
 
     fireEvent.mouseLeave(twoElement);
-    // 鼠标离开后, 子菜单应该隐藏
-    expect(dropdown1Element).not.toBeVisible();
+    await waitFor(
+      () => {
+        // 鼠标离开后, 子菜单应该隐藏
+        expect(result.queryByText('dropdown1')).toBeNull();
+      },
+      {
+        timeout: 350,
+      }
+    );
   });
 
   // 测试子菜单(垂直布局)
-  it('shoud render sub menu with vertical mode', () => {
+  it('shoud render sub menu with vertical mode', async () => {
     const onSelect = jest.fn();
     const props: MenuProps = {
       mode: 'vertical',
@@ -179,21 +192,41 @@ describe('test Menu and MenuItem Component', () => {
     result.container.append(createSubMenuStyleElement());
 
     const twoElement = result.getByText('two');
-    const dropdown1Element = result.getByText('dropdown1');
 
     // 默认子菜单应该是隐藏的
-    expect(dropdown1Element).not.toBeVisible();
+    expect(result.queryByText('dropdown1')).toBeNull();
 
     fireEvent.mouseEnter(twoElement);
-    // 鼠标经过后, 子菜单应该是隐藏的(只有 horizontal 类型的菜单鼠标经过才显示)
-    expect(dropdown1Element).not.toBeVisible();
+    await waitFor(
+      () => {
+        // 鼠标经过后, 子菜单应该是隐藏的(只有 horizontal 类型的菜单鼠标经过才显示)
+        expect(result.queryByText('dropdown1')).toBeNull();
+      },
+      {
+        timeout: 350,
+      }
+    );
 
     fireEvent.click(twoElement);
-    // 鼠标点击后, 子菜单应该是显示的
-    expect(dropdown1Element).toBeVisible();
+    await waitFor(
+      () => {
+        // 鼠标点击后, 子菜单应该是显示的(只有 vertical 类型的菜单鼠标点击才显示)
+        expect(result.queryByText('dropdown1')).toBeInTheDocument();
+      },
+      {
+        timeout: 350,
+      }
+    );
 
     fireEvent.click(twoElement);
-    // 再次点击的菜单, 应该隐藏子菜单
-    expect(dropdown1Element).not.toBeVisible();
+    await waitFor(
+      () => {
+        // 再次点击的菜单, 应该隐藏子菜单
+        expect(result.queryByText('dropdown1')).toBeNull();
+      },
+      {
+        timeout: 350,
+      }
+    );
   });
 });

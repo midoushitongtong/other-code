@@ -11,6 +11,8 @@ import {
 } from '@storybook/addon-docs/blocks';
 import Upload, { UploadProps } from '../Upload';
 import '../../../styles/index.scss';
+import Icon from '../../icon/Icon';
+import { faUpload } from '@fortawesome/free-solid-svg-icons';
 
 export default {
   title: 'ReactUI/Upload',
@@ -36,7 +38,7 @@ export default {
 
 // ==============================================================================================================================================================================================================================================
 export const Default: Story<UploadProps> = (args) => {
-  return <Upload action="http://127.0.0.1:3001/upload-file" />;
+  return <Upload action="http://127.0.0.1:3001/upload-test" />;
 };
 
 // ==============================================================================================================================================================================================================================================
@@ -53,7 +55,7 @@ export const AssignAllProps: Story<UploadProps> = (args) => {
    */
   return (
     <Upload
-      action="http://127.0.0.1:3001/upload-file"
+      action="http://127.0.0.1:3001/upload-test"
       name="abc"
       headers={{
         test: 'test',
@@ -111,5 +113,25 @@ export const AssignAllProps: Story<UploadProps> = (args) => {
         console.log('error', error);
       }}
     />
+  );
+};
+
+// ==============================================================================================================================================================================================================================================
+export const CustomUploadTriggerArea: Story<UploadProps> = (args) => {
+  return (
+    <Upload action="http://127.0.0.1:3001/upload-test">
+      <h1>upload</h1>
+    </Upload>
+  );
+};
+
+// ==============================================================================================================================================================================================================================================
+export const DraggerUpload: Story<UploadProps> = (args) => {
+  return (
+    <Upload action="http://127.0.0.1:3001/upload-test" drag>
+      <Icon icon={faUpload} size="3x" theme="secondary" />
+      <br />
+      <div>Drag File to there</div>
+    </Upload>
   );
 };

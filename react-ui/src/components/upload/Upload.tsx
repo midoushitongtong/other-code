@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import Button from '../button/Button';
+import UploadDragger from './UploadDragger';
 import UploadFileList from './UploadFileList';
 
 type UploadFileStatus = 'ready' | 'uploading' | 'success' | 'error';
@@ -38,6 +39,8 @@ type OwnProps = {
   accept?: string;
   // 原生 input 属性
   multiple?: boolean;
+  // 是否支持拖拽上传
+  drag?: boolean;
   // input change 回调
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   // 上传前的验证
@@ -56,6 +59,7 @@ export type UploadProps = OwnProps;
 
 const Upload: React.FC<UploadProps> = (props) => {
   const {
+    children,
     action,
     defaultFileList,
     headers,
@@ -64,6 +68,7 @@ const Upload: React.FC<UploadProps> = (props) => {
     withCredentials,
     accept,
     multiple,
+    drag,
     beforeUpload,
     onChange,
     onProgress,
@@ -242,16 +247,27 @@ const Upload: React.FC<UploadProps> = (props) => {
     [onChange, uploadFiles]
   );
 
+  // 渲染触发上传的html
+  const renderUploadTriggerArea = React.useCallback(() => {
+    return children || <Button type="primary">Upload File</Button>;
+  }, [children]);
+
   return (
     <div className="upload-file-container">
       {/* 按钮 */}
-      <Button
-        type="primary"
+      <div
+        className="upload-trigger-area"
         onClick={() => {
           fileInput.current?.click();
         }}>
-        Upload File
-      </Button>
+        {drag ? (
+          <UploadDragger onFile={(files) => uploadFiles(files)}>
+            {renderUploadTriggerArea()}
+          </UploadDragger>
+        ) : (
+          renderUploadTriggerArea()
+        )}
+      </div>
 
       {/* input 表单 */}
       <input
@@ -271,6 +287,7 @@ const Upload: React.FC<UploadProps> = (props) => {
 
 Upload.defaultProps = {
   withCredentials: false,
+  drag: false,
 };
 
 export default Upload;

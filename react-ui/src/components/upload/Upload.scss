@@ -3,6 +3,21 @@
     display: none;
   }
 
+  .upload-trigger-area {
+    display: flex;
+    .upload-dragger {
+      padding: 2rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 5px dashed #ddd;
+      &.is-drag-over {
+        background-color: #d5e9ff;
+        border-color: #65b5ea;
+      }
+    }
+  }
+
   .upload-file-list {
     margin: 0;
     padding: 0;

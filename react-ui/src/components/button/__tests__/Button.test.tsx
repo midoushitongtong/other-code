@@ -14,7 +14,7 @@ describe('Test Button Component', () => {
 
     const result = render(<Button {...props}>aaa</Button>);
 
-    const element = result.queryByText('aaa');
+    const element = result.getByText('aaa');
 
     // 应该能够根据 aaa 找到此元素
     expect(element).toBeInTheDocument();
@@ -88,7 +88,7 @@ describe('Test Button Component', () => {
 
     const result = render(<Button {...props}>aaa</Button>);
 
-    const element = result.queryByText('aaa') as HTMLButtonElement;
+    const element = result.getByText('aaa') as HTMLButtonElement;
 
     // 应该包含 disabled 属性
     expect(element.disabled).toBeTruthy();

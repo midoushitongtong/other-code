@@ -40,7 +40,7 @@ const UploadFileList: React.FC<UploadFileListProps> = (props) => {
 
             {/* 删除当前上传的文件 */}
             <span className="file-actions">
-              <Icon icon={faTimes} onClick={() => onRemove(item)} />
+              <Icon icon={faTimes} className="icon-times" onClick={() => onRemove(item)} />
             </span>
 
             {/* 进度条提示 */}

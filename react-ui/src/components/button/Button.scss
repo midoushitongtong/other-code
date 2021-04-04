@@ -1,3 +1,7 @@
+@import '../../styles/variable';
+@import '../../styles/normalize';
+@import '../../styles/mixin';
+
 .btn {
   @include btn-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-border-radius);
   position: relative;

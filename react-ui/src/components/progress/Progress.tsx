@@ -1,4 +1,5 @@
 import React from 'react';
+import './Progress.scss';
 
 export type ThemeProps =
   | 'primary'

@@ -42,7 +42,7 @@ describe('test Upload Component', () => {
     fireEvent.change(fileInput, {
       target: {
         files: [
-          new File(['xyz'], 'test.jpg', {
+          new File(['abc'], 'test.jpg', {
             type: 'image/jpeg',
           }),
         ],
@@ -100,7 +100,7 @@ describe('test Upload Component', () => {
     fireEvent.drop(dragArea, {
       dataTransfer: {
         files: [
-          new File(['xyz'], 'test.jpg', {
+          new File(['abc'], 'test.jpg', {
             type: 'image/jpeg',
           }),
         ],

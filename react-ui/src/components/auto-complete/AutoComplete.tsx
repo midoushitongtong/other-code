@@ -6,6 +6,7 @@ import Input, { InputProps } from '../input/Input';
 import classNames from 'classnames';
 import useClickOutside from '../../hooks/useClickOutside';
 import Transition from '../transition/Transition';
+import './AutoComplete.scss';
 
 type DataSourceItemObject = {
   value: string;

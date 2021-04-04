@@ -10,7 +10,6 @@ import {
   Props,
 } from '@storybook/addon-docs/blocks';
 import Transition, { TransitionProps } from '../Transition';
-import '../../../styles/index.scss';
 import Button from '../../button/Button';
 
 export default {

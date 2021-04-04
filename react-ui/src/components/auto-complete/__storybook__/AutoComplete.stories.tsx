@@ -10,7 +10,6 @@ import {
   Props,
 } from '@storybook/addon-docs/blocks';
 import AutoComplete, { AutoCompleteProps, DataSourceItem } from '../AutoComplete';
-import '../../../styles/index.scss';
 
 export default {
   title: 'ReactUI/AutoComplete',

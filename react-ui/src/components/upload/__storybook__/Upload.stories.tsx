@@ -10,7 +10,6 @@ import {
   Props,
 } from '@storybook/addon-docs/blocks';
 import Upload, { UploadProps } from '../Upload';
-import '../../../styles/index.scss';
 import Icon from '../../icon/Icon';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 

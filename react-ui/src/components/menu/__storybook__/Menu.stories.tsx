@@ -12,7 +12,6 @@ import {
 import Menu, { MenuProps } from '../Menu';
 import MenuItem from '../MenuItem';
 import MenuSubMenuItem from '../MenuSubMenuItem';
-import '../../../styles/index.scss';
 
 export default {
   title: 'ReactUI/Menu',

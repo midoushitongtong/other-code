@@ -10,7 +10,6 @@ import {
   Props,
 } from '@storybook/addon-docs/blocks';
 import Button, { ButtonProps } from '../Button';
-import '../../../styles/index.scss';
 
 export default {
   title: 'ReactUI/Button',

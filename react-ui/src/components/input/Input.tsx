@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import './Input.scss';
 
 export type InputSize = 'sm' | 'lg';
 

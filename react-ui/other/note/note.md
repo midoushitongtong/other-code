@@ -19,7 +19,13 @@ web 图标的历史
     - 优点就是解决了 font icon 的缺点, 用的时候引入需要的 icon 即可, 不需要像 font icon 那样需要把全部 icon 引入, 也不会有加载失败出现奇怪字符的情况
 
 - Fetch 的缺点
+
   - 400 500 状态码当作请求成功
   - 默认不带 cookie
   - 没办法监听进度
   - 不支持 abort，无法超时控制
+
+- 模块化标准历史
+  - CMD(Common Module Definition)，是 Nodejs 提出的一套模块化标准, 也是目前 Nodejs 正在使用的模块化标准
+  - AMD(Asynchronous Module Definition), 早期民间推出的一套模块化标准, requirejs 库实现了 AMD 的标准, 主要用于浏览器中
+  - ES Module, 此标准是 ECMA2015 简称 ES6 推出的一套模块化标准, 目前主流的前端模块化标准

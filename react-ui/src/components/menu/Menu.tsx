@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { MenuItemProps } from './MenuItem';
+import './Menu.scss';
 
 type MenuModel = 'horizontal' | 'vertical';
 

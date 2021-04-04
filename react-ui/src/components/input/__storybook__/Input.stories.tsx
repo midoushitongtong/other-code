@@ -10,7 +10,6 @@ import {
   Props,
 } from '@storybook/addon-docs/blocks';
 import Input, { InputProps } from '../Input';
-import '../../../styles/index.scss';
 import { faEdit, faUser } from '@fortawesome/free-solid-svg-icons';
 import Icon from '../../icon/Icon';
 

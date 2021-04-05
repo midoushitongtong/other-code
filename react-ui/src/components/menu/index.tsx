@@ -15,3 +15,9 @@ CombineMenu.Item = MenuItem;
 CombineMenu.SubMenuItem = MenuSubMenuItem;
 
 export default CombineMenu;
+
+export * from './Menu';
+
+export * from './MenuItem';
+
+export * from './MenuSubMenuItem';

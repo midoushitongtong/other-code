@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
 import './Icon.scss';
 
-export type ThemeProps =
+export type IconThemeProps =
   | 'primary'
   | 'secondary'
   | 'success'
@@ -14,7 +14,7 @@ export type ThemeProps =
   | 'dark';
 
 export type IconProps = FontAwesomeIconProps & {
-  theme?: ThemeProps;
+  theme?: IconThemeProps;
 };
 
 const Icon: React.FC<IconProps> = (props) => {

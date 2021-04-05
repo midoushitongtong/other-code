@@ -1,5 +1,5 @@
 import React from 'react';
-import useMousePosition from '../hoos/useMousePosition';
+import useMousePosition from '../hooks/useMousePosition';
 // import useMousePosition from '../hoos/useMousePosition';
 import withMousePosition, { WithMousePositionProps } from './WithMousePosition';
 

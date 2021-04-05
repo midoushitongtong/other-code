@@ -9,7 +9,7 @@ import {
   Stories,
   Props,
 } from '@storybook/addon-docs/blocks';
-import Icon, { IconProps, ThemeProps } from '../Icon';
+import Icon, { IconProps, IconThemeProps } from '../Icon';
 import { faEdit, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default {
@@ -36,7 +36,7 @@ export default {
 
 // ==============================================================================================================================================================================================================================================
 export const Theme: Story<IconProps> = (args) => {
-  const themes: ThemeProps[] = [
+  const themes: IconThemeProps[] = [
     'primary',
     'secondary',
     'success',
@@ -63,7 +63,7 @@ export const Theme: Story<IconProps> = (args) => {
 
 // ==============================================================================================================================================================================================================================================
 export const Size: Story<IconProps> = (args) => {
-  const themes: ThemeProps[] = [
+  const themes: IconThemeProps[] = [
     'primary',
     'secondary',
     'success',

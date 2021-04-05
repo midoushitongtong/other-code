@@ -1,7 +1,7 @@
 import React from 'react';
 import './Progress.scss';
 
-export type ThemeProps =
+export type ProgressThemeProps =
   | 'primary'
   | 'secondary'
   | 'success'
@@ -15,7 +15,7 @@ type OwnProps = {
   styles?: React.CSSProperties;
   percentage: number;
   height?: number;
-  theme?: ThemeProps;
+  theme?: ProgressThemeProps;
   showText?: boolean;
 };
 

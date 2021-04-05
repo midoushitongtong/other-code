@@ -1,10 +1,22 @@
 {
-  "name": "react-ui",
-  "version": "0.1.0",
-  "private": true,
-  "main": "build/index.js",
-  "module": "build/index.js",
-  "types": "build/index.d.ts",
+  "name": "react-ui-study",
+  "version": "0.1.1",
+  "description": "React component library (just a doll)",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "keywords": [
+    "react"
+  ],
+  "homepage": "https://github.com/midoushitongtong/garbage/tree/master/react-ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/midoushitongtong/garbage.git"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -15,11 +27,12 @@
     "watch:scss": "yarn clean:scss && node-sass src/ -o src/ && node-sass src/ -o src/ -w",
     "storybook": "start-storybook -p 6006 -s public",
     "dev": "concurrently \"yarn watch:scss\" \"yarn storybook\"",
-    "clean:build": "rimraf ./build",
+    "clean:build": "rimraf ./dist",
     "build:typescript": "tsc --project tsconfig.build.json",
-    "build:scss": "node-sass src/ -o build/",
+    "build:scss": "node-sass src/ -o dist/",
     "build": "yarn clean:build && yarn build:typescript && yarn build:scss",
-    "build:storybook": "build-storybook -s public"
+    "build:storybook": "build-storybook -s public",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
@@ -27,9 +40,11 @@
     "@fortawesome/react-fontawesome": "^0.1.14",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
     "react-transition-group": "^4.4.1"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.1",
+    "react-dom": ">=17.0.1"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.1.18",
@@ -54,6 +69,8 @@
     "husky": "^4.3.6",
     "node-sass": "4.14.1",
     "prettier": "^2.2.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
     "rimraf": "^3.0.2",
     "typescript": "^4.0.3"

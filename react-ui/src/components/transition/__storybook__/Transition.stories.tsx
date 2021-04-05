@@ -9,7 +9,7 @@ import {
   Stories,
   Props,
 } from '@storybook/addon-docs/blocks';
-import Transition, { TransitionProps } from '../Transition';
+import { Transition, TransitionProps } from '../../../index';
 import Button from '../../button/Button';
 
 export default {

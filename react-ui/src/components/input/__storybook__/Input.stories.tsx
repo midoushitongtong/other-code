@@ -9,9 +9,8 @@ import {
   Stories,
   Props,
 } from '@storybook/addon-docs/blocks';
-import Input, { InputProps } from '../Input';
+import { Input, InputProps, Icon } from '../../../index';
 import { faEdit, faUser } from '@fortawesome/free-solid-svg-icons';
-import Icon from '../../icon/Icon';
 
 export default {
   title: 'ReactUI/Input',

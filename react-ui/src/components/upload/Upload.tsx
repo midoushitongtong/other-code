@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '../button/Button';
 import UploadDragger from './UploadDragger';
 import UploadFileList from './UploadFileList';
-import './Upload.scss';
+import './Upload.css';
 
 type UploadFileStatus = 'ready' | 'uploading' | 'success' | 'error';
 

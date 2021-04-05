@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
-import './Icon.scss';
+import './Icon.css';
 
 export type IconThemeProps =
   | 'primary'

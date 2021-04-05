@@ -9,7 +9,7 @@ import {
   Stories,
   Props,
 } from '@storybook/addon-docs/blocks';
-import Button, { ButtonProps } from '../Button';
+import { Button, ButtonProps } from '../../../index';
 
 export default {
   title: 'ReactUI/Button',

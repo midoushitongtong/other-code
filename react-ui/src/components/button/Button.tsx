@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import './Button.scss';
+import './Button.css';
 
 type ButtonType = 'default' | 'primary' | 'danger' | 'link';
 

@@ -9,9 +9,7 @@ import {
   Stories,
   Props,
 } from '@storybook/addon-docs/blocks';
-import Menu, { MenuProps } from '../Menu';
-import MenuItem from '../MenuItem';
-import MenuSubMenuItem from '../MenuSubMenuItem';
+import { Menu, MenuProps } from '../../../index';
 
 export default {
   title: 'ReactUI/Menu',
@@ -42,13 +40,13 @@ export const Horizontal: Story<MenuProps> = (args) => (
     onSelect={(index) => {
       console.log(index);
     }}>
-    <MenuItem>link1</MenuItem>
-    <MenuItem>link2</MenuItem>
-    <MenuSubMenuItem title="dropdown">
-      <MenuItem>dropdown1</MenuItem>
-      <MenuItem>dropdown2</MenuItem>
-    </MenuSubMenuItem>
-    <MenuItem disabled>link4</MenuItem>
+    <Menu.Item>link1</Menu.Item>
+    <Menu.Item>link2</Menu.Item>
+    <Menu.SubMenuItem title="dropdown">
+      <Menu.Item>dropdown1</Menu.Item>
+      <Menu.Item>dropdown2</Menu.Item>
+    </Menu.SubMenuItem>
+    <Menu.Item disabled>link4</Menu.Item>
   </Menu>
 );
 
@@ -60,12 +58,12 @@ export const Vertical: Story<MenuProps> = (args) => (
     onSelect={(index) => {
       console.log(index);
     }}>
-    <MenuItem>link1</MenuItem>
-    <MenuItem>link2</MenuItem>
-    <MenuSubMenuItem title="dropdown">
-      <MenuItem>dropdown1</MenuItem>
-      <MenuItem>dropdown2</MenuItem>
-    </MenuSubMenuItem>
-    <MenuItem disabled>link4</MenuItem>
+    <Menu.Item>link1</Menu.Item>
+    <Menu.Item>link2</Menu.Item>
+    <Menu.SubMenuItem title="dropdown">
+      <Menu.Item>dropdown1</Menu.Item>
+      <Menu.Item>dropdown2</Menu.Item>
+    </Menu.SubMenuItem>
+    <Menu.Item disabled>link4</Menu.Item>
   </Menu>
 );

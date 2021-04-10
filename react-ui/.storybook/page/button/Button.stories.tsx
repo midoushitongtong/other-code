@@ -9,11 +9,11 @@ import {
   Stories,
   Props,
 } from '@storybook/addon-docs/blocks';
-import { Menu, MenuProps } from '../../../index';
+import { Button, ButtonProps } from '../../../src/index';
 
 export default {
-  title: 'ReactUI/Menu',
-  component: Menu,
+  title: 'ReactUI/Button',
+  component: Button,
   parameters: {
     controls: {
       disable: true,
@@ -34,36 +34,32 @@ export default {
 } as Meta;
 
 // ==============================================================================================================================================================================================================================================
-export const Horizontal: Story<MenuProps> = (args) => (
-  <Menu
-    {...args}
-    onSelect={(index) => {
-      console.log(index);
-    }}>
-    <Menu.Item>link1</Menu.Item>
-    <Menu.Item>link2</Menu.Item>
-    <Menu.SubMenuItem title="dropdown">
-      <Menu.Item>dropdown1</Menu.Item>
-      <Menu.Item>dropdown2</Menu.Item>
-    </Menu.SubMenuItem>
-    <Menu.Item disabled>link4</Menu.Item>
-  </Menu>
+export const Default: Story<ButtonProps> = (args) => <Button {...args}>default button</Button>;
+
+// ==============================================================================================================================================================================================================================================
+export const Size: Story<ButtonProps> = (args) => (
+  <>
+    <Button {...args} size="sm">
+      sm button
+    </Button>
+    <Button {...args}>default size</Button>
+    <Button {...args} size="lg">
+      large button
+    </Button>
+  </>
 );
 
 // ==============================================================================================================================================================================================================================================
-export const Vertical: Story<MenuProps> = (args) => (
-  <Menu
-    mode="vertical"
-    defaultOpenSubMenus={['2']}
-    onSelect={(index) => {
-      console.log(index);
-    }}>
-    <Menu.Item>link1</Menu.Item>
-    <Menu.Item>link2</Menu.Item>
-    <Menu.SubMenuItem title="dropdown">
-      <Menu.Item>dropdown1</Menu.Item>
-      <Menu.Item>dropdown2</Menu.Item>
-    </Menu.SubMenuItem>
-    <Menu.Item disabled>link4</Menu.Item>
-  </Menu>
+export const Type: Story<ButtonProps> = (args) => (
+  <>
+    <Button {...args} type="primary">
+      primary button
+    </Button>
+    <Button {...args} type="danger">
+      danger button
+    </Button>
+    <Button {...args} type="link" target="_blank" href="https://test.com">
+      link button
+    </Button>
+  </>
 );

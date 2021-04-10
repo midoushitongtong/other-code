@@ -9,7 +9,7 @@ import {
   Stories,
   Props,
 } from '@storybook/addon-docs/blocks';
-import { AutoComplete, AutoCompleteProps, DataSourceItem } from '../../../index';
+import { AutoComplete, AutoCompleteProps, DataSourceItem } from '../../../src/index';
 
 export default {
   title: 'ReactUI/AutoComplete',

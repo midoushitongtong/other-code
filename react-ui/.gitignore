@@ -30,3 +30,6 @@ yarn-error.log*
 # run npm script auto generated file
 src/**/*.css
 /dist
+
+# storybook distribution file
+storybook-static

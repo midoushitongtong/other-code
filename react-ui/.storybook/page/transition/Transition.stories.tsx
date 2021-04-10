@@ -9,8 +9,8 @@ import {
   Stories,
   Props,
 } from '@storybook/addon-docs/blocks';
-import { Transition, TransitionProps } from '../../../index';
-import Button from '../../button/Button';
+import { Transition, TransitionProps } from '../../../src/index';
+import Button from '../../../src/components/button/Button';
 
 export default {
   title: 'ReactUI/Transition',

@@ -9,7 +9,7 @@ import {
   Stories,
   Props,
 } from '@storybook/addon-docs/blocks';
-import { Input, InputProps, Icon } from '../../../index';
+import { Input, InputProps, Icon } from '../../../src/index';
 import { faEdit, faUser } from '@fortawesome/free-solid-svg-icons';
 
 export default {

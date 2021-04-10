@@ -9,7 +9,7 @@ import {
   Stories,
   Props,
 } from '@storybook/addon-docs/blocks';
-import { Icon, IconProps, IconThemeProps } from '../../../index';
+import { Icon, IconProps, IconThemeProps } from '../../../src/index';
 import { faEdit, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default {

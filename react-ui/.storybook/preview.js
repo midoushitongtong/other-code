@@ -4,7 +4,7 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ['ReactUI', ['Button', 'Icon', 'Menu', 'Transition', 'Input']],
+      order: ['Welcome', 'ReactUI', ['Button', 'Icon', 'Menu', 'Transition', 'Input']],
     },
     controls: {
       disabled: true,

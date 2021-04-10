@@ -3,4 +3,4 @@ node_js:
   - '12'
 env:
   - TEST_DIR=react-ui
-script: cd $TEST_DIR && yarn install && yarn test
+script: cd $TEST_DIR && yarn install && yarn test:nowatch

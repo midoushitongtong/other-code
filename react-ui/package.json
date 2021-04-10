@@ -34,7 +34,7 @@
     "build": "yarn clean-build && yarn build-typescript && yarn build-scss:dist",
     "storybook": "start-storybook -p 6006 -s public",
     "dev": "concurrently \"yarn clean-dev\" \"yarn build-scss:dev\" \"yarn watch-scss\" \"yarn storybook\"",
-    "prepublish": "yarn test:nowatch && yarn lint && yarn typescript && npm run build"
+    "prepublishOnly": "yarn test:nowatch && yarn lint && yarn typescript && npm run build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",

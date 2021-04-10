@@ -18,21 +18,23 @@
     "dist"
   ],
   "scripts": {
-    "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "test": "react-scripts test",
+    "test:nowatch": "react-scripts test --watchAll=false",
     "prettier": "prettier --write \"**/*.{ts,tsx,.js,.jsx}\"",
     "lint": "eslint \"**/*.{ts,tsx,.js,.jsx}\"",
     "typescript": "tsc --noEmit",
-    "clean:scss": "rimraf ./src/**/*.css",
-    "watch:scss": "yarn clean:scss && node-sass src/ -o src/ && node-sass src/ -o src/ -w",
+    "clean-dev": "rimraf ./src/**/*.css",
+    "clean-build": "rimraf ./dist",
+    "watch-scss": "node-sass src/ -o src/ -w",
+    "build-typescript": "tsc --project tsconfig.build.json",
+    "build-scss:dist": "node-sass src/ -o dist/",
+    "build-scss:dev": "node-sass src/ -o src/",
+    "build-storybook": "build-storybook -s public",
+    "build": "yarn clean-build && yarn build-typescript && yarn build-scss:dist",
     "storybook": "start-storybook -p 6006 -s public",
-    "dev": "concurrently \"yarn watch:scss\" \"yarn storybook\"",
-    "clean:build": "rimraf ./dist",
-    "build:typescript": "tsc --project tsconfig.build.json",
-    "build:scss": "node-sass src/ -o dist/",
-    "build": "yarn clean:build && yarn build:typescript && yarn build:scss",
-    "build:storybook": "build-storybook -s public",
-    "prepublish": "npm run build"
+    "dev": "concurrently \"yarn clean-dev\" \"yarn build-scss:dev\" \"yarn watch-scss\" \"yarn storybook\"",
+    "prepublish": "yarn test:nowatch && yarn lint && yarn typescript && npm run build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
@@ -77,7 +79,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint && yarn typescript"
+      "pre-commit": "yarn test:nowatch && yarn lint && yarn typescript"
     }
   }
 }

@@ -27,6 +27,6 @@ yarn-error.log*
 
 .eslintcache
 
-src/*.css
-
+# run npm script auto generated file
+src/**/*.css
 /dist

@@ -1,9 +1,0 @@
-@import '../../styles/variable';
-@import '../../styles/normalize';
-
-@each $key, $value in $theme-colors {
-  // .icon-primary, .icon-secondary ...
-  .icon-#{$key} {
-    color: $value;
-  }
-}

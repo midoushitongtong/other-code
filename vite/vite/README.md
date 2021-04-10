@@ -1,7 +1,0 @@
-##### Use
-
-```
-yarn
-
-yarn link
-```

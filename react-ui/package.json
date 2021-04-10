@@ -30,7 +30,7 @@
     "build-typescript": "tsc --project tsconfig.build.json",
     "build-scss": "node-sass src/ -o dist/",
     "build-scss:dev": "node-sass src/ -o src/",
-    "build-storybook": "build-storybook -s public",
+    "build-storybook": "yarn build-scss:dev && build-storybook -s public",
     "build": "yarn clean && yarn build-typescript && yarn build-scss",
     "dev": "concurrently \"yarn clean:dev\" \"yarn build-scss:dev\" \"yarn watch-scss\" \"start-storybook -p 6006 -s public\"",
     "prepublishOnly": "yarn test:nowatch && yarn lint && yarn typescript && npm run build"

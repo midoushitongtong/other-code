@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas1" width="600" height="600"></canvas>
+    <script>
+      // 画布
+      /** @type {HTMLCanvasElement} */
+      const canvas1 = document.querySelector('#canvas1');
+      // 画笔
+      const ctx = canvas1.getContext('2d');
+
+      ctx.shadowBlur = 20;
+      ctx.shadowColor = '#000';
+      ctx.shadowOffsetX = 10;
+      ctx.shadowOffsetY = 10;
+      ctx.font = '50px Microsoft YaHei';
+
+      let x = 600;
+      const q = () => {
+        ctx.clearRect(0, 0, 600, 600);
+        ctx.fillText('hello', x, 100);
+        ctx.strokeText('hello', x, 200);
+        x -= 5;
+        if (x >= -600) {
+          requestAnimationFrame(q);
+        }
+      };
+
+      requestAnimationFrame(q);
+    </script>
+  </body>
+</html>

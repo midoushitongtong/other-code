@@ -22,7 +22,7 @@
 // function* test() {
 //   let val;
 //   // yield 会被替换为 20
-//   val = (yield [1, 2, 3]) + 7;
+//   val = (yield [1, 2, 3]) + 3;
 //   console.log(val);
 // }
 

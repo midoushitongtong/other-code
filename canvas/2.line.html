@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas1" width="600" height="600"></canvas>
+    <script>
+      // 画布
+      /** @type {HTMLCanvasElement} */
+      const canvas1 = document.querySelector('#canvas1');
+      // 画笔
+      const ctx = canvas1.getContext('2d');
+
+      // 设置开始路径
+      ctx.beginPath();
+      // 移动到某个位置
+      ctx.moveTo(50, 50);
+      // 绘制线
+      ctx.lineTo(50, 300);
+      // 设置结束路径
+      ctx.closePath();
+      // 绘制线
+      ctx.lineTo(175, 175);
+      // 绘制线
+      ctx.lineTo(50, 300);
+      // 绘制当前路径
+      ctx.strokeStyle = '#06f';
+      ctx.lineWidth = 5;
+      // ctx.miterLimit = 2; // 斜接面限制比
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+    </script>
+  </body>
+</html>

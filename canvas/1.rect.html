@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas1" width="600" height="600"></canvas>
+    <script>
+      // 画布
+      /** @type {HTMLCanvasElement} */
+      const canvas1 = document.querySelector('#canvas1');
+      // 画笔
+      const ctx = canvas1.getContext('2d');
+
+      // 1.绘制路径(startX, startX, endX, endY), 不会真正的绘制
+      ctx.rect(10, 10, 100, 100);
+      // 2.设置填充颜色
+      ctx.fillStyle = '#06f';
+      // 3.填充到画布
+      ctx.fill();
+
+      // 1.设置描边颜色
+      ctx.strokeStyle = '#f60';
+      // 2.设置描边宽度
+      ctx.lineWidth = 5;
+      // 3.绘制当前路径
+      ctx.stroke();
+    </script>
+  </body>
+</html>

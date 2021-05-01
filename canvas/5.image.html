@@ -5,7 +5,7 @@
     <title>Document</title>
   </head>
   <body>
-    <canvas id="canvas1" width="600" height="600"></canvas>
+    <canvas id="canvas1" width="1440" height="5000"></canvas>
     <script>
       // 画布
       /** @type {HTMLCanvasElement} */
@@ -13,8 +13,30 @@
       // 画笔
       const ctx = canvas1.getContext('2d');
 
-      // 绘制图像
-      ctx.drawImage();
+      // 绘制图片
+      const image = new Image();
+      image.src = 'https://pic3.zhimg.com/80/79ce50da4f6cbe6f7c16428b382b68f2_1440w.jpg';
+      // 等待图片载入完成后在进行绘制
+      image.addEventListener('load', function () {
+        // 参数1 绘制图片的 x 坐标位置
+        // 参数2 绘制图片的 y 坐标位置
+        // 参数3 图片的宽度
+        // 参数4 图片的高度
+        ctx.drawImage(image, 0, 0, 1440, 960);
+        ctx.font = '50px Microsoft YaHei';
+        ctx.fillStyle = '#fff';
+        ctx.fillText('水印', 1440 / 2 - 50, 850);
+
+        // 参数1 开始剪切图片的 x 坐标位置
+        // 参数2 开始剪切图片的 y 坐标位置
+        // 参数3 剪切图片的宽度
+        // 参数4 剪切图片的宽度
+        // 参数5 绘制图片的 x 坐标位置
+        // 参数6 绘制图片的 y 坐标位置
+        // 参数7 图片的宽度
+        // 参数8 图片的高度
+        ctx.drawImage(image, 350, 50, 850, 525, 350, 1000, 850, 525);
+      });
     </script>
   </body>
 </html>

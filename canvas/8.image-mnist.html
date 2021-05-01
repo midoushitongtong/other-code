@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body style="display: flex; align-items: flex-start">
+    <canvas id="canvas1" width="784" height="65000"></canvas>
+    <canvas id="canvas2" width="600" height="600"></canvas>
+    <script>
+      // 画布
+      /** @type {HTMLCanvasElement} */
+      const canvas1 = document.querySelector('#canvas1');
+      /** @type {HTMLCanvasElement} */
+      const canvas2 = document.querySelector('#canvas2');
+
+      // 画笔
+      const ctx = canvas1.getContext('2d');
+      const ctx2 = canvas2.getContext('2d');
+
+      const image = new Image();
+      image.src = './static/mnist_images.png';
+      image.addEventListener('load', function () {
+        ctx.drawImage(image, 0, 0);
+        for (let i = 0; i <= 10; i++) {
+          const imageData = ctx.getImageData(0, i, 784, 1);
+          const newImageData = ctx.createImageData(28, 28);
+          for (let j = 0; j < 784 * 4; j++) {
+            newImageData.data[j] = imageData.data[j];
+          }
+          ctx2.putImageData(newImageData, 0, i * 28, 0, 0, 28, 28);
+        }
+      });
+    </script>
+  </body>
+</html>

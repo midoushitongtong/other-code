@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas1" width="500" height="750"></canvas>
+    <video src="./static/1.mov" controls></video>
+    <script>
+      // 画布
+      /** @type {HTMLCanvasElement} */
+      const canvas1 = document.querySelector('#canvas1');
+      // 画笔
+      const ctx = canvas1.getContext('2d');
+
+      // video
+      /** @type {HTMLVideoElement} */
+      const video = document.querySelector('video');
+
+      let canRenderVideo = false;
+
+      // 视频播放的时候, 将画面同步渲染到 canvas
+      video.addEventListener('play', function () {
+        canRenderVideo = true;
+        const renderVideo = () => {
+          ctx.clearRect(0, 0, 500, 750); // 清空画布
+          ctx.fillStyle = '#000'; // 设置背景填充色
+          ctx.fillRect(0, 0, 500, 750); // 填充背景
+          ctx.drawImage(video, 65, 50, 355, 625); // 绘制视频
+          ctx.font = '20px Microsoft YaHei'; // 设置水印字体样式
+          ctx.fillStyle = '#fff'; // 设置水印字体填充色
+          ctx.fillText('水印', 250, 715); // 填充水印
+          if (canRenderVideo) {
+            console.log(1);
+            requestAnimationFrame(renderVideo);
+          }
+        };
+        requestAnimationFrame(renderVideo);
+      });
+
+      video.addEventListener('pause', function () {
+        canRenderVideo = false;
+      });
+
+      video.addEventListener('ended', function () {
+        canRenderVideo = false;
+      });
+    </script>
+  </body>
+</html>

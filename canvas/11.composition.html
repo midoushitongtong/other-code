@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="1000" height="1000"></canvas>
+    <script>
+      // 画布
+      /** @type {HTMLCanvasElement} */
+      const canvas = document.querySelector('#canvas');
+
+      // 画笔
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = '#06f';
+      ctx.fillRect(100, 100, 200, 200);
+
+      // globalCompositeOperation 属性用于设置合成操作类型
+
+      // "新图形" 在 "旧图形" 上面的位置绘制(默认值)
+      // ctx.globalCompositeOperation = 'source-over';
+      // 只保留 "新图形" 和 "旧图形" 重叠的 "新图形区域", 其他都是透明的
+      // ctx.globalCompositeOperation = 'source-in';
+      // 只保留 "新图形" 和 "旧图形" 不重叠的 "新图形区域", 其他都是透明的
+      // ctx.globalCompositeOperation = 'source-out';
+      // 只保留 "新图形" 和 "旧图形" 重叠的 "新图形区域", 然会覆盖在 "旧图形" 上面
+      // ctx.globalCompositeOperation = 'source-atop';
+
+      // "新图形" 在 "旧图形" 后面的位置绘制
+      // ctx.globalCompositeOperation = 'destination-over';
+      // 只保留 "新图形" 和 "旧图形" 重叠的 "旧图形区域", 其他都是透明的
+      // ctx.globalCompositeOperation = 'destination-in';
+      // 只保留 "新图形" 和 "旧图形" 不重叠的 "旧图形区域", 其他都是透明的
+      // ctx.globalCompositeOperation = 'destination-out';
+      // 只保留 "新图形" 和 "旧图形" 重叠的 "旧图形区域", 然会覆盖在 "新图形" 上面
+      // ctx.globalCompositeOperation = 'destination-atop';
+
+      // "新图形" 和 "旧图形" 重叠的位置高亮显示(颜色值相加)
+      // ctx.globalCompositeOperation = 'lighter';
+
+      // 只显示 "新图形"
+      // ctx.globalCompositeOperation = 'copy';
+
+      // "新图形" 和 "旧图形" 重叠的位置透明化
+      // ctx.globalCompositeOperation = 'xor';
+
+      ctx.fillStyle = '#f60';
+      ctx.fillRect(200, 200, 200, 200);
+    </script>
+  </body>
+</html>

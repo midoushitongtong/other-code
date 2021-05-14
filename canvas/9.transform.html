@@ -1,0 +1,106 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="1000" height="1000"></canvas>
+    <script>
+      // 画布
+      /** @type {HTMLCanvasElement} */
+      const canvas = document.querySelector('#canvas');
+
+      // 画笔
+      const ctx = canvas.getContext('2d');
+
+      // 最开始的矩形
+      ctx.fillRect(100, 100, 300, 100);
+
+      // 移动坐标的位置(和 moveTo 不同的是, moveTo 移动的是画笔的位置)
+      ctx.translate(100, 100);
+
+      // 坐标变换后的矩形
+      ctx.fillRect(100, 100, 300, 100);
+    </script>
+  </body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="1000" height="1000"></canvas>
+    <script>
+      // 画布
+      /** @type {HTMLCanvasElement} */
+      const canvas = document.querySelector('#canvas');
+
+      // 画笔
+      const ctx = canvas.getContext('2d');
+
+      ctx.translate(200, 200);
+
+      // 最开始的矩形
+      ctx.fillStyle = '#06f';
+      ctx.fillRect(0, 0, 300, 100);
+
+      // 旋转坐标
+      // 已知 PI = 180°, 所以 1/4 = 45°
+      // 将坐标旋转 45°
+      ctx.rotate(Math.PI / 4);
+      
+      // 坐标变换后的矩形
+      ctx.fillStyle = '#f60';
+      ctx.fillRect(0, 0, 300, 100);
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="1000" height="1000"></canvas>
+    <script>
+      // 画布
+      /** @type {HTMLCanvasElement} */
+      const canvas = document.querySelector('#canvas');
+
+      // 画笔
+      const ctx = canvas.getContext('2d');
+
+      ctx.translate(200, 200);
+
+      // 保存当前绘制状态
+      // 具体会保存那些绘制状态查看: https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/save#%E7%BB%98%E5%88%B6%E7%8A%B6%E6%80%81
+      ctx.save();
+
+      // 最开始的矩形
+      ctx.fillStyle = '#06f';
+      ctx.fillRect(0, 0, 300, 100);
+
+      ctx.save();
+
+      // 将坐标缩小一倍
+      ctx.scale(0.5, 0.5);
+
+      // 坐标变换后的矩形
+      ctx.fillStyle = '#f60';
+      ctx.fillRect(0, 500, 300, 100);
+
+      // 还原绘制状态(还原 scale 为之前 save 的值)
+      ctx.restore(); // 还原最近一次
+      ctx.restore(); // 还原最近两次
+
+      // 还原后再次绘制矩形
+      ctx.fillRect(0, 500, 300, 100);
+    </script>
+  </body>
+</html>

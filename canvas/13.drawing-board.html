@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .menu .button {
+        position: relative;
+        padding: 10px 15px;
+        background-color: #ccc;
+        font-size: 14px;
+        border-radius: 5px;
+        color: #151515;
+      }
+
+      .menu .button.active {
+        background-color: rgb(89, 152, 246);
+        color: #fff;
+      }
+
+      .menu .button:hover {
+        opacity: 0.75;
+        cursor: pointer;
+      }
+
+      .menu .button:hover .children {
+        display: block;
+      }
+
+      .menu .button + .button {
+        margin-left: 10px;
+      }
+
+      .menu .line-width {
+        cursor: default;
+      }
+      .menu .line-width:hover {
+        opacity: 1;
+        cursor: default;
+      }
+
+      .button .children {
+        display: none;
+        position: absolute;
+        top: calc(100%);
+        left: 0;
+        right: 0;
+        padding-top: 5px;
+      }
+
+      .children-inner {
+        overflow: hidden;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .line-width .line-width-item {
+        padding: 5px 10px;
+        border-bottom: 1px solid #ccc;
+        background-color: #fff;
+      }
+
+      .line-width .line-width-item.active {
+        background-color: #ccc;
+      }
+
+      .line-width .line-width-item:hover {
+        background-color: #ccc;
+        cursor: pointer;
+      }
+
+      .line-width .line-width-item:last-child {
+        border-bottom: 0;
+      }
+
+      .line-width .line-width-item::after {
+        content: '';
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        background-color: #000;
+        border-radius: 100%;
+      }
+
+      .line-width .line-width-item[data-line-width='2']::after {
+        width: 10px;
+        height: 10px;
+      }
+
+      .line-width .line-width-item[data-line-width='5']::after {
+        width: 15px;
+        height: 15px;
+      }
+
+      .line-width .line-width-item[data-line-width='10']::after {
+        width: 20px;
+        height: 20px;
+      }
+
+      input[type='color'] {
+        cursor: pointer;
+      }
+
+      #canvas {
+        display: block;
+        width: 100%;
+        height: calc(100vh - 100px - 4px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="menu">
+      <div class="button action-type-item active" data-action-type="pencil">画笔</div>
+      <div class="button action-type-item" data-action-type="rect">矩形</div>
+      <div class="button action-type-item" data-action-type="arc">圆形</div>
+      <div class="button action-type-item" data-action-type="eraser">橡皮擦</div>
+      <div class="button line-width">
+        <span>粗细</span>
+        <div class="children">
+          <div class="children-inner">
+            <div class="line-width-item active" data-line-width="2"></div>
+            <div class="line-width-item" data-line-width="5"></div>
+            <div class="line-width-item" data-line-width="10"></div>
+          </div>
+        </div>
+      </div>
+      <label class="button color">
+        <input type="color" name="color" />
+      </label>
+      <div class="button save-to-image">保存为图片</div>
+    </div>
+    <canvas id="canvas"></canvas>
+    <script>
+      // 画布
+      /** @type {HTMLCanvasElement} */
+      const canvas = document.querySelector('#canvas');
+      // 操作类型按钮
+      /** @type {HTMLDivElement[]} */
+      const actionTypes = document.querySelectorAll('.action-type-item');
+      // 粗细按钮
+      /** @type {HTMLDivElement[]} */
+      const lineWidths = document.querySelectorAll('.line-width-item');
+      // 颜色表单
+      /** @type {HTMLInputElement} */
+      const color = document.querySelector('input[name="color"]');
+      // 保存为图片按钮
+      /** @type {HTMLDivElement} */
+      const saveToImage = document.querySelector('.save-to-image');
+
+      // 画笔
+      const ctx = canvas.getContext('2d');
+
+      // 设置分辨率等于自身的宽高
+      canvas.setAttribute('width', canvas.offsetWidth);
+      canvas.setAttribute('height', canvas.offsetHeight);
+
+      // 当前画板的数据
+      const drawingBoard = {
+        actionType: 'pencil', // 当前操作类型(画笔, 矩形, 圆形, 线段粗细, 画笔颜色)
+        lastImageData: null, // 最后一次保存的画布数据(鼠标抬起后进行保存)
+        lastX: 0, // 最后一次绘制的 x 坐标
+        lastY: 0, //  最后一次绘制的 y 坐标
+        lineWidth: 2, //  画笔粗细
+        strokeStyle: '#000', // 画笔颜色
+        /**
+         * 画笔
+         * @param {MouseEvent} e
+         */
+        pencil: (e) => {
+          const x = e.pageX - canvas.offsetLeft;
+          const y = e.pageY - canvas.offsetTop;
+          ctx.globalCompositeOperation = 'source-over';
+          ctx.beginPath();
+          ctx.moveTo(drawingBoard.lastX, drawingBoard.lastY);
+          ctx.lineTo(x, y);
+          ctx.lineCap = 'round'; // 线两端圆角
+          ctx.lineJoin = 'round'; // 线连接处圆角
+          ctx.lineWidth = drawingBoard.lineWidth;
+          ctx.strokeStyle = drawingBoard.strokeStyle;
+          ctx.stroke();
+          ctx.closePath();
+          drawingBoard.lastX = x;
+          drawingBoard.lastY = y;
+        },
+        /**
+         * 矩形
+         * @param {MouseEvent} e
+         */
+        rect: (e) => {
+          const x = e.pageX - canvas.offsetLeft;
+          const y = e.pageY - canvas.offsetTop;
+          // 清空画布数据
+          ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+          // 还原最后一次保存的画布数据
+          if (drawingBoard.lastImageData) {
+            ctx.putImageData(
+              drawingBoard.lastImageData,
+              0,
+              0,
+              0,
+              0,
+              canvas.offsetWidth,
+              canvas.offsetHeight
+            );
+          }
+          ctx.globalCompositeOperation = 'source-over';
+          ctx.beginPath();
+          ctx.rect(
+            drawingBoard.lastX,
+            drawingBoard.lastY,
+            x - drawingBoard.lastX,
+            y - drawingBoard.lastY
+          );
+          ctx.lineWidth = drawingBoard.lineWidth;
+          ctx.strokeStyle = drawingBoard.strokeStyle;
+          ctx.stroke();
+          ctx.closePath();
+        },
+        /**
+         * 圆形
+         * @param {MouseEvent} e
+         */
+        arc: (e) => {
+          const x = e.pageX - canvas.offsetLeft;
+          const y = e.pageY - canvas.offsetTop;
+          // 圆的半径, 取 x y 两者中最大的值
+          let circleSize = Math.max(Math.abs(x - drawingBoard.lastX), Math.abs(y - drawingBoard.lastY));
+          // 限制圆的半径最小是 0.5
+          if (circleSize < 0.5) {
+            circleSize = 0.5;
+          }
+          // 清空画布数据
+          ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+          // 还原最后一次保存的画布数据
+          if (drawingBoard.lastImageData) {
+            ctx.putImageData(
+              drawingBoard.lastImageData,
+              0,
+              0,
+              0,
+              0,
+              canvas.offsetWidth,
+              canvas.offsetHeight
+            );
+          }
+          ctx.globalCompositeOperation = 'source-over';
+          ctx.beginPath();
+          ctx.arc(drawingBoard.lastX, drawingBoard.lastY, circleSize, 0, Math.PI * 2);
+          ctx.lineWidth = drawingBoard.lineWidth;
+          ctx.strokeStyle = drawingBoard.strokeStyle;
+          ctx.stroke();
+          ctx.closePath();
+        },
+        /**
+         * 橡皮擦
+         * @param {MouseEvent} e
+         */
+        eraser: (e) => {
+          const x = e.pageX - canvas.offsetLeft;
+          const y = e.pageY - canvas.offsetTop;
+          ctx.globalCompositeOperation = 'destination-out';
+          ctx.beginPath();
+          ctx.moveTo(drawingBoard.lastX, drawingBoard.lastY);
+          ctx.lineTo(x, y);
+          ctx.lineCap = 'round'; // 线两端圆角
+          ctx.lineJoin = 'round'; // 线连接处圆角
+          ctx.lineWidth = drawingBoard.lineWidth;
+          ctx.strokeStyle = drawingBoard.strokeStyle;
+          ctx.stroke();
+          ctx.closePath();
+          drawingBoard.lastX = x;
+          drawingBoard.lastY = y;
+        },
+      };
+
+      // 处理 canvas 鼠标移动事件
+      const handleMouseMove = (e) => {
+        drawingBoard[drawingBoard.actionType](e);
+      };
+
+      // 监听 canvas 鼠标按下事件
+      canvas.addEventListener('mousedown', (e) => {
+        drawingBoard.lastX = e.pageX - canvas.offsetLeft;
+        drawingBoard.lastY = e.pageY - canvas.offsetTop;
+        canvas.addEventListener('mousemove', handleMouseMove);
+      });
+
+      // 监听 document 鼠标抬起事件
+      document.addEventListener('mouseup', () => {
+        drawingBoard.lastImageData = ctx.getImageData(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+        canvas.removeEventListener('mousemove', handleMouseMove);
+      });
+
+      // 监听操作类型按钮 click 事件
+      actionTypes.forEach((item) => {
+        item.addEventListener('click', () => {
+          // 添加 active 样式
+          drawingBoard.actionType = item.dataset['actionType'];
+          item.classList.add('active');
+          // 移除其他按钮的 active 样式
+          actionTypes.forEach((item2) => {
+            if (item2 !== item) {
+              item2.classList.remove('active');
+            }
+          });
+        });
+      });
+
+      // 监听粗细按钮 click 事件
+      lineWidths.forEach((item) => {
+        item.addEventListener('click', () => {
+          // 添加 active 样式
+          item.classList.add('active');
+          const lineWidth = parseInt(item.dataset.lineWidth);
+          drawingBoard.lineWidth = lineWidth;
+          // 移除其他按钮的 active 样式
+          lineWidths.forEach((item2) => {
+            if (item2 !== item) {
+              item2.classList.remove('active');
+            }
+          });
+        });
+      });
+
+      // 监听颜色表单 change 事件
+      color.addEventListener('change', (e) => {
+        drawingBoard.strokeStyle = e.target.value;
+      });
+
+      // 监听保存为图片按钮 click 事件
+      saveToImage.addEventListener('click', (e) => {
+        const imageDatURL = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.download = 'image.png';
+        link.href = imageDatURL;
+        link.click();
+      });
+    </script>
+  </body>
+</html>
+
+<!-- 
+  画板的功能
+    - 能够拖拽鼠标在画布内进行任意的绘制
+    - 能够绘制矩形, 拖拽鼠标后能自定义大小
+    - 能够绘制圆形, 拖拽鼠标后能自定义大小
+    - 能够设置画笔的粗细
+    - 能够设置画笔的颜色
+-->

@@ -5,14 +5,14 @@
     <title>Document</title>
   </head>
   <body>
-    <canvas id="canvas1" width="500" height="750"></canvas>
+    <canvas id="canvas" width="500" height="750"></canvas>
     <video src="./static/1.mov" controls></video>
     <script>
       // 画布
       /** @type {HTMLCanvasElement} */
-      const canvas1 = document.querySelector('#canvas1');
+      const canvas = document.querySelector('#canvas');
       // 画笔
-      const ctx = canvas1.getContext('2d');
+      const ctx = canvas.getContext('2d');
 
       // video
       /** @type {HTMLVideoElement} */
@@ -21,7 +21,7 @@
       let canRenderVideo = false;
 
       // 视频播放的时候, 将画面同步渲染到 canvas
-      video.addEventListener('play', function () {
+      video.addEventListener('play', () => {
         canRenderVideo = true;
         const renderVideo = () => {
           ctx.clearRect(0, 0, 500, 750); // 清空画布
@@ -39,11 +39,11 @@
         requestAnimationFrame(renderVideo);
       });
 
-      video.addEventListener('pause', function () {
+      video.addEventListener('pause', () => {
         canRenderVideo = false;
       });
 
-      video.addEventListener('ended', function () {
+      video.addEventListener('ended', () => {
         canRenderVideo = false;
       });
     </script>

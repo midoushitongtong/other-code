@@ -5,19 +5,19 @@
     <title>Document</title>
   </head>
   <body>
-    <canvas id="canvas1" width="1440" height="5000"></canvas>
+    <canvas id="canvas" width="1440" height="5000"></canvas>
     <script>
       // 画布
       /** @type {HTMLCanvasElement} */
-      const canvas1 = document.querySelector('#canvas1');
+      const canvas = document.querySelector('#canvas');
       // 画笔
-      const ctx = canvas1.getContext('2d');
+      const ctx = canvas.getContext('2d');
 
       // 绘制图片
       const image = new Image();
       image.src = 'https://pic3.zhimg.com/80/79ce50da4f6cbe6f7c16428b382b68f2_1440w.jpg';
       // 等待图片载入完成后在进行绘制
-      image.addEventListener('load', function () {
+      image.addEventListener('load', () => {
         // 参数1 绘制图片的 x 坐标位置
         // 参数2 绘制图片的 y 坐标位置
         // 参数3 图片的宽度

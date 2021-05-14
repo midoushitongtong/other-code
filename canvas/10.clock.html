@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="1000" height="1000"></canvas>
+    <script>
+      // 画布
+      /** @type {HTMLCanvasElement} */
+      const canvas = document.querySelector('#canvas');
+
+      // 画笔
+      const ctx = canvas.getContext('2d');
+
+      const drawClock = () => {
+        ctx.clearRect(0, 0, 1000, 1000);
+
+        ctx.save(); // 保存当前绘制状态, 为了能正常的 clearReact, 不然会受到 rotate 的影响
+
+        ctx.translate(450, 450); // 将坐标移动到中心位置
+        ctx.rotate(-(2 * Math.PI) / 4); // 将坐标旋转 -90°, 主要为了让秒针, 分针, 时针能够正常的绘制
+
+        ctx.save();
+
+        // 1. 绘制表盘
+        ctx.beginPath();
+        ctx.arc(0, 0, 200, 0, Math.PI * 2);
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = '#aaa';
+        ctx.stroke();
+        ctx.closePath();
+
+        // 清空绘制状态
+        ctx.restore();
+        // 保存绘制状态
+        ctx.save();
+
+        // 2. 绘制分钟刻度(60分钟所以一共60条线)
+        for (let i = 0; i < 60; i++) {
+          // 每次循环都将坐标旋转 3° (180 / 60 = 3)
+          ctx.rotate((2 * Math.PI) / 60);
+          ctx.beginPath();
+          ctx.moveTo(175, 0);
+          ctx.lineTo(190, 0);
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = '#ccc';
+          ctx.stroke();
+          ctx.closePath();
+        }
+
+        // 清空绘制状态
+        ctx.restore();
+        // 保存绘制状态
+        ctx.save();
+
+        // 3. 绘制小时刻度(12小时所以一共12条线)
+        for (let i = 0; i < 12; i++) {
+          // 每次循环都将坐标旋转 15° (180 / 12 = 15)
+          ctx.beginPath();
+          ctx.rotate((2 * Math.PI) / 12);
+          ctx.moveTo(175, 0);
+          ctx.lineTo(200, 0);
+          ctx.lineWidth = 6;
+          ctx.strokeStyle = '#aaa';
+          ctx.stroke();
+          ctx.closePath();
+        }
+
+        // 清空绘制状态
+        ctx.restore();
+        // 保存绘制状态
+        ctx.save();
+
+        // 获取当前(时, 分, 秒)
+        const date = new Date();
+        let hour = date.getHours();
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+        // 最大不能超过 12 小时
+        if (hour > 12) {
+          hour = hour - 12;
+        }
+        console.log(`${hour}:${minutes}:${seconds}`);
+
+        // 清空绘制状态
+        ctx.restore();
+        // 保存绘制状态
+        ctx.save();
+
+        // 4. 绘制时针
+        // 加上当前分钟角度, 12 代表小时总数, 60 代表分钟总数
+        // 加上当前秒数角度, 12 代表小时总数, 60 代表分钟总数, 60 代表秒数总数
+        ctx.beginPath();
+        ctx.rotate(
+          ((2 * Math.PI) / 12) * hour +
+            // 加上当前分钟角度
+            ((2 * Math.PI) / (12 * 60)) * minutes +
+            // 加上当前秒数角度
+            ((2 * Math.PI) / (12 * 60 * 60)) * seconds
+        );
+        ctx.moveTo(-25, 0);
+        ctx.lineTo(100, 0);
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = '#aaa';
+        ctx.stroke();
+        ctx.closePath();
+
+        // 清空绘制状态
+        ctx.restore();
+        // 保存绘制状态
+        ctx.save();
+
+        // 5. 绘制分针
+        // 加上当前秒数角度, 60 代表分钟总数, 60 代表秒数总数
+        ctx.beginPath();
+        ctx.rotate(
+          ((2 * Math.PI) / 60) * minutes +
+            // 加上当前秒数角度
+            ((2 * Math.PI) / (60 * 60)) * seconds
+        );
+        ctx.moveTo(-25, 0);
+        ctx.lineTo(125, 0);
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = '#ccc';
+        ctx.stroke();
+        ctx.closePath();
+
+        // 清空绘制状态
+        ctx.restore();
+        // 保存绘制状态
+        ctx.save();
+
+        // 6. 绘制秒针
+        ctx.beginPath();
+        ctx.rotate(((2 * Math.PI) / 60) * seconds);
+        ctx.moveTo(-65, 0);
+        ctx.lineTo(150, 0);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#06f';
+        ctx.stroke();
+        ctx.closePath();
+
+        // 清空绘制状态
+        ctx.restore();
+        // 保存绘制状态
+        ctx.save();
+
+        // 绘制中心圆点
+        ctx.beginPath();
+        ctx.arc(0, 0, 10, 0, 2 * Math.PI);
+        ctx.fillStyle = '#000';
+        ctx.fill();
+        ctx.closePath();
+
+        // 清空绘制状态
+        ctx.restore();
+        // 清空绘制状态, 这一步回到最开始的 save()
+        ctx.restore();
+      };
+
+      drawClock();
+
+      setInterval(drawClock, 1000);
+    </script>
+  </body>
+</html>

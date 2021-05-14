@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      .scratch-card {
+        position: relative;
+        width: 500px;
+        height: 125px;
+      }
+
+      .scratch-card .result {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 500px;
+        height: 125px;
+        text-align: center;
+        line-height: 125px;
+        font-size: 25px;
+        font-weight: bold;
+        color: #000;
+        user-select: none;
+        outline: 0;
+      }
+
+      .scratch-card #canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 500px;
+        height: 125px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scratch-card">
+      <div class="result">谢谢惠顾</div>
+      <canvas id="canvas" width="500" height="125"></canvas>
+    </div>
+    <script>
+      // 刮刮卡容器
+      /** @type {HTMLDivElement} */
+      const scratchCard = document.querySelector('.scratch-card');
+      // 刮奖结果区域
+      /** @type {HTMLDivElement} */
+      const scratchCardResult = document.querySelector('.scratch-card .result');
+      // 画布
+      /** @type {HTMLCanvasElement} */
+      const canvas = document.querySelector('#canvas');
+
+      // 画笔
+      const ctx = canvas.getContext('2d');
+
+      // 默认填充灰色背景(刮奖区域)
+      ctx.fillStyle = '#aaa';
+      ctx.fillRect(0, 0, 500, 125);
+      ctx.fillStyle = '#fff';
+      ctx.font = '30px Microsoft YaHei';
+      ctx.fillText('刮刮卡', 200, 70);
+
+      const handleMouseMove = (e) => {
+        // 只保留 "新图形" 和 "旧图形" 不重叠的 "旧图形区域", 其他都是透明的
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        const x = e.pageX - scratchCard.offsetLeft;
+        const y = e.pageY - scratchCard.offsetTop;
+        ctx.arc(x, y, 25, 0, Math.PI * 2);
+        ctx.fillStyle = '#fff';
+        ctx.fill();
+        ctx.closePath();
+      };
+
+      const checkScratchPixel = () => {
+        // 如果刮了大于 65% 的区域, 直接显示全部
+        const imageData = ctx.getImageData(0, 0, 500, 125);
+        // canvas 的图像数据
+        const imageDataSource = [...imageData.data];
+        // 总共有多少个像素点
+        const pixelsCount = 500 * 125;
+        // 已经刮了多少个像素点
+        let scratchPixelsCount = 0;
+        for (let i = 0; i < pixelsCount; i++) {
+          if (imageDataSource[i * 4] !== 170) {
+            scratchPixelsCount++;
+          }
+        }
+        if ((scratchPixelsCount / pixelsCount) * 100 >= 65) {
+          ctx.clearRect(0, 0, 500, 125);
+        }
+      };
+
+      canvas.addEventListener('mousedown', (e) => {
+        handleMouseMove(e);
+        canvas.addEventListener('mousemove', handleMouseMove);
+      });
+
+      document.addEventListener('mouseup', () => {
+        checkScratchPixel();
+        canvas.removeEventListener('mousemove', handleMouseMove);
+      });
+
+      if (Math.floor(Math.random() * 10) + 1 >= 5) {
+        scratchCardResult.innerText = '中奖了';
+      } else {
+        scratchCardResult.innerText = '谢谢惠顾';
+      }
+    </script>
+  </body>
+</html>

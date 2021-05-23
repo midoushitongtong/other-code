@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="root">
+      <div class="parent">
+        parent
+        <div class="child">child</div>
+      </div>
+    </div>
+
+    <script>
+      const root = document.querySelector('.root');
+      const parent = document.querySelector('.parent');
+      const child = document.querySelector('.child');
+
+      root.addEventListener('click', (event) => dispatchEvent(event, true), true);
+      root.addEventListener('click', (event) => dispatchEvent(event, false), false);
+
+      // 事件代理
+      // 为什么用事件代理? 大大减少内存占用, 假设要给页面上的 1000 个 div 添加 click 事件, 用事件代理只需要绑定 1 次, 不需要绑定 1000 次
+      const dispatchEvent = (event) => {
+        const paths = []; // 事件的传播路径数组[child, parent, root, body, html, document]
+        let currentTarget = event.target; // 当前事件源
+        while (currentTarget) {
+          paths.push(currentTarget);
+          currentTarget = currentTarget.parentNode;
+        }
+        // 调用 react 事件捕获 (先 reverse 因为是从顶层元素开始执行)
+        paths.reverse().forEach((item) => {
+          if (item.onClickCapture) {
+            item.onClickCapture();
+          }
+        });
+        // 调用 react 事件冒泡 (先 reverse 因为是从顶层元素开始执行)
+        paths.reverse().forEach((item) => {
+          if (item.onClick) {
+            item.onClick();
+          }
+        });
+      };
+
+      // 绑定原生事件
+      parent.addEventListener(
+        'click',
+        () => {
+          console.log('复元素 原生 事件捕获');
+        },
+        true
+      );
+      parent.addEventListener(
+        'click',
+        () => {
+          console.log('复元素 原生 事件冒泡');
+        },
+        false
+      );
+      child.addEventListener(
+        'click',
+        () => {
+          console.log('子元素 原生 事件捕获');
+        },
+        true
+      );
+      child.addEventListener(
+        'click',
+        () => {
+          console.log('子元素 原生 事件冒泡');
+        },
+        false
+      );
+
+      // 模拟绑定 react 事件
+      parent.onClickCapture = () => {
+        console.log('复元素 react 事件捕获');
+      };
+      parent.onClick = () => {
+        console.log('复元素 react 事件冒泡');
+      };
+      child.onClickCapture = () => {
+        console.log('子元素 react 事件捕获');
+      };
+      child.onClick = () => {
+        console.log('子元素 react 事件冒泡');
+      };
+    </script>
+  </body>
+</html>

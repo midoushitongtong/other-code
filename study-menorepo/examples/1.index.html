@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script src="../node_modules/@vue/reactivity/dist/reactivity.global.js"></script>
+  <script>
+    const { ref, reactive, shallowReactive, readonly, shallowReadonly, effect } = VueReactivity;
+
+    const isShow = ref(true);
+    effect(() => {
+      console.log(isShow.value);
+    });
+    setTimeout(() => {
+      isShow.value = false;
+    }, 1000);
+
+    // const school = {
+    //   name: '123',
+    //   age: 23,
+    //   address: {
+    //     country: 'a',
+    //     city: 'b',
+    //   },
+    //   arr: [1, 2, 3],
+    // };
+    // const data = reactive(school);
+    // effect(() => {
+    //   console.log(data.name);
+    // });
+    // setTimeout(() => {
+    //   data.name = 'hello';
+    // }, 1000);
+  </script>
+</html>
